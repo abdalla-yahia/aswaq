@@ -5,9 +5,9 @@ import PayedMethod from "./Payed-Method";
 import { useEffect, useState } from "react";
 
 const initialData = [
-  { name: "تي شيرت رجالي", describtion: 'تي شيرت رجالي خامه قطن عالية الجودة', img: "/images/shopping-cart-page-01-product-01.jpg", price: 19.99, count: 1, lastprice: 34.99 },
-  { name: "تي شيرت نسائي", describtion: 'تي شيرت نسائي حرير صناعي', img: "/images/shopping-cart-page-01-product-02.jpg", price: 24.99, count: 2, lastprice: 50.50 },
-  { name: "بنطال جينز", describtion: 'بنطال جينز ليكرا', img: "/images/shopping-cart-page-01-product-03.jpg", price: 39.99, count: 1, lastprice: 34.99 },
+  { name: "تي شيرت رجالي", describtion: 'تي شيرت رجالي خامه قطن عالية الجودة', img: "/images/product-01.jpg", price: 19.99, count: 1, lastprice: 34.99 },
+  { name: "تي شيرت نسائي", describtion: 'تي شيرت نسائي حرير صناعي', img: "/images/product-02.jpg", price: 24.99, count: 2, lastprice: 50.50 },
+  { name: "بنطال جينز", describtion: 'بنطال جينز ليكرا', img: "/images/product-04.jpg", price: 39.99, count: 1, lastprice: 34.99 },
 ];
 
 export default function Cart() {

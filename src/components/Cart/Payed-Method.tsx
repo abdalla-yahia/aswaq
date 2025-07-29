@@ -22,7 +22,7 @@ export default function PayedMethod({totalPrice}:{totalPrice:number}) {
         {/** Net Price */}
         <div className="w-full border-b my-6 flex justify-between items-center gap-3">
             <label className="mx-2">السعر بعد الخصم </label>
-            <span className="mx-2 text-2xl  p-5">2500 جنيه</span>
+            <span className="mx-2 text-2xl  p-5">{totalPrice.toFixed(2)} جنيه</span>
         </div>
         {/**Pay Method */}
         <SubmitButton text="الإنتقال للدفع" bgcolor="bg-accent" textcolor="text-white"/>
