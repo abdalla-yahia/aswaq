@@ -4,7 +4,7 @@ import * as icon from '@/utils/Icons/Icons';
 export default function ProductCard({className,img,title,describtion,price,rate}:{className:string,img:string,title:string,describtion:string,price:number,rate:number}) {
   return (
     <div className={className}>
-        <div className="flex flex-col shadow-soft justify-between items-center min-h-[350px]">
+        <div className="flex flex-col rounded-xl shadow-soft justify-between items-center min-h-[350px]">
             {/**Card Image */}
             <Image src={img} alt={'idn'} width={150} height={150}  className='object-cover'/>
             {/**Card Details */}

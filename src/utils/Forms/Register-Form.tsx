@@ -16,7 +16,7 @@ export default function RegisterForm() {
                 {/* Address */}
                 <InputButton type="text" placeholder="العنوان" name="address"/>
                 {/* Submit Button */}
-                <SubmitButton text="دخول" bgcolor="bg-primary" textcolor="text-white"/>
+                <SubmitButton text="تسجيل" bgcolor="bg-primary" textcolor="text-white"/>
             </form>
   )
 }
