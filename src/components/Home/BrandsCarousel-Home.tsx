@@ -35,19 +35,29 @@ const brands = [
 
 export default function BrandCarousel() {
   return (
-    <div className="py-1 bg-white border-y border-gray-200">
-          <Marquee autoFill={true} >
-
+    <div dir="ltr" className="py-1 bg-accent ">
+          <Marquee autoFill={true} pauseOnHover gradient gradientColor="#60a5fa">
           {brands.map((src, i) => (
-            <>
               <Image
+              key={i}
                 src={src}
                 alt={`Brand ${i + 1}`}
                 width={100}
                 height={60}
                 className="object-contain"
                 />
-                </>
+          ))}
+          </Marquee>
+          <Marquee speed={30} autoFill={true} direction="right">
+          {brands.map((src, i) => (
+              <Image
+              key={i}
+                src={src}
+                alt={`Brand ${i + 1}`}
+                width={100}
+                height={60}
+                className="object-contain"
+                />
           ))}
           </Marquee>
 
