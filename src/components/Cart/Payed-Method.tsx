@@ -17,7 +17,7 @@ export default function PayedMethod({totalPrice}:{totalPrice:number}) {
         <div className="w-full border-b mt-6 flex justify-between items-center gap-3">
             <label className="code-discount w-1/3 mx-2">كود خصم </label>
             <InputButton type="text" placeholder="ادخل كود الخصم" name="discount-code"/>
-            <SubmitButton text="تطبيق" />
+            <SubmitButton text="تطبيق" bgcolor="bg-accent" textcolor="text-white"/>
         </div>
         {/** Net Price */}
         <div className="w-full border-b my-6 flex justify-between items-center gap-3">
@@ -25,7 +25,7 @@ export default function PayedMethod({totalPrice}:{totalPrice:number}) {
             <span className="mx-2 text-2xl  p-5">2500 جنيه</span>
         </div>
         {/**Pay Method */}
-        <SubmitButton text="الإنتقال للدفع" />
+        <SubmitButton text="الإنتقال للدفع" bgcolor="bg-accent" textcolor="text-white"/>
     </div>
   )
 }
