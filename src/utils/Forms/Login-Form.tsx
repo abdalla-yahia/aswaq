@@ -10,7 +10,7 @@ export default function LoginForm() {
             {/* Password */}
             <PasswordButton placeholder="الرقم السري" name="password"/>
             {/* Submit Button */}
-            <SubmitButton text="دخول" />
+            <SubmitButton text="دخول" bgcolor="bg-primary" textcolor="text-white"/>
         </form>
   )
 }

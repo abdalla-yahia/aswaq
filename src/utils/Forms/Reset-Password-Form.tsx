@@ -9,7 +9,7 @@ export default function ResetPasswordForm() {
            {/* Confirm New Password */}
            <PasswordButton  placeholder="تأكيد الرقم السري الجديد" name="confirm-new-password" />
            {/* Submit Button */}
-           <SubmitButton text="حفظ الرقم السري الجديد" />
+           <SubmitButton text="حفظ الرقم السري الجديد" bgcolor="bg-primary" textcolor="text-white"/>
        </form>
   )
 }

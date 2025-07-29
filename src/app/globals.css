@@ -13,6 +13,8 @@
 
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Fira Code', monospace;
+
+  --padding: 2.5rem
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -24,7 +26,8 @@
     --muted: #64748b;
     --highlight: #1e293b;
     --border: #334155;
-    --shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    --shadow: 1px 1px 8px rgba(255, 255, 255, 0.5);
+    --padding: 2.5rem
   }
 }
 @theme inline {
@@ -38,6 +41,7 @@
   --shadow-soft: var(--shadow);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  --padding-main : var(--padding)
 }
 
 @layer utilities {
@@ -79,7 +83,7 @@
       color: var(--color-accent);
     }
   }
-
+  
   .border {
     &.default {
       border-color: var(--color-border);
@@ -89,6 +93,12 @@
   .shadow {
     &.soft {
       box-shadow: var(--shadow-soft);
+    }
+  }
+
+  .p{
+    &.main{
+      padding-inline: var(--padding-main);
     }
   }
 }

@@ -7,7 +7,7 @@ export default function CodeValidationForm() {
         {/* Code Input Field */}
         <InputButton type="text" placeholder="ادخل الكود" name="code-validation" />
         {/* Submit Button */}
-        <SubmitButton text="تأكيد كود التفعيل" />
+        <SubmitButton text="تأكيد كود التفعيل" bgcolor="bg-primary" textcolor="text-white"/>
     </form>
   )
 }

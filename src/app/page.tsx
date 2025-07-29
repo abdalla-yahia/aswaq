@@ -1,8 +1,10 @@
+import Home from "@/components/Home/Home";
 
-export default async function Home() {
+export default async function HomePage() {
   return (
     <>
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen  pb-20 gap-16 sm:p-20">
+    <div className="flex items-start justify-start min-h-screen ">
+    <Home />
     </div>
     </>
   );
