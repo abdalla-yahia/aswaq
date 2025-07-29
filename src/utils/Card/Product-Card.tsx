@@ -6,7 +6,7 @@ export default function ProductCard({className,img,title,describtion,price,rate}
     <div className={className}>
         <div className="flex flex-col rounded-xl shadow-soft justify-between items-center min-h-[350px]">
             {/**Card Image */}
-            <Image src={img} alt={'idn'} width={150} height={150}  className='object-cover'/>
+            <Image src={img} alt={'idn'} width={150} height={150} loading='lazy' className='object-cover'/>
             {/**Card Details */}
             <div className='w-full flex flex-col justify-center items-center gap-2 pb-2 px-3'>
                 <h3 className='text-3xl text-center text-accent'>{title}</h3>
