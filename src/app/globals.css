@@ -45,6 +45,12 @@
     &.background {
       background-color: var(--color-background);
     }
+    &.foreground {
+      background-color: var(--color-foreground);
+    }
+    &.muted {
+      background-color: var(--color-muted);
+    }
     &.primary {
       background-color: var(--color-primary);
     }
