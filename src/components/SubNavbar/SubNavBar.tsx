@@ -38,7 +38,7 @@ export default function SubNavBar() {
                 )
             }
             <li className="cursor-pointer" onClick={()=>setToggle(!toggle)}>
-                {toggle?<span className="text-blue-500 cursor-pointer text-lg font-bold">أقل..</span>:<span className="text-orange-500 cursor-pointer text-lg font-bold">أكثر....</span>}
+                {toggle?<span className="text-blue-500 cursor-pointer text-lg font-bold">أقل..</span>:<span className="text-orange-500 cursor-pointer text-lg font-bold">المزيد....</span>}
             </li>
         </ul>
     </nav>
