@@ -1,0 +1,44 @@
+{
+  "name": "متجر اسواق بني سويف للتجارة الإلكترونية",
+  "short_name": "اسواق بني سويف",
+  "description": "متجر اسواق بني سويف للتجارة الإلكترونية , متجر أسواق الإلكتروني – اكتشف أفضل العروض على مجموعة واسعة من المنتجات بجودة عالية وأسعار تنافسية. تسوّق الآن مع خدمة شحن موثوقة ودعم عملاء مميز في مصر والوطن العربي",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon.ico",
+      "sizes": "16x16 32x32 48x48 64x64 96x96 128x128 192x192 256x256",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "lang": "ar",
+  "dir": "rtl",
+  "orientation": "portrait"
+}
