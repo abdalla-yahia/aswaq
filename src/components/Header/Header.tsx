@@ -4,7 +4,7 @@ import Search from "./Search";
 
 export default function Header() {
   return (
-    <div className="w-full flex justify-evenly items-center bg-accent text-foreground p-1 rounded" >
+    <div className="w-full flex justify-evenly items-center bg-accent text-forground p-1 rounded" >
         <Navlink />
         <Search />
         <Logo />

@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function LoginPage() {
 
   return (
-    <div className="flex w-full items-center justify-center min-h-screen bg-background">
-      <div className=" w-1/2 text-forground p-6 rounded-lg shadow-lg">
+    <div className="flex w-full items-start justify-center mt-5 min-h-screen bg-background">
+      <div className=" w-2/3 text-forground p-6 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4 text-center">تسجيل الدخول</h1>
         {/* Login Form */}
         <LoginForm />
