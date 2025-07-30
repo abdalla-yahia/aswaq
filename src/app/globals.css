@@ -12,7 +12,7 @@
   --border: #e2e8f0;                  /* حدود فاتحة */
   --shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
 
-  --fluid:clamp(2.5rem, 2vw, 1rem);
+  --fluid:clamp(1rem, 2vw, 3rem);
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Fira Code', monospace;
 
@@ -30,7 +30,7 @@
     --border: #334155;
     --shadow: 3px 3px 8px rgba(255, 255, 255, 0.5);
     --padding: 2.5rem;
-    --fluid:clamp(2.5rem, 2vw, 1rem)
+    --fluid:clamp(1.5rem, 2vw, 3rem)
   }
 }
  @theme inline {
