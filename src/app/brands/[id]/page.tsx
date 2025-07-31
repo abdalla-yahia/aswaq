@@ -1,10 +1,10 @@
 import Brand from "@/components/Brands/Brand";
 
-export default function BrandsPage({ params }: { params: { id: string } }) {
-
+export default async function BrandsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   return (
     <section className="p-main">
-      <Brand id={params.id} />
+      <Brand id={id} />
     </section>
   )
 }
