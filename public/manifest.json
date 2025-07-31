@@ -4,8 +4,8 @@
   "description": "متجر اسواق بني سويف للتجارة الإلكترونية , متجر أسواق الإلكتروني – اكتشف أفضل العروض على مجموعة واسعة من المنتجات بجودة عالية وأسعار تنافسية. تسوّق الآن مع خدمة شحن موثوقة ودعم عملاء مميز في مصر والوطن العربي",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#60a5fa",
+  "theme_color": "#60a5fa",
   "icons": [
     {
       "src": "/favicon/android-chrome-192x192.png",
