@@ -1,9 +1,9 @@
 import WafesSvgHome from "@/utils/Wafes-Svg-Home";
-import BrandCarousel from "./BrandsCarousel-Home";
-import Slider from "./Slider";
-import TopProductsHome from "./Top-Products-Home";
-import TopSalesHome from "./Top-Sales-Home";
-import TopCategoriesHome from "./Top-Categories-Home";
+import BrandCarousel from "./Brands/BrandsCarousel-Home";
+import Slider from "./Landing/Slider";
+import TopProductsHome from "./Top-Products/Top-Products-Home";
+import TopSalesHome from "./Top-Sales/Top-Sales-Home";
+import TopCategoriesHome from "./Categories/Top-Categories-Home";
 
 
 export default function Home() {

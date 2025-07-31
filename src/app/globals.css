@@ -16,7 +16,7 @@
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Fira Code', monospace;
 
-  --padding: 2.5rem
+  --padding: 2rem
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -29,7 +29,7 @@
     --highlight: #1e293b;
     --border: #334155;
     --shadow: 3px 3px 8px rgba(255, 255, 255, 0.5);
-    --padding: 2.5rem;
+    --padding: 2rem;
     --fluid:clamp(1.5rem, 2vw, 3rem)
   }
 }
@@ -92,6 +92,9 @@
     &.fluid{
       font-size:var(--text-fluid)
     }
+    &.shadow {
+      text-shadow: var(--shadow-soft);
+    }
   }
   
   .border {
@@ -108,7 +111,7 @@
 
   .p{
     &.main{
-      padding-inline: var(--padding-main);
+      padding:0px var(--padding-main);
     }
   }
 }

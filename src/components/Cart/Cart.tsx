@@ -1,7 +1,7 @@
 'use client'
 import MainTitle from "@/utils/Main-Title";
-import ItemsCart from "./Items-Cart";
-import PayedMethod from "./Payed-Method";
+import ItemsCart from "./Details/Items-Cart";
+import PayedMethod from "./Payed/Payed-Method";
 import { useEffect, useState } from "react";
 
 const initialData = [
@@ -26,9 +26,9 @@ export default function Cart() {
   };
   //Handle Deleted Item
   const handleDeleteItem = (indexToDelete: number) => {
-  const filteredItems = cartItems.filter((_, index) => index !== indexToDelete);
-  setCartItems(filteredItems);
-};
+    const filteredItems = cartItems.filter((_, index) => index !== indexToDelete);
+    setCartItems(filteredItems);
+  };
   return (
     <section className="flex justify-between items-start flex-wrap gap-5">
       {/* Shopping Cart Items */}
@@ -44,11 +44,10 @@ export default function Cart() {
             count={item.count}
             lastprice={item.lastprice}
             onCountChange={(newCount) => handleCountChange(index, newCount)}
-            handleDeleteItem={()=>handleDeleteItem(index)}
+            handleDeleteItem={() => handleDeleteItem(index)}
           />
         ))}
       </div>
-
       {/* Payed Method */}
       <div className="w-2/5 p-3 flex flex-col gap-4 justify-start items-start">
         <PayedMethod totalPrice={totalPrice} />

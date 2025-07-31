@@ -1,3 +1,4 @@
+import SectionName from "@/utils/SectionName";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
@@ -35,34 +36,36 @@ const brands = [
 
 export default function BrandCarousel() {
   return (
-    <div dir="ltr" className="py-1 bg-accent ">
-          {/* Left To Right */}
-          <Marquee autoFill={true} pauseOnHover gradient gradientColor="#60a5fa">
-          {brands.map((src, i) => (
-              <Image
-              key={i}
-                src={src}
-                alt={`Brand ${i + 1}`}
-                width={100}
-                height={60}
-                className="object-contain"
-                />
-          ))}
-          </Marquee>
-          {/* Right to Left */}
-          <Marquee speed={30} autoFill={true} direction="right">
-          {brands.map((src, i) => (
-              <Image
-              key={i}
-                src={src}
-                alt={`Brand ${i + 1}`}
-                width={100}
-                height={60}
-                className="object-contain"
-                />
-          ))}
-          </Marquee>
-
+    <section  className="py-1  ">
+          <SectionName text="أفضل الماركات" btn={true} btnText="المزيد..." href="/brands"/>
+          <div dir="ltr" className="py-1 bg-accent ">
+            {/* Left To Right */}
+            <Marquee autoFill={true} pauseOnHover gradient gradientColor="#60a5fa">
+            {brands.map((src, i) => (
+                <Image
+                key={i}
+                  src={src}
+                  alt={`Brand ${i + 1}`}
+                  width={100}
+                  height={60}
+                  className="object-contain"
+                  />
+            ))}
+            </Marquee>
+            {/* Right to Left */}
+            <Marquee speed={30} autoFill={true} direction="right">
+            {brands.map((src, i) => (
+                <Image
+                key={i}
+                  src={src}
+                  alt={`Brand ${i + 1}`}
+                  width={100}
+                  height={60}
+                  className="object-contain"
+                  />
+            ))}
+            </Marquee>
           </div>
+    </section>
   );
 }

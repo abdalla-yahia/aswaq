@@ -1,6 +1,6 @@
-import Logo from "./Logo";
-import Navlink from "./Navlink";
-import Search from "./Search";
+import Logo from "./Logo/Logo";
+import Navlink from "./Navbar/Navlink";
+import Search from "./Search/Search";
 
 export default function Header() {
   return (

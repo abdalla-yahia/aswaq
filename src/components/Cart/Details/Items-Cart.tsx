@@ -21,7 +21,7 @@ export default function ItemsCart({
   count: number;
   lastprice?: number;
   onCountChange: (newCount: number) => void;
-  handleDeleteItem:()=>void
+  handleDeleteItem: () => void
 }) {
   const [Count, setCount] = useState(count || 1);
 
