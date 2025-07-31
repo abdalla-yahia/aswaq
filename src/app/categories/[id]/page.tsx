@@ -1,11 +1,10 @@
 import Category from "@/components/Categories/Category";
 
-export default function CategoriesPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function CategoriesPage({ params }:  {params: { id: string }}) {
 
   return (
     <section className="p-main">
-      <Category id={id} />
+      <Category id={params.id} />
     </section>
   )
 }
