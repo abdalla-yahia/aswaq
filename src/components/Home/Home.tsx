@@ -4,6 +4,7 @@ import Slider from "./Landing/Slider";
 import TopProductsHome from "./Top-Products/Top-Products-Home";
 import TopSalesHome from "./Top-Sales/Top-Sales-Home";
 import TopCategoriesHome from "./Categories/Top-Categories-Home";
+import AnewAddHome from "./Anew-Add/Anew-Add";
 
 
 export default function Home() {
@@ -12,9 +13,10 @@ export default function Home() {
     <Slider />
     <TopProductsHome />
     <BrandCarousel />
-    <TopSalesHome />
+    <AnewAddHome />
     <WafesSvgHome />
     <TopCategoriesHome />
+    <TopSalesHome />
     </div>
   )
 }

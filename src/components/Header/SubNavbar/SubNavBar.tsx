@@ -26,7 +26,7 @@ export default function SubNavBar() {
     },[toggle])
   return (
     <nav className="w-full bg-background">
-        <ul className="w-full bg-background fixed shadow-soft top-[128px] z-50 left-0 flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
+        <ul className="w-full bg-background flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
             {
                 uls.slice(0,count).map(ele=>{
                     return(

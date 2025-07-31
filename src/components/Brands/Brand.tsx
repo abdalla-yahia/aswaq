@@ -7,7 +7,9 @@ export default function Brand({id}:{id:string}) {
   const title="أديداس"
   return (
     <section className="Brand w-full flex flex-col justify-start items-start gap-5">
-      <h1 className="mb-5 text-3xl ">قائمة منتجات {title}</h1>
+      <h1 className="mb-5 text-3xl ">قائمة منتجات
+        <span className="mb-5 text-3xl mx-2 text-accent"> {title} </span>
+        </h1>
       <div className="flex w-full justify-between items-start gap-5">
         {/**Asid Filter Menue */}
         <div className="flex w-1/6 md:2/6 justify-between items-start gap-2">
