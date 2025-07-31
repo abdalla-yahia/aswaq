@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Slider() {
   return (
-     <div className="bg-primary p-main w-full h-fit flex flex-col md:flex-row justify-center md:justify-between items-center ">
+     <div className="bg-primary mt-[120px] p-main w-full h-fit flex flex-col md:flex-row justify-center md:justify-between items-center ">
         <Image src={'https://static.vecteezy.com/system/resources/previews/024/658/870/large_2x/3d-male-character-engaged-in-productive-work-on-a-laptop-free-png.png'} alt="slider-person" width={400} height={550}/>
         <div className="w-1/2 md:1/3 flex flex-col justify-center items-center gap-5 mb-8">
         <h1 className="text-8xl font-extrabold text-orange-400 text-center">تخفيضات الموسم</h1>

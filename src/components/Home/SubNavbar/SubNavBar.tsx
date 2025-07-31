@@ -25,8 +25,8 @@ export default function SubNavBar() {
         }else setCount(5)
     },[toggle])
   return (
-    <nav className="w-full bg-highlight">
-        <ul className="w-full flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
+    <nav className="w-full bg-background">
+        <ul className="w-full bg-background fixed shadow-soft top-[128px] z-50 left-0 flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
             {
                 uls.slice(0,count).map(ele=>{
                     return(
