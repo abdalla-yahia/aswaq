@@ -7,7 +7,7 @@ export default function Filter_By_Price() {
         <div className="flex justify-between items-center w-full ">
             <h4 className="w-1/3 ">السعر من : </h4>
             <div className="flex items-center justify-between w-2/4 ">
-                <input value={0} type="number" min={0} className="border rounded w-full pr-2"/>
+                <input defaultValue={0} type="number" min={0} className="border rounded w-full pr-2"/>
             </div>
             <span className="font-bold">جنيه</span>
         </div>
@@ -15,7 +15,7 @@ export default function Filter_By_Price() {
         <div className="flex justify-between items-center w-full ">
             <h4 className="w-1/3 ">السعر إلى : </h4>
             <div className="flex items-center justify-between w-2/4 ">
-                <input value={0} type="number" min={0} className="border rounded w-full pr-2"/>
+                <input defaultValue={0} type="number" min={0} className="border rounded w-full pr-2"/>
             </div>
             <span className="font-bold">جنيه</span>
         </div>

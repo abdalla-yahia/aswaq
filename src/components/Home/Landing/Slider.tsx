@@ -1,5 +1,6 @@
 import SubmitButton from "@/utils/Bottons/Submit-button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Slider() {
   return (
@@ -10,7 +11,9 @@ export default function Slider() {
           <p className="text-3xl font-extrabold text-highlight text-center">موسم التخفيضات اشتغل عندنا ما تفوتش الفرصه</p>
           <span className="text-xl font-extrabold text-highlight text-center">خصم أكتر من <span className="text-5xl font-extrabold text-orange-400 line-through">50%</span>  على كل المنتجات</span>
         <div className="hidden md:block w-[50%]">
-          <SubmitButton text="تسوق الأن" bgcolor="bg-accent" textcolor="text-orange-500"/>
+          <Link href={'/products'}>
+            <SubmitButton text="تسوق الأن" bgcolor="bg-accent" textcolor="text-orange-500" />
+          </Link>
         </div>
         </div>
         {/* <div className="flex flex-col justify-center items-center gap-0"> */}
