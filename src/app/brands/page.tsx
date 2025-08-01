@@ -1,5 +1,5 @@
 import BrandCard from "@/components/Brands/Brand-Card/Brand-Card";
-import products from '@/db/products_dataset.json';
+import brands from "@/utils/Get_All_Brands";
 
 export default function Brands() {
   return (
@@ -8,8 +8,8 @@ export default function Brands() {
         {/**All Brands */}
         <div className="flex flex-wrap justify-between items-start p-main">
             {
-                products?.data?.map((product) => (
-                  <BrandCard key={product?.id} img={product?.image} title={product?.title} brand= {product?.brand}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
+                brands?.map((brand) => (
+                  <BrandCard key={brand?.id} img={brand?.image} title={brand?.title} brand= {brand?.title}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
                 ))
               }
         </div>

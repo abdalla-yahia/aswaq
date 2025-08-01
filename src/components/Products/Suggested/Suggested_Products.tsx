@@ -3,7 +3,7 @@ import products from '@/db/products_dataset.json';
 
 export default function Suggested_Products() {
     const RandomProduct = [];
-  for(let i=0; i< 10 ;i++){
+  for(let i=0; i< 8 ;i++){
     const randomNum = Math.floor(Math.random() * products?.data?.length - 8);
     RandomProduct.push(products.data[randomNum])
   }
