@@ -9,7 +9,7 @@ export default function Brands() {
         <div className="flex flex-wrap justify-between items-start p-main">
             {
                 products?.data?.map((product) => (
-                  <BrandCard key={product?.id} img={product?.image} title={product?.title} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
+                  <BrandCard key={product?.id} img={product?.image} title={product?.title} category= {product?.brand}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
                 ))
               }
         </div>

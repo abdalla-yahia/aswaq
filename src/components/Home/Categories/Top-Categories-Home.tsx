@@ -10,8 +10,8 @@ export default function TopCategoriesHome() {
         <div dir="ltr" className="flex  justify-center w-full h-fit">
                 <Marquee speed={30} autoFill={true} direction="right">
                   {
-                    products.data.map((category)=>
-                      <CategoryCard key={category.id} img={category.image} title={category.title} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
+                    products?.data?.map((category)=>
+                      <CategoryCard key={category?.id} img={category?.image} title={category?.title} category= {category?.category}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
                   )
                   }
                     

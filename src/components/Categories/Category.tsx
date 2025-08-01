@@ -3,11 +3,15 @@ import ProductCard from "../Products/Card/Product-Card"
 import Suggested_Products from "../Products/Suggested/Suggested_Products"
 import Similar_Products from "../Products/Similar/Similar_Products"
 
-export default function Category({id}:{id:string}) {
-  const title="ملابس"
+
+export default function Category({category}:{category:string}) {
+
+  const title=category
   return (
     <section className="category w-full flex flex-col justify-start items-start gap-5">
-      <h1 className="mb-5 text-3xl ">قائمة منتجات {title}</h1>
+      <h1 className="mb-5 text-3xl ">قائمة منتجات 
+        <h2 className="mb-5 text-3xl text-red-500 mx-5"> {title} </h2>
+        </h1>
       <div className="flex w-full justify-between items-start gap-5">
         {/**Asid Filter Menue */}
         <div className="flex w-1/6 md:2/6 justify-between items-start gap-2">
@@ -28,7 +32,7 @@ export default function Category({id}:{id:string}) {
         {/**Suggested Products */}
         <Suggested_Products />
         {/**Similar Products */}
-        <Similar_Products />
+        <Similar_Products category={category}/>
     </section>
   )
 }
