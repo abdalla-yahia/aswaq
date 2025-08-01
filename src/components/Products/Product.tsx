@@ -8,7 +8,7 @@ export default function ProductDetails({ id }: { id: string }) {
     return (
         <div className="w-full flex my-5 p-main flex-col justify-center items-start">
             {/**Details Of Product */}
-            <Product_Info />
+            <Product_Info id={id}/>
             {/**Add A New Comment From User*/}
             <Add_Comment />
             {/**Comments Of Product */}

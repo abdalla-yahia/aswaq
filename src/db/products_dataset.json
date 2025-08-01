@@ -1369,6 +1369,118 @@
         "https://example.com/images/65_2.jpg",
         "https://example.com/images/65_3.jpg"
       ]
+    },
+    {
+      "id": 66,
+      "title": "فستان حريمي",
+      "price": 2250,
+      "image": "https://static.vecteezy.com/system/resources/previews/042/154/802/non_2x/ai-generated-beautiful-women-dress-isolated-on-transparent-background-free-png.png",
+      "description": "فستان حريميي مريح للاستخدام اليومي",
+      "category": "women",
+      "brand": "SoftStyle",
+      "rating": 4.6,
+      "reviews": 37,
+      "stock": 15,
+      "discount": 10,
+      "colors": [
+        "white",
+        "blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "https://example.com/images/65_1.jpg",
+        "https://example.com/images/65_2.jpg",
+        "https://example.com/images/65_3.jpg"
+      ]
+    },
+    {
+      "id": 67,
+      "title": "ماوس ليزر",
+      "price": 1400,
+      "image": "https://static.vecteezy.com/system/resources/previews/056/422/303/non_2x/plain-pink-t-shirt-free-png.png",
+      "description": "ماوس ليزري مريح للاستخدام اليومي",
+      "category": "men",
+      "brand": "SoftStyle",
+      "rating": 4.6,
+      "reviews": 37,
+      "stock": 15,
+      "discount": 10,
+      "colors": [
+        "white",
+        "blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "https://example.com/images/65_1.jpg",
+        "https://example.com/images/65_2.jpg",
+        "https://example.com/images/65_3.jpg"
+      ]
+    },
+    {
+      "id": 68,
+      "title": "ماوس ليزر",
+      "price": 140,
+      "image": "https://static.vecteezy.com/system/resources/previews/055/183/983/non_2x/gaming-mouse-design-showcase-digital-space-product-image-free-png.png",
+      "description": "ماوس ليزر للكمبيوتر مريح للاستخدام اليومي",
+      "category": "electronics",
+      "brand": "SmartTech",
+      "rating": 4.6,
+      "reviews": 37,
+      "stock": 15,
+      "discount": 10,
+      "colors": [
+        "white",
+        "blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "https://example.com/images/65_1.jpg",
+        "https://example.com/images/65_2.jpg",
+        "https://example.com/images/65_3.jpg"
+      ]
+    },
+    {
+      "id": 69,
+      "title": "سماعة رأس",
+      "price": 140,
+      "image": "https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png",
+      "description": "سماعة رأس للكمبيوتر مريح للاستخدام اليومي",
+      "category": "electronics",
+      "brand": "SmartTech",
+      "rating": 4.6,
+      "reviews": 37,
+      "stock": 15,
+      "discount": 10,
+      "colors": [
+        "white",
+        "blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "https://example.com/images/65_1.jpg",
+        "https://example.com/images/65_2.jpg",
+        "https://example.com/images/65_3.jpg"
+      ]
     }
  
   ]

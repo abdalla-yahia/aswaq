@@ -1,4 +1,5 @@
 import BrandCard from "@/components/Brands/Brand-Card/Brand-Card";
+import products from '@/db/products_dataset.json';
 
 export default function Brands() {
   return (
@@ -6,19 +7,11 @@ export default function Brands() {
         <h1 className="mb-5 text-3xl ">كل الماركات</h1>
         {/**All Brands */}
         <div className="flex flex-wrap justify-between items-start p-main">
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'سماعات رأس'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/053/178/045/non_2x/clear-blue-bottles-with-pump-dispenser-for-liquid-products-free-png.png'} title={'دواني'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'تي شيرت رجالي'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/056/422/303/non_2x/plain-pink-t-shirt-free-png.png'} title={'فأرة كمبيوتر'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'سماعات رأس'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/053/178/045/non_2x/clear-blue-bottles-with-pump-dispenser-for-liquid-products-free-png.png'} title={'دواني'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'سماعات رأس'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'تي شيرت رجالي'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/056/422/303/non_2x/plain-pink-t-shirt-free-png.png'} title={'فأرة كمبيوتر'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'سماعات رأس'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/053/178/045/non_2x/clear-blue-bottles-with-pump-dispenser-for-liquid-products-free-png.png'} title={'دواني'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/059/250/927/non_2x/stylish-orange-headphones-displayed-on-a-clean-transparent-background-for-modern-audio-enthusiasts-orange-headphone-product-photo-isolated-on-transparent-background-free-png.png'} title={'تي شيرت رجالي'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
-                    <BrandCard img={'https://static.vecteezy.com/system/resources/previews/056/422/303/non_2x/plain-pink-t-shirt-free-png.png'} title={'فأرة كمبيوتر'} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform"/>
+            {
+                products?.data?.map((product) => (
+                  <BrandCard key={product?.id} img={product?.image} title={product?.title} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
+                ))
+              }
         </div>
     </section>
   )
