@@ -36,7 +36,7 @@ export default function ItemsCart({
   return (
     <div className="w-full flex flex-wrap items-start text-muted justify-between h-fit rounded bg-transparent border-t-2 gap-4 py-3">
       {/* Item Image */}
-      <Image src={img as string} alt="Item Image" width={150} height={150} className="rounded-lg" />
+      <Image loading="lazy" src={img as string} alt="Item Image" width={150} height={150} className="rounded-lg" />
 
       {/* Item Details */}
       <ItemsDetails

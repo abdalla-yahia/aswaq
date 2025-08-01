@@ -40,7 +40,7 @@ export default function BrandCarousel() {
           <SectionName text="أفضل الماركات" btn={true} btnText="المزيد..." href="/brands"/>
           <div dir="ltr" className="py-1 bg-accent ">
             {/* Left To Right */}
-            <Marquee autoFill={true} pauseOnHover gradient gradientColor="#60a5fa">
+            <Marquee autoFill={true} pauseOnHover >
             {brands.map((src, i) => (
                 <Image
                 key={i}
@@ -49,6 +49,7 @@ export default function BrandCarousel() {
                   width={100}
                   height={60}
                   className="object-contain"
+                  loading="lazy"
                   />
             ))}
             </Marquee>
@@ -62,6 +63,7 @@ export default function BrandCarousel() {
                   width={100}
                   height={60}
                   className="object-contain"
+                  loading="lazy"
                   />
             ))}
             </Marquee>

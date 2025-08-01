@@ -9,7 +9,7 @@ export default function Product_Info() {
         <h1 className="mb-5 text-3xl">تفاصيل {title}</h1>
         <div className="flex justif-start items-start w-full gap-3">
             {/*Product Images */}
-            <Image className="shadow-accent" src={'https://static.vecteezy.com/system/resources/previews/056/422/303/non_2x/plain-pink-t-shirt-free-png.png'} alt={`منتج ${title}`} width={350} height={250} />
+            <Image loading="lazy" className="shadow-accent" src={'https://static.vecteezy.com/system/resources/previews/056/422/303/non_2x/plain-pink-t-shirt-free-png.png'} alt={`منتج ${title}`} width={350} height={250} />
       <div className="flex flex-col jusify-start items-start gap-3">
         {/**Product Name */}
             <div className="flex justify-between items-center gap-2">

@@ -16,7 +16,7 @@ export default function Home() {
     <AnewAddHome />
     <WafesSvgHome />
     <TopCategoriesHome />
-    <TopSalesHome />
+    <TopSalesHome /> 
     </div>
   )
 }

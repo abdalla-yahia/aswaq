@@ -9,7 +9,7 @@ export default function ProductCard({className,img,title,describtion,price,rate}
           <div className="flex flex-col rounded-xl shadow-soft justify-between items-center min-h-[350px]">
               {/**Card Image */}
               <Link href={`/products/${id}`}>
-                  <Image src={img} alt={'idn'} width={150} height={150} loading='lazy' className='object-cover'/>
+                  <Image quality={10} loading='lazy' src={`${img}`} alt={title} width={150} height={150}  className='object-cover'/>
                 </Link>
               {/**Card Details */}
               <Card_Details title={title} describtion={describtion} price={price} rate={rate}/>
