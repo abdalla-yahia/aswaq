@@ -1,37 +1,25 @@
 'use client'
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import categories from "@/utils/Get_All_Categories"
 
-const uls = [
-    {id:1,name:'رجالي',href:'#'},
-    {id:2,name:'حريمي',href:'#'},
-    {id:3,name:'أطفالي',href:'#'},
-    {id:4,name:'بناتي',href:'#'},
-    {id:5,name:'ساعات',href:'#'},
-    {id:6,name:'أحذية',href:'#'},
-    {id:7,name:'كمبيوتر',href:'#'},
-    {id:8,name:'شاشات',href:'#'},
-    {id:9,name:'مطبخ',href:'#'},
-    {id:10,name:'مفروشات',href:'#'},
-    {id:11,name:'كريمات',href:'#'},
-    
-]
+
 export default function SubNavBar() {
     const [count,setCount]=useState(5)
     const [toggle,setToggle]=useState(false)
     useEffect(()=>{
         if(toggle){
-            setCount(uls.length)
+            setCount(categories?.length)
         }else setCount(5)
     },[toggle])
   return (
     <nav className="w-full bg-background">
         <ul className="w-full bg-background flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
             {
-                uls.slice(0,count).map(ele=>{
+                categories?.slice(0,count).map(category=>{
                     return(
-                        <li className="hover:text-blue-500" key={ele.id}>
-                            <Link href={ele.href}>{ele.name}</Link>
+                        <li className="hover:text-blue-500" key={category?.id}>
+                            <Link href={`/categories/${category.title}`}>{category?.title}</Link>
                         </li>
                     )
                 }

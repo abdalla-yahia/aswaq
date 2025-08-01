@@ -1,13 +1,8 @@
 'use client'
 import { useState } from "react";
 import InputButton from "../../Bottons/Input-button";
-const categories = [
-    { id: "_1", title: "أطفالي" },
-    { id: "_2", title: "رجالي" },
-    { id: "_3", title: "حريمي" },
-    { id: "_4", title: "بناتي" },
-    { id: "_5", title: "مقاسات خاصة" },
-]
+import categories from "@/utils/Get_All_Categories"
+
 export default function Filter_By_Category() {
     const [toggle,setToggle]=useState(false)
   return (
@@ -21,11 +16,12 @@ export default function Filter_By_Category() {
         </div>
         {/**************@to-do map categories*************/}
         {
-            categories.slice(0,!toggle?3:categories.length).map((category) => (
-        <div key={category.id} className="flex justify-between items-center w-1/2">
-            <label className="cursor-pointer " htmlFor={category.id}>{category.title}</label>
+            categories?.slice(0,!toggle?3:categories?.length)?.map((category) => (
+        <div key={category?.id} className="flex justify-between items-center w-1/2">
+            <label className="cursor-pointer " htmlFor={category?.id as unknown as string}>{category?.title}</label>
             <div>
-                <InputButton type='checkbox' placeholder="" name="" id={category.id} />
+                {/****************** @To-Do filter Products by Category *****************/}
+                <InputButton type='checkbox' placeholder="" name="" id={category?.id as unknown as string} />
             </div>
         </div>
             ))
