@@ -3,16 +3,18 @@ import ProductCard from "../Products/Card/Product-Card"
 import Suggested_Products from "../Products/Suggested/Suggested_Products"
 import Similar_Products from "../Products/Similar/Similar_Products"
 import products from '@/db/products_dataset.json';
+import Image from "next/image";
 
 
 export default function Category({category}:{category:string}) {
   const ProductsOfCategory = products?.data?.filter(product=>product?.category === category)
-
+  
   return (
     <section className="category w-full flex flex-col justify-start items-start gap-5">
       {/**Page Title */}
-      <h1 className="mb-5 text-3xl ">قائمة منتجات 
-        <h2 className="mb-5 text-3xl text-red-500 mx-5"> {category} </h2>
+      <h1 className="mb-5 text-3xl flex justify-center items-center">قائمة منتجات 
+        <h2 className="mb-5 text-3xl text-red-500 mx-5"> {category.toString()} </h2>
+        <Image src={ProductsOfCategory[0]?.image} alt={category} width={40} height={40} />
       </h1>
       {/**Page Container */}
       <div className="flex w-full justify-between items-start gap-5">

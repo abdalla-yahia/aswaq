@@ -3,6 +3,7 @@ import ProductCard from "../Products/Card/Product-Card"
 import Suggested_Products from "../Products/Suggested/Suggested_Products"
 import Similar_Products from "../Products/Similar/Similar_Products"
 import products from '@/db/products_dataset.json';
+import Image from "next/image";
 
 export default function Brand({brand}:{brand:string}) {
   const ProductsOfBrand = products?.data?.filter(product=>product?.brand === brand)
@@ -10,8 +11,10 @@ export default function Brand({brand}:{brand:string}) {
   return (
     <section className="Brand w-full flex flex-col justify-start items-start gap-5">
       {/**Page Title */}
-      <h1 className="mb-5 text-3xl ">قائمة منتجات
+      <h1 className="mb-5 text-3xl flex justify-center items-center">قائمة منتجات
         <span className="mb-5 text-3xl mx-2 text-accent"> {brand} </span>
+        <Image src={ProductsOfBrand[0]?.brandImage} alt={brand} width={40} height={40} />
+        
       </h1>
       {/**Page Container */}
       <div className="flex w-full justify-between items-start gap-5">

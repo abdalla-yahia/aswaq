@@ -4,7 +4,7 @@ export default async function BrandsPage({ params }: { params: Promise<{ brand: 
   const { brand } = await params;
   return (
     <section className="p-main">
-      <Brand brand={brand} />
+      <Brand brand={decodeURIComponent(brand)} />
     </section>
   )
 }
