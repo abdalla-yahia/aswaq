@@ -6,9 +6,10 @@ import Similar_Products from "./Similar/Similar_Products";
 import products from '@/db/products_dataset.json';
 
 export default function ProductDetails({ id }: { id: string }) {
-    const category = products?.data?.find(ele=>ele.id === parseInt(id))?.category
-    const brand = products?.data?.find(ele=>ele.id === parseInt(id))?.brand
-
+    const productFound = products?.data?.find(ele=>ele.id === parseInt(id))
+    const category = productFound?.category
+    const brand = productFound?.brand
+    const title = productFound?.title as string
     return (
         <div className="w-full flex my-5 p-main flex-col justify-center items-start">
             {/**Details Of Product */}
@@ -16,7 +17,7 @@ export default function ProductDetails({ id }: { id: string }) {
             {/**Add A New Comment From User*/}
             <Add_Comment />
             {/**Comments Of Product */}
-            <Comments_Product />
+            <Comments_Product title={title}/>
             {/**Suggested Products */}
             <Suggested_Products />
             {/**Similar Products */}
