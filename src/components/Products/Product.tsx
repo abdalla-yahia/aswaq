@@ -7,6 +7,7 @@ import products from '@/db/products_dataset.json';
 
 export default function ProductDetails({ id }: { id: string }) {
     const category = products?.data?.find(ele=>ele.id === parseInt(id))?.category
+    const brand = products?.data?.find(ele=>ele.id === parseInt(id))?.brand
 
     return (
         <div className="w-full flex my-5 p-main flex-col justify-center items-start">
@@ -19,7 +20,7 @@ export default function ProductDetails({ id }: { id: string }) {
             {/**Suggested Products */}
             <Suggested_Products />
             {/**Similar Products */}
-            <Similar_Products category={category as unknown as string}/>
+            <Similar_Products category={category as unknown as string} brand={brand as unknown as string} />
         </div>
     )
 }

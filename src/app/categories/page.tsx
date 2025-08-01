@@ -10,7 +10,7 @@ export default function Categories() {
             
        {
           products?.data?.map((product) => (
-            <CategoryCard key={product?.id} img={product?.image} title={product?.title} color= {''}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
+            <CategoryCard key={product?.id} img={product?.image} title={product?.title} category= {product?.category}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
           ))
         }
         </div>

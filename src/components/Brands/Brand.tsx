@@ -3,9 +3,9 @@ import ProductCard from "../Products/Card/Product-Card"
 import Suggested_Products from "../Products/Suggested/Suggested_Products"
 import Similar_Products from "../Products/Similar/Similar_Products"
 
-export default function Brand({category}:{category:string}) {
+export default function Brand({brand}:{brand:string}) {
 
-  const title=category
+  const title=brand
   return (
     <section className="Brand w-full flex flex-col justify-start items-start gap-5">
       <h1 className="mb-5 text-3xl ">قائمة منتجات
@@ -31,7 +31,7 @@ export default function Brand({category}:{category:string}) {
         {/**Suggested Products */}
         <Suggested_Products />
         {/**Similar Products */}
-        <Similar_Products category={category}/>
+        <Similar_Products  brand={brand}/>
     </section>
   )
 }

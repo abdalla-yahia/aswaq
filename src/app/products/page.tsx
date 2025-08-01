@@ -1,6 +1,4 @@
 import ProductCard from "@/components/Products/Card/Product-Card";
-import Similar_Products from "@/components/Products/Similar/Similar_Products";
-import Suggested_Products from "@/components/Products/Suggested/Suggested_Products";
 import products from '@/db/products_dataset.json';
 
 export default function ProductsHomePage() {
@@ -15,10 +13,6 @@ export default function ProductsHomePage() {
                   ))
                 }
             </div>
-            {/**Suggested Products */}
-            <Suggested_Products />
-            {/**Similar Products */}
-            <Similar_Products />
         </section>
   )
 }

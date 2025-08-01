@@ -1,9 +1,9 @@
 import ProductCard from "@/components/Products/Card/Product-Card";
 import products from '@/db/products_dataset.json';
 
-export default async function Similar_Products({category}:{category:string}) {
+export default async function Similar_Products({category,brand}:{category?:string,brand?:string}) {
 
-  const similarProducts = products?.data?.filter((product) => product?.category === category || product?.brand === category);
+  const similarProducts = products?.data?.filter((product) => product?.category === category || product?.brand === brand);
   return (
     <div className="w-full p-main">
       <h1 className="mb-5 text-3xl">منتجات مشابهة </h1>
