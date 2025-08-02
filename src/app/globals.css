@@ -10,7 +10,7 @@
   --muted: #94a3b8;                   /* رمادي باهت */
   --highlight: #e0f2fe;               /* أزرق فاتح جدًا للخلفيات */
   --border: #e2e8f0;                  /* حدود فاتحة */
-  --shadow: 3px 3px 8px rgba(0, 0, 0, 0.05);
+  --shadow: 2px 3px 5px rgba(0, 0, 0, 0.05);
 
   --fluid:clamp(1rem, 2vw, 3rem);
   --font-sans: 'Inter', sans-serif;
@@ -28,7 +28,7 @@
     --muted: #64748b;
     --highlight: #1e293b;
     --border: #334155;
-    --shadow: 3px 3px 8px rgba(255, 255, 255, 0.5);
+    --shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
     --padding: 2rem;
     --fluid:clamp(1.5rem, 2vw, 3rem)
   }

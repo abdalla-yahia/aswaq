@@ -1,7 +1,7 @@
 
 export default function Comment_Content() {
   return (
-    <div className="w-full md:w-1/2 xl:w-1/3 p-3 ">
+    <div className="w-full md:w-1/2 xl:w-1/3 p-1 ">
             <div className="bg-accent rounded-lg shadow-md px-4 py-1 w-full h-fit">
                 <div className="w-full flex items-start justify-start gap-2 mb-4">
                     <img src="https://i.pravatar.cc/60" alt="avatar" className="rounded-2xl" />

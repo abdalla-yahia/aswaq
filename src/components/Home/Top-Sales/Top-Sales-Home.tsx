@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function TopSalesHome() {
       const RandomProduct = [];
-      for(let i=0; i< 10 ;i++){
+      for(let i=0; i< 12 ;i++){
         const randomNum = Math.floor(Math.random() * products?.data?.length);
             if(randomNum !== (0 || 70)){
               RandomProduct.push(products.data[randomNum])
@@ -18,7 +18,7 @@ export default function TopSalesHome() {
       <SectionName text="الأكثر مبيعاً" btn={true} btnText="المزيد..." href="/products" />
       <div className="w-full flex justify-between items-start">
           {/**Products Container*/}
-          <div className="w-3/4 h-fit  flex justify-between items-start gap-2 flex-wrap p main">
+          <div className="w-3/4 h-fit  flex justify-between items-start gap-0 flex-wrap p main">
             
           {
             RandomProduct?.map((product) => (

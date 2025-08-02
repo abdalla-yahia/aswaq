@@ -8,7 +8,7 @@ export default function ProductCard({className,id,img,title,key,describtion,pric
           <div className="flex flex-col rounded-xl shadow-soft justify-between items-center min-h-[350px]">
               {/**Card Image */}
               <Link href={`/products/${id}`}>
-                  <Image key={key} loading='lazy' src={img} alt={title} width={150} height={150}  className='object-cover'/>
+                  <Image key={key} loading='lazy' src={img} alt={title} width={100} height={50}  className='object-cover'/>
                 </Link>
               {/**Card Details */}
               <Card_Details title={title} describtion={describtion} price={price} rate={rate}/>

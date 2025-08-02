@@ -13,10 +13,11 @@ export default function Home() {
     <Slider />
     <AnewAddHome />
     <BrandCarousel />
-    <TopProductsHome />
+    <TopProductsHome count={30} title={'أفضل المنتجات'}/>
     <WafesSvgHome />
     <TopCategoriesHome />
     <TopSalesHome /> 
+    <TopProductsHome count={30} title={'منتجات قد تعجبك'}/>
     </div>
   )
 }
