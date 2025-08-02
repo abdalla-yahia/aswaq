@@ -34,7 +34,7 @@ export default function Product_Info({id}:{id:string}) {
                 <p className="text-lg text-muted flex ">
                     {
                         item?.colors.map((color,index)=>
-                            <p key={index} className={`w-5 h-5 rounded-full mx-2 cursor-pointer bg-${color}-500 `}></p>
+                            <p key={index} style={{background:color}} className={`w-5 h-5 rounded-full mx-2 cursor-pointer  `}></p>
                         )
                     }
                 </p>

@@ -4,6 +4,7 @@ import { TbError404 } from "react-icons/tb";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { CiTrash,CiHeart } from "react-icons/ci";
 import { RiArrowRightSLine,RiArrowLeftSLine } from "react-icons/ri";
+import { MdDeliveryDining } from "react-icons/md";
 
 export {
     IoPersonCircleOutline,
@@ -16,5 +17,6 @@ export {
     CiHeart,
     FaWhatsapp,
     RiArrowRightSLine,
-    RiArrowLeftSLine
+    RiArrowLeftSLine,
+    MdDeliveryDining
 }
