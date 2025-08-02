@@ -11,9 +11,9 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col justify-start items-start pb-20">
     <Slider />
-    <TopProductsHome />
-    <BrandCarousel />
     <AnewAddHome />
+    <BrandCarousel />
+    <TopProductsHome />
     <WafesSvgHome />
     <TopCategoriesHome />
     <TopSalesHome /> 

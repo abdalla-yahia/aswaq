@@ -6,16 +6,20 @@ import products from '@/db/products_dataset.json';
 export default function AnewAddHome() {
   const RandomProduct = [];
   for(let i=0; i< 10 ;i++){
-    const randomNum = Math.floor(Math.random() * products?.data?.length - 8);
-    RandomProduct.push(products.data[randomNum])
+    const randomNum = Math.floor(Math.random() * products?.data?.length);
+    if(randomNum !== (0 || 70)){
+      RandomProduct.push(products.data[randomNum])
+    }else RandomProduct.push(products.data[15])
   }
   return (
     <section className="w-full">
       <SectionName text="المضاف حديثأ" btn={true} btnText="المزيد..." href="/products" />
       <div className="w-full flex justify-between items-start">
+          {/**Aside Image*/}
           <div className="w-1/4">
-            <Image loading="lazy" src={'https://static.vecteezy.com/system/resources/previews/042/154/802/non_2x/ai-generated-beautiful-women-dress-isolated-on-transparent-background-free-png.png'} alt={'فستان حريمي'} width={450} height={450} className="w-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+            <Image loading="lazy" src={RandomProduct[5]?.image} alt={RandomProduct[5]?.title} width={450} height={450} className="w-full h-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
           </div>
+          {/**Products Container*/}
           <div className="w-3/4 h-fit  flex justify-between items-start gap-2 flex-wrap p main">
             
           {

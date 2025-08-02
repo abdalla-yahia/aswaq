@@ -4,8 +4,10 @@ import products from '@/db/products_dataset.json';
 export default function Suggested_Products() {
     const RandomProduct = [];
   for(let i=0; i< 8 ;i++){
-    const randomNum = Math.floor(Math.random() * products?.data?.length - 8);
-    RandomProduct.push(products.data[randomNum])
+    const randomNum = Math.floor(Math.random() * products?.data?.length);
+        if(randomNum !== (0 || 70)){
+          RandomProduct.push(products.data[randomNum])
+        }else RandomProduct.push(products.data[15])
   }
   return (
     <div className="w-full p-main">
