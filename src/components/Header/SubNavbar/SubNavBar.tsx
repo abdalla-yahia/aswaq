@@ -2,25 +2,45 @@
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import categories from "@/utils/Get_All_Categories"
+import DropDown from "@/utils/Menus/DropDown/DropDown"
 
 
 export default function SubNavBar() {
     const [count,setCount]=useState(5)
     const [toggle,setToggle]=useState(false)
+    const [show,setShow]=useState(false)
+
     useEffect(()=>{
         if(toggle){
             setCount(categories?.length)
         }else setCount(5)
     },[toggle])
+
+    const handleClicked =(e:React.MouseEvent<HTMLDivElement>)=>{
+           const target = e.target as HTMLElement;
+                if (target.closest('a')) {
+                setShow(false);
+                }
+
+    }
   return (
     <nav className="w-full bg-background">
         <ul className="w-full bg-background flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
             {
                 categories?.slice(0,count).map(category=>{
                     return(
-                        <li className="hover:text-blue-500" key={category?.id}>
-                            <Link href={`/categories/${category.title}`}>{category?.title}</Link>
+                        <li onMouseEnter={() => setShow(true)}
+                            onMouseLeave={() => setShow(false)}
+                            className="hover:text-blue-500 group " key={category?.id}>
+                                <Link href={`/categories/${category.title}`}>{category?.title}</Link>
+                            <div onClick={(e)=>handleClicked(e)} 
+                            className={`menu_category hidden group-hover:block absolute z-50 top-[150px] right-0 min-h-[400px] bg-amber-100 min-w-full 
+                             ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+                            `}>
+                                <DropDown  category={category}/>
+                            </div>
                         </li>
+
                     )
                 }
                 )
