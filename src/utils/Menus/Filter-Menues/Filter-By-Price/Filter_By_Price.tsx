@@ -2,7 +2,7 @@
 export default function Filter_By_Price() {
   return (
     <div className=" pb-2 flex flex-col w-full gap-2 ">
-        <h2 className="text-2xl font-bold my-4 text-shadow-2xs shadow text-shadow-amber-500 ">تصنيف بالسعر</h2>
+        <h2 className="text-xl font-bold my-4">تصنيف بالسعر</h2>
         {/**Price From */}
         <div className="flex justify-between items-center w-full ">
             <h4 className="w-1/3 ">السعر من : </h4>

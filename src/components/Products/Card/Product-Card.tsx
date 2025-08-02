@@ -4,8 +4,8 @@ import Card_Details from './Details/Card-Details';
 
 export default function ProductCard({className,id,img,title,key,describtion,price,rate}:{className:string,key?:number,id:string,img:string,title:string,describtion:string,price:number,rate:number}) {
   return (
-    <div className={className}>
-          <div className="flex flex-col rounded-xl shadow-soft justify-between items-center min-h-[350px]">
+    <div className={`${className}`}>
+          <div className="flex flex-col border border-gray-300 rounded-xl shadow-soft justify-between items-center min-h-[350px]">
               {/**Card Image */}
               <Link href={`/products/${id}`}>
                   <Image key={key} loading='lazy' src={img} alt={title} width={100} height={50}  className='object-cover'/>
