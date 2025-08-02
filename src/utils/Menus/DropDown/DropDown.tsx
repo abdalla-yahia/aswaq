@@ -66,9 +66,11 @@ export default function DropDown({category}:{category:{id:number,title:string,im
         {/**Brand Of This Category*/}
             <div className="flex flex-col justify-start items-start w-full">
                 <h3 className="text-xl text-muted font-bold py-2">أفضل الماركات</h3>
-                <ul className="flex justify-start items-center w-full gap-3">
+                <ul className="flex justify-start items-center w-full gap-3 mb-2">
                     {brands?.map(brand=>
+                    <li key={brand?.id} className="bg-[#ddd] rounded-2xl h-fit">
                         <BrandCard key={brand?.id} img={brand?.brnadImage} title={brand?.title} brand= {brand?.title}   className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
+                    </li>
                         )
                     }
                 </ul>

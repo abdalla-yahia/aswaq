@@ -14,7 +14,6 @@ export default function Brand({ brand }: { brand: string }) {
       <h1 className="mb-5 text-3xl flex justify-center items-center">قائمة منتجات
         <span className="mb-5 text-3xl mx-2 text-accent"> {brand} </span>
         <Image src={ProductsOfBrand[0]?.brandImage} alt={brand} width={40} height={40} />
-
       </h1>
       {/**Page Container */}
       <div className="flex w-full justify-between items-start gap-5">
@@ -23,12 +22,17 @@ export default function Brand({ brand }: { brand: string }) {
           <FilterMenue />
         </div>
         {/**Products Of Brand */}
-        <div className="flex w-5/6 md:4/6 justify-between items-start flex-wrap gap-2">
-          {
-            ProductsOfBrand?.map(product =>
-              <ProductCard key={product?.id} id={product?.id as unknown as string} img={product?.image} title={product?.title} describtion={product?.description} price={product?.price} rate={product?.rating} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
-            )
-          }
+        <div className="flex flex-col justify-center items-start gap-2 w-5/6 md:4/6">
+          <div className="w-full h-[200px] mb-4 bg-white/70 rounded-lg shadow-md">
+            <Image src={ProductsOfBrand[0]?.brandImage} alt={brand} width={100} height={100} className="w-full h-[200px]"/>
+          </div>
+          <div className="flex w-full justify-between items-start flex-wrap gap-2">
+            {
+              ProductsOfBrand?.map(product =>
+                <ProductCard key={product?.id} id={product?.id as unknown as string} img={product?.image} title={product?.title} describtion={product?.description} price={product?.price} rate={product?.rating} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+              )
+            }
+          </div>
         </div>
       </div>
       {/**Suggested Products */}

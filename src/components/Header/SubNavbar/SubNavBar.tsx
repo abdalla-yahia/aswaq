@@ -34,7 +34,7 @@ export default function SubNavBar() {
                             className="hover:text-blue-500 group " key={category?.id}>
                                 <Link href={`/categories/${category.title}`}>{category?.title}</Link>
                             <div onClick={(e)=>handleClicked(e)} 
-                            className={`menu_category hidden group-hover:block absolute z-50 top-[150px] right-0 min-h-[400px] bg-amber-100 min-w-full 
+                            className={`menu_category hidden group-hover:block absolute z-50 top-[150px] right-0 min-h-[400px] bg-[#f1f9fd] min-w-full 
                              ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
                             `}>
                                 <DropDown  category={category}/>
