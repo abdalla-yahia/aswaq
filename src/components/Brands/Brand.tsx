@@ -4,10 +4,11 @@ import Suggested_Products from "../Products/Suggested/Suggested_Products"
 import Similar_Products from "../Products/Similar/Similar_Products"
 import products from '@/db/products_dataset.json';
 import Image from "next/image";
+import images from '@/db/imagesbanner.json';
 
 export default function Brand({ brand }: { brand: string }) {
   const ProductsOfBrand = products?.data?.filter(product => product?.brand === brand)
-
+  const randomNumber = Math.floor(Math.random() * 13)
   return (
     <section className="Brand w-full flex flex-col justify-start items-start gap-5">
       {/**Page Title */}
@@ -23,9 +24,11 @@ export default function Brand({ brand }: { brand: string }) {
         </div>
         {/**Products Of Brand */}
         <div className="flex flex-col justify-center items-start gap-2 w-5/6 md:4/6">
-          <div className="w-full h-[200px] mb-4 bg-white/70 rounded-lg shadow-md">
+            {/**Banner Image*/}
+          <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover h-[200px] mb-4 bg-white/70 rounded-lg shadow-md">
             <Image src={ProductsOfBrand[0]?.brandImage} alt={brand} width={100} height={100} className="w-full h-[200px]"/>
           </div>
+          {/**Products */}
           <div className="flex w-full justify-between items-start flex-wrap gap-2">
             {
               ProductsOfBrand?.map(product =>
