@@ -1,4 +1,4 @@
-import WafesSvgHome from "@/utils/Wafes-Svg-Home";
+import WafesSvgHome from "@/components/Home/Empty-section/Wafes-Svg-Home";
 import BrandCarousel from "./Brands/BrandsCarousel-Home";
 import Slider from "./Landing/Slider";
 import TopProductsHome from "./Top-Products/Top-Products-Home";
