@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import SubNavBar from "@/components/Header/SubNavbar/SubNavBar";
+import Breadcrumb from "@/utils/BreadCrumb_Nav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -130,13 +131,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+      <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
       <body suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <Header />
-        <SubNavBar />
-          <main className="min-h-screen mt-[120px]  bg-background text-foreground">
+        <Breadcrumb />
+          <main className="min-h-screen mt-[155px]  bg-background text-foreground">
           {children}
           </main>
         <Footer />
