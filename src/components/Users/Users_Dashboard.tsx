@@ -3,7 +3,7 @@ import Aside_Dashboard from "@/utils/Menus/Aside-Dashboard/Aside-Dashboard";
 import iconDashboard from '@/db/Icons-Dashboards.json';
 import * as icons from '@/utils/Icons/Icons';
 
-export default function Users_Dashboard({url}:{url:string}) {
+export default function Users_Dashboard({url}:{url?:string}) {
     const name = 'أحمد كمال'
   return (
     <>

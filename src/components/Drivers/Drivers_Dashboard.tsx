@@ -3,7 +3,7 @@ import Aside_Dashboard from "@/utils/Menus/Aside-Dashboard/Aside-Dashboard";
 import iconDashboard from '@/db/Icons-Dashboards.json';
 import * as icons from '@/utils/Icons/Icons';
 
-export default function Drivers_Dashboard({url}:{url:string}) {
+export default function Drivers_Dashboard({url}:{url?:string}) {
     const name = 'رامي'
   return (
     <>
