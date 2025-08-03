@@ -7,17 +7,19 @@ export default function Card_Details({title,describtion,price,rate,category}:{ti
             <p title={describtion} className='text-gray-500 text-center w-full text-sm  line-clamp-2'>{category}</p>
               <div className="text-start">
                     <p className="text-lg font-bold text-green-600">{price} جنيه</p>
-                    <p className="text-sm text-gray-500 line-through">$159.99</p>
+                    <p className="text-sm text-gray-500 line-through">{(price * 1.2).toFixed(0)} جنيه</p>
                 </div>
            {/* <span className='text-orange-500 font-bold'>{price} جنيه</span> */}
             <p title={describtion} className='text-gray-500 text-start text-sm mb-4 line-clamp-2'>{describtion} {describtion} {describtion}</p>
             <div className='w-full text-start flex justify-between items-center'>
-            <span className='text-orange-600 '>({rate}/5)</span>
-            <icon.FaStarHalf className='text-yellow-300 text-xs'/>
-            <icon.FaStar className='text-yellow-300 text-xs'/>
-            <icon.FaStar className='text-yellow-300 text-xs'/>
-            <icon.FaStar className='text-yellow-300 text-xs'/>
-            <icon.FaStar className='text-yellow-300 text-xs'/>
+            <span className='text-orange-600 w-1/2'>({rate}/5)</span>
+            <div className='w-1/2 flex flex-nowrap'>
+              <icon.FaStarHalf className='text-yellow-300 text-xs'/>
+              <icon.FaStar className='text-yellow-300 text-xs'/>
+              <icon.FaStar className='text-yellow-300 text-xs'/>
+              <icon.FaStar className='text-yellow-300 text-xs'/>
+              <icon.FaStar className='text-yellow-300 text-xs'/>
+            </div>
             </div>
           <div className="flex items-start w-full justify-start text-start">
                     <icon.MdOutlineLocalShipping className="text-amber-700 text-lg"/>
