@@ -22,6 +22,12 @@ export default function LoginPage() {
           </Link>
           </p>
       </div>
+      <div className="flex gap-2 justify-center items-center">
+      <Link className="hover:text-red-500" href={'/users'} >المستخدم</Link>
+      <Link className="hover:text-red-500" href={'/admins'} >الادمن</Link>
+      <Link className="hover:text-red-500" href={'/drivers'} >الدليفري</Link>
+      <Link className="hover:text-red-500" href={'/stockkeepers'} >امين مخزن</Link>
+      </div>
     </div>
   )
 }
