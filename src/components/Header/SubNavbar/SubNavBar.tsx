@@ -25,17 +25,17 @@ export default function SubNavBar() {
     }
   return (
     <nav className="w-full bg-background">
-        <ul className="w-full bg-background flex justify-start items-start pr-5 gap-5 overflow-scroll scrollbar-none">
+        <ul className="w-full bg-background flex justify-start items-start pr-5 gap-0 overflow-scroll scrollbar-none">
             {
                 categories?.slice(0,count).map(category=>{
                     return(
                         <li onMouseEnter={() => setShow(true)}
                             onMouseLeave={() => setShow(false)}
-                            className="hover:text-blue-500 group " key={category?.id}>
+                            className="hover:bg-blue-500 group px-5" key={category?.id}>
                                 <Link href={`/categories/${category.title}`}>{category?.title}</Link>
                             <div onClick={(e)=>handleClicked(e)} 
-                            className={`menu_category hidden group-hover:block absolute z-50 top-[150px] right-0 min-h-[400px] bg-[#f1f9fd] min-w-full 
-                             ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+                            className={`menu_category transition-all hidden group-hover:block absolute z-50 top-[150px] right-0 min-h-[400px] bg-[#f1f9fd] min-w-full 
+                            ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
                             `}>
                                 <DropDown  category={category}/>
                             </div>

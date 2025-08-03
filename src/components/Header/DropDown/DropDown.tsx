@@ -28,10 +28,10 @@ export default function DropDown({category}:{category:{id:number,title:string,im
     <div className="flex flex-col justify-between items-start w-3/4 gap-2">
         
         {/**Sub Category Lists */}
-        <div className="flex justify-between items-start gap-1 my-2">
+        <div className="flex justify-between items-start gap-1 my-2 text-muted">
             {/**List One */}
             <div className="flex flex-col justify-start items-center">
-                <h3 className="text-xl text-muted font-bold mx-2">Category Content One</h3>
+                <h3 className="text-xl text-black font-bold mx-2">Category Content One</h3>
                 <ul className="flex flex-col justify-center items-start">
                     <li>one</li>
                     <li>one</li>
@@ -68,7 +68,7 @@ export default function DropDown({category}:{category:{id:number,title:string,im
                 <h3 className="text-xl text-muted font-bold py-2">أفضل الماركات</h3>
                 <ul className="flex justify-start items-center w-full gap-1 mb-1 overflow-x-scroll scrollbar-none">
                         {brands?.slice(0,8)?.map(brand=>
-                    <li key={brand?.id} className="bg-[#ddd] rounded-xl ">
+                    <li key={brand?.id} className="bg-[#ddd] rounded-xl text-muted">
                         <BrandCard key={brand?.id} img={brand?.brnadImage} title={brand?.title} brand= {brand?.title}   className="w-full text-center  cursor-pointer hover:-translate-y-2 transition-transform" />
                     </li>
                         )
