@@ -35,7 +35,7 @@ export default function Category({ category }: { category: string }) {
               {
                 ProductsOfCategory?.map(product =>
 
-                  <ProductCard key={product?.id} id={product?.id as unknown as string} img={product?.image} title={product?.title} describtion={product?.description} price={product?.price} rate={product?.rating} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+                  <ProductCard key={product?.id} id={product?.id as unknown as string} img={product?.image} title={product?.title} describtion={product?.description} price={product?.price} rate={product?.rating} category={product?.category} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
                 )
               }
             </div>
