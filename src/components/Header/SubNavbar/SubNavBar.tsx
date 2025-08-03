@@ -31,7 +31,7 @@ export default function SubNavBar() {
                     return(
                         <li onMouseEnter={() => setShow(true)}
                             onMouseLeave={() => setShow(false)}
-                            className="hover:bg-blue-500 group px-5" key={category?.id}>
+                            className="hover:bg-accent hover:text-black transition-all group px-5" key={category?.id}>
                                 <Link href={`/categories/${category.title}`}>{category?.title}</Link>
                             <div onClick={(e)=>handleClicked(e)} 
                             className={`menu_category transition-all hidden group-hover:block absolute z-50 top-[150px] right-0 min-h-[400px] bg-[#f1f9fd] min-w-full 
