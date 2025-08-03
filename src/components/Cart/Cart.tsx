@@ -1,5 +1,4 @@
 'use client'
-import MainTitle from "@/utils/Main-Title";
 import ItemsCart from "./Details/Items-Cart";
 import PayedMethod from "./Payed/Payed-Method";
 import { useEffect, useState } from "react";
@@ -30,10 +29,10 @@ export default function Cart() {
     setCartItems(filteredItems);
   };
   return (
-    <section className="flex justify-between items-start flex-wrap gap-5">
+    <section className="flex justify-between items-start flex-wrap mt-52 px-5 gap-2">
       {/* Shopping Cart Items */}
-      <div className="w-2/5 p-3 flex flex-col flex-wrap gap-4 justify-center items-start">
-        <MainTitle title="عربة التسوق" />
+      <div className="max-w-3xl p-3 flex flex-col flex-wrap gap-4 justify-center items-start">
+        {/* <MainTitle title="عربة التسوق" /> */}
         {cartItems.map((item, index) => (
           <ItemsCart
             key={index}
@@ -49,7 +48,7 @@ export default function Cart() {
         ))}
       </div>
       {/* Payed Method */}
-      <div className="w-2/5 p-3 flex flex-col gap-4 justify-start items-start">
+      <div className="max-w-3xl p-3 flex flex-col gap-4 justify-start items-start">
         <PayedMethod totalPrice={totalPrice} />
       </div>
     </section>
