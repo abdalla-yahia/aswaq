@@ -16,9 +16,9 @@ export default function TopSalesHome() {
   return (
     <section className="w-full">
       <SectionName text="الأكثر مبيعاً" btn={true} btnText="المزيد..." href="/products" />
-      <div className="w-full flex justify-between items-start">
+      <div className="w-full flex flex-col md:flex-row justify-center md:justify-between items-center md:items-start">
           {/**Products Container*/}
-          <div className="w-3/4 h-fit  flex justify-between items-start gap-0 flex-wrap p main">
+          <div className="w-3/4 h-fit order-2 md:order-1 flex justify-between items-start gap-0 flex-wrap p main">
             
           {
             RandomProduct?.map((product) => (
@@ -27,7 +27,7 @@ export default function TopSalesHome() {
           }
           </div>
           {/**Aside Image*/}
-          <div className="w-1/4">
+          <div className="w-1/4 order-1 md:order-2">
             <Image loading="lazy" src={RandomProduct[5]?.image} alt={RandomProduct[5]?.title} width={450} height={450} className="w-full h-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
           </div>
       </div>

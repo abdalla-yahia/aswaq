@@ -14,7 +14,7 @@ export default function AnewAddHome() {
   return (
     <section className="w-full">
       <SectionName text="المضاف حديثأ" btn={true} btnText="المزيد..." href="/products" />
-      <div className="w-full flex justify-between items-start">
+      <div className="w-full flex flex-col md:flex-row justify-center md:justify-between items-center md:items-start">
           {/**Aside Image*/}
           <div className="w-1/4">
             <Image loading="lazy" src={RandomProduct[5]?.image} alt={RandomProduct[5]?.title} width={450} height={450} className="w-full h-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />

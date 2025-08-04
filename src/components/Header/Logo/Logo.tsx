@@ -31,18 +31,18 @@ const governorates = [
 ];
 export default function Logo() {
   return (
-    <ul className="flex justify-center items-center gap-2">
+    <ul className="flex order-1 md:order-3 justify-center items-center gap-2">
       <Link href={'/about'} className="text-black">
           <li className=" hover:text-orange-400 font-bold">عنا</li>
           {/* <icon.IoPersonCircleOutline /> */}
         </Link>
         <Link href={'/contact'} className="text-black">
-          <li className="mx-2 hover:text-orange-400 font-bold">تواصل معنا</li>
+          <li className="mx-2 hover:text-orange-400 font-bold text-center">تواصل معنا</li>
           {/* <icon.IoPersonCircleOutline /> */}
         </Link>
     <div className="text-black flex justify-center items-center">
-          <li className=" hover:text-orange-400 font-bold">توصيل إلى</li>
-          <select defaultValue={'بني سويف'} name="" id="" className="outline-none border-none scrollbar-none bg-transparent">
+          <li className=" hover:text-orange-400 font-bold text-center">توصيل إلى</li>
+          <select defaultValue={'بني سويف'} name="" id="" className="outline-none border-none text-gray-800 rounded-xl scrollbar-none bg-transparent">
             {
               governorates?.map((el,index)=>
               <option className="text-accent" key={index} value={el}>{el}</option>
