@@ -9,7 +9,7 @@ export default function Navlink() {
         <Link href={'/cart'} className=" relative">
           <li >العربة</li>
           <icon.FaOpencart />
-          <span className="absolute top-5 left-0 p-0.5 text-xs rounded-2xl bg-red-800 text-white">5</span>
+          <span className="absolute top-5 -right-6 p-1 text-xs rounded-2xl bg-red-800 text-white">5</span>
         </Link>
         <span className="text-[10px] text-orange-700 font-bold">2500 جنيه</span>
         <Link href={'/login'} >
