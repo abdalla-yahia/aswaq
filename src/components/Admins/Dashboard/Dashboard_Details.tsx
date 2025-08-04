@@ -45,7 +45,7 @@ export default function  Dashboard_Details() {
   const COLORS = ["#00C49F", "#FFBB28", "#FF4D4F"];
 
   return (
-    <div className="p-6 space-y-8 text-black">
+    <div className="p-6 space-y-8 text-foreground w-full">
       <h1 className="text-2xl font-bold text-foreground">لوحة التحكم</h1>
 
       {/* كروت الإحصائيات */}
@@ -53,7 +53,7 @@ export default function  Dashboard_Details() {
         {stats.map((item, index) => (
           <div
             key={index}
-            className="bg-white rounded-lg shadow p-4 border border-gray-200"
+            className=" rounded-lg shadow p-4 border border-gray-200"
           >
             <p className="text-sm text-gray-500">{item.title}</p>
             <p className="text-2xl font-bold mt-2">{item.value}</p>
@@ -64,7 +64,7 @@ export default function  Dashboard_Details() {
       {/* الرسوم البيانية */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* حالات الطلبات */}
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className=" rounded-lg shadow p-4 border border-gray-200">
           <h2 className="text-lg font-semibold mb-4">حالات الطلبات</h2>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
@@ -88,7 +88,7 @@ export default function  Dashboard_Details() {
         </div>
 
         {/* الطلبات اليومية */}
-        <div className="bg-white rounded-lg shadow p-4 border border-gray-200">
+        <div className=" rounded-lg shadow p-4 border border-gray-200">
           <h2 className="text-lg font-semibold mb-4">عدد الطلبات اليومية</h2>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={ordersPerDay}>
@@ -105,9 +105,9 @@ export default function  Dashboard_Details() {
       {/* المنتجات منخفضة المخزون */}
       <div>
         <h2 className="text-lg font-semibold mb-2">منتجات منخفضة المخزون</h2>
-        <div className="overflow-x-auto bg-white rounded-lg shadow border border-gray-200">
+        <div className="overflow-x-auto  rounded-lg shadow border border-gray-200">
           <table className="min-w-full text-sm text-right">
-            <thead className="bg-gray-100">
+            <thead className="bg-accent">
               <tr>
                 <th className="p-3">اسم المنتج</th>
                 <th className="p-3">الكمية</th>

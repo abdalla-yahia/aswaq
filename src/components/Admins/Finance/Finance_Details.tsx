@@ -29,7 +29,7 @@ export default function Finance_Details() {
   const netProfit = summary.sales - (summary.expenses + summary.purchases + summary.returns);
 
   return (
-    <div className="p-6">
+    <div className="p-6 w-full">
       <h1 className="text-2xl font-bold mb-6">المالية</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">

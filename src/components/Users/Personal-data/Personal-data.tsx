@@ -3,7 +3,7 @@ import * as icon from '@/utils/Icons/Icons'
 
 export default function Personal_Data() {
   return (
-    <div className="max-w-5xl mx-auto  border p-6 rounded-lg shadow">
+    <div className="max-w-5xl mx-auto text-foreground w-full border p-6 rounded-lg shadow">
       <div className="flex items-center gap-4">
         <icon.FaUserCircle className="text-6xl text-gray-400" />
         <div>

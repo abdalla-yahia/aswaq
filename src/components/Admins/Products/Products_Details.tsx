@@ -38,17 +38,17 @@ export default function Products_Details() {
   };
 
   return (
-    <div className="p-6 space-y-6 text-black">
-      <div className="flex justify-between items-center text-foreground">
+    <div className="p-6 space-y-6 text-foreground w-full">
+      <div className="flex justify-between items-center ">
         <h1 className="text-2xl font-bold">إدارة المنتجات</h1>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button className="bg-blue-600 text-foreground px-4 py-2 rounded hover:bg-blue-700">
           + إضافة منتج
         </button>
       </div>
 
-      <div className="overflow-x-auto bg-white rounded-lg shadow border border-gray-200">
+      <div className="overflow-x-auto  rounded-lg shadow border border-gray-200">
         <table className="min-w-full text-sm text-right">
-          <thead className="bg-gray-100">
+          <thead className="bg-accent ">
             <tr>
               <th className="p-3">اسم المنتج</th>
               <th className="p-3">التصنيف</th>

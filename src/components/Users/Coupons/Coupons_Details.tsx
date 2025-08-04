@@ -76,7 +76,7 @@ export default function Coupons_Details() {
       : `خصم ${coupon.discountValue} ج.م`;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
       <h2 className="text-2xl font-bold flex items-center gap-2">
         <RiCoupon3Fill className="text-purple-600" /> الكوبونات
       </h2>

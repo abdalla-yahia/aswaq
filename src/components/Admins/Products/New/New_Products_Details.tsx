@@ -60,7 +60,7 @@ export default function New_Product_Details() {
 
         <div>
           <label className="block mb-1 font-semibold">التصنيف</label>
-          <select name="category" value={form.category} onChange={handleChange} className="w-full border p-2 rounded">
+          <select name="category" value={form.category} onChange={handleChange} className="w-full bg-accent border p-2 rounded">
             <option value="">اختر تصنيف</option>
             <option value="ملابس">ملابس</option>
             <option value="أحذية">أحذية</option>

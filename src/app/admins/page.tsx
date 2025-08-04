@@ -42,7 +42,7 @@ function StatCard({ title, value, icon }: { title: string; value: string | numbe
 
 export default function AdminDashboardPage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold">لوحة التحكم</h1>
 
       {/* الكروت */}

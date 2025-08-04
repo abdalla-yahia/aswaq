@@ -31,7 +31,7 @@ const governorates = [
 ];
 export default function Logo() {
   return (
-    <ul className="flex order-1 md:order-3 justify-center items-center gap-2">
+    <ul className="flex order-1 md:order-3 justify-center items-center gap-0 md:gap-2">
       <Link href={'/about'} className="text-black">
           <li className=" hover:text-orange-400 font-bold">عنا</li>
           {/* <icon.IoPersonCircleOutline /> */}
@@ -51,7 +51,7 @@ export default function Logo() {
           </select>
     </div>
     <Link href={'/'}>
-    <Image priority src={'/images/logo.png'} alt="Logo" width={120} height={120}/>
+    <Image priority src={'/images/logo.png'} alt="Logo" width={120} height={20}/>
     </Link>
     </ul>
   )

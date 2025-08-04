@@ -25,14 +25,14 @@ export default function AccountSettings_Details() {
   };
 
   return (
-    <div className="space-y-6 text-black">
+    <div className="space-y-6 text-foreground w-full">
       <h2 className="text-2xl font-bold flex items-center gap-2 text-foreground">
         <CiSettings className="text-blue-600" /> إعدادات الحساب
       </h2>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow rounded-lg p-6 space-y-5 max-w-xl"
+        className=" shadow rounded-lg p-6 space-y-5 max-w-xl"
       >
         {/* بيانات الحساب */}
         <div>
