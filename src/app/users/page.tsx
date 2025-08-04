@@ -64,7 +64,7 @@ export default function UserHomePage() {
       </div>
 
       {/* آخر الطلبات */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">آخر الطلبات</h2>
         <div className="overflow-auto">
           <table className="min-w-full text-right">

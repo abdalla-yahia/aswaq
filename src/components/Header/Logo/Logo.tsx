@@ -51,7 +51,7 @@ export default function Logo() {
           </select>
     </div>
     <Link href={'/'}>
-    <Image priority src={'/images/logo.png'} alt="Logo" width={120} height={20}/>
+    <Image priority src={'/images/logo.png'} alt="Logo" className="w-fit md:w-[140px]  h-fit" width={50} height={20}/>
     </Link>
     </ul>
   )
