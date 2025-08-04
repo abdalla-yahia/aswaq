@@ -5,12 +5,14 @@ import TopProductsHome from "./Top-Products/Top-Products-Home";
 import TopSalesHome from "./Top-Sales/Top-Sales-Home";
 import TopCategoriesHome from "./Categories/Top-Categories-Home";
 import AnewAddHome from "./Anew-Add/Anew-Add";
+import SwiperCursole from "./Landing/SwiperCursole";
 
 
 export default function Home() {
   return (
     <div className="w-full flex flex-col justify-start items-start pb-20">
-    <Slider />
+    {/* <Slider /> */}
+    <SwiperCursole/>
     <AnewAddHome />
     <BrandCarousel />
     <TopProductsHome count={30} title={'أفضل المنتجات'}/>

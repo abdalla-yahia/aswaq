@@ -2,14 +2,14 @@ import SubmitButton from "@/utils/Bottons/Submit-button";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Slider() {
+export default function Slider({img1,img2,text,paragraph,paragraph2,bgcolor}:{img1:string,img2:string,text:string,paragraph:string,paragraph2:string,bgcolor:string}) {
   return (
-     <div className="bg-primary  p-main w-full h-fit flex flex-col md:flex-row justify-center md:justify-between items-center ">
-        <Image loading="lazy" src={'https://static.vecteezy.com/system/resources/previews/024/658/870/large_2x/3d-male-character-engaged-in-productive-work-on-a-laptop-free-png.png'} alt="slider-person" width={400} height={550}/>
+     <div className={` ${bgcolor}  flex-shrink-0 p-main w-full h-fit flex flex-col md:flex-row justify-center md:justify-between items-center `}>
+        <Image loading="lazy" src={img1} alt="slider-person" width={400} height={550}/>
         <div className="w-1/2 md:1/3 flex flex-col justify-center items-center gap-5 mb-8">
-        <h1 className="text-8xl font-extrabold text-orange-400 text-center">تخفيضات الموسم</h1>
-          <p className="text-3xl font-extrabold text-highlight text-center">موسم التخفيضات اشتغل عندنا ما تفوتش الفرصه</p>
-          <span className="text-xl font-extrabold text-highlight text-center">خصم أكتر من <span className="text-5xl font-extrabold text-orange-400 line-through">50%</span>  على كل المنتجات</span>
+        <h1 className="text-8xl font-extrabold text-orange-400 text-center">{text}</h1>
+          <p className="text-3xl text-white  font-extrabold  text-center">{paragraph}</p>
+          <span className="text-xl font-extrabold text-orange-500 text-center">{paragraph2}</span>
         <div className="hidden md:block w-[50%]">
           <Link href={'/products'}>
             <SubmitButton text="تسوق الأن" bgcolor="bg-accent" textcolor="text-orange-500" />
@@ -17,7 +17,7 @@ export default function Slider() {
         </div>
         </div>
         {/* <div className="flex flex-col justify-center items-center gap-0"> */}
-        <Image loading="lazy" className="hidden lg:block animate-bounce" src={'https://static.vecteezy.com/system/resources/previews/010/793/849/large_2x/50-percent-discount-for-bakery-pastry-or-cake-product-3d-style-free-png.png'} alt="slider-discount" width={250} height={350}/>
+        <Image loading="lazy" className="hidden lg:block animate-bounce" src={img2} alt="slider-discount" width={250} height={350}/>
         {/* <p className="img-land-animat -mt-5 bg-black rounded-[50%] animate:h-[40px]"></p> */}
         {/* </div> */}
     </div>
