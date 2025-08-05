@@ -47,7 +47,7 @@ function StatCard({ title, value, icon }: { title: string; value: string | numbe
 
 export default function DriverDashboardPage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-2">لوحة تحكم الدليفري 🚚</h1>
       <p className="text-gray-600 dark:text-gray-400">مرحبًا، إليك ملخص أداءك خلال الأسبوع الحالي.</p>
 
@@ -59,7 +59,7 @@ export default function DriverDashboardPage() {
       </div>
 
       {/* Chart */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">عدد الطلبات التي تم توصيلها خلال الأسبوع</h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>
@@ -73,9 +73,9 @@ export default function DriverDashboardPage() {
       </div>
 
       {/* Latest Orders */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">الطلبات الحالية</h2>
-        <div className="overflow-auto">
+        <div className="overflow-auto w-full">
           <table className="min-w-full text-right">
             <thead>
               <tr className="bg-gray-100 dark:bg-gray-800">

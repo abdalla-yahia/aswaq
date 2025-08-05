@@ -50,7 +50,7 @@ export default function Reports_Details() {
   );
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-2">📊 تقارير حركة المخزون</h1>
       <p className="text-gray-600 dark:text-gray-400">سجل شامل بكل عمليات الإضافة والخصم من المخزون.</p>
 

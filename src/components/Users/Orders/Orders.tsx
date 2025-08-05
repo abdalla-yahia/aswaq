@@ -67,14 +67,14 @@ export default function OrdersDetails() {
   };
 
   return (
-    <div className="space-y-6 text-black">
+    <div className="space-y-6 text-foreground w-full">
       <h2 className="text-2xl font-bold text-foreground">📦 طلباتي</h2>
 
       <div className="grid gap-4">
         {orders.map((order) => (
           <div
             key={order.id}
-            className="bg-white shadow rounded-lg p-4 flex flex-col md:flex-row md:items-center justify-between"
+            className="shadow rounded-lg border p-4 flex flex-col md:flex-row md:items-center justify-between"
           >
             {/* تفاصيل الطلب */}
             <div>
@@ -110,7 +110,7 @@ export default function OrdersDetails() {
 
                 <button
                   onClick={() => handleInvoice(order.id)}
-                  className="flex items-center gap-1 text-gray-700 hover:underline"
+                  className="flex items-center gap-1 text-gray-500 hover:underline"
                 >
                   <FaFilePdf /> طباعة الفاتورة
                 </button>

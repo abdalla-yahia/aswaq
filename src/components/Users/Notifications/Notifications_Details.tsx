@@ -57,11 +57,11 @@ export default function Notifications_Details() {
   };
 
   return (
-    <div className="space-y-6 text-black">
-      <h2 className="text-2xl font-bold text-foreground">🔔 الإشعارات</h2>
+    <div className="space-y-6 text-foreground w-full">
+      <h2 className="text-2xl font-bold ">🔔 الإشعارات</h2>
 
       {notifications.length === 0 ? (
-        <p className="text-gray-500 text-center mt-10">لا توجد إشعارات حالياً.</p>
+        <p className="text-foreground/50 text-center mt-10">لا توجد إشعارات حالياً.</p>
       ) : (
         <div className="space-y-4">
           {notifications.map((n) => (
@@ -76,7 +76,7 @@ export default function Notifications_Details() {
               </div>
 
               <div className="flex-1">
-                <h3 className="font-semibold text-base">{n.title}</h3>
+                <h3 className="font-semibold text-black">{n.title}</h3>
                 <p className="text-sm text-gray-600">{n.description}</p>
                 <span className="text-xs text-gray-400">{n.date}</span>
               </div>
@@ -85,14 +85,14 @@ export default function Notifications_Details() {
                 {!n.read && (
                   <button
                     onClick={() => markAsRead(n.id)}
-                    className="text-green-600 hover:text-green-800 text-sm flex items-center gap-1"
+                    className="text-green-600 cursor-pointer hover:text-green-800 text-sm flex items-center gap-1"
                   >
                     <IoMdCheckmarkCircleOutline /> تم القراءة
                   </button>
                 )}
                 <button
                   onClick={() => deleteNotification(n.id)}
-                  className="text-red-600 hover:text-red-800 text-sm flex items-center gap-1"
+                  className="text-red-600 cursor-pointer hover:text-red-800 text-sm flex items-center gap-1"
                 >
                   <IoMdCloseCircleOutline /> حذف
                 </button>

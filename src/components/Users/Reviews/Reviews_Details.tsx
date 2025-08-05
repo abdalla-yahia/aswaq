@@ -50,8 +50,8 @@ export default function Reviews_Details() {
     ));
 
   return (
-    <div className="space-y-6 text-black">
-      <h2 className="text-2xl font-bold text-foreground">⭐ تقييماتي</h2>
+    <div className="space-y-6 text-foreground w-full">
+      <h2 className="text-2xl font-bold ">⭐ تقييماتي</h2>
 
       {reviews.length === 0 ? (
         <p className="text-gray-500 mt-10 text-center">لم تقم بإضافة أي تقييمات بعد.</p>
@@ -60,7 +60,7 @@ export default function Reviews_Details() {
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="bg-white rounded-lg p-4 shadow flex flex-col"
+              className="border rounded-lg p-4 shadow flex flex-col"
             >
               <div className="flex items-center gap-4 mb-3">
                 <Image
@@ -77,7 +77,7 @@ export default function Reviews_Details() {
               </div>
 
               <div className="mb-2">{renderStars(review.rating)}</div>
-              <p className="text-sm text-gray-700 mb-4">{review.comment}</p>
+              <p className="text-sm text-gray-400 mb-4">{review.comment}</p>
 
               <div className="flex justify-end gap-3 mt-auto text-sm">
                 <button className="text-blue-600 hover:underline flex items-center gap-1">

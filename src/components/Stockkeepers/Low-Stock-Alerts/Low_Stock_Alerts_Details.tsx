@@ -18,11 +18,11 @@ export default function Low_Stock_Alerts_Details() {
   const lowStockProducts = products.filter((p) => p.quantity < p.minStock);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-2">🔔 تنبيهات نقص المخزون</h1>
       <p className="text-gray-600 dark:text-gray-400">هذه قائمة بالمنتجات التي تحتاج إلى إعادة التوريد.</p>
 
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow overflow-auto">
+      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow overflow-auto w-full">
         {lowStockProducts.length > 0 ? (
           <table className="min-w-full text-right">
             <thead>

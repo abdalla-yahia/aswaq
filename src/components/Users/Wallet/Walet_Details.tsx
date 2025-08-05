@@ -45,19 +45,19 @@ export default function Walet_Details() {
   );
 
   return (
-    <div className="space-y-6 text-black">
-      <h2 className="text-2xl font-bold flex text-foreground items-center gap-2">
+    <div className="space-y-6 text-foreground w-full">
+      <h2 className="text-2xl font-bold flex  items-center gap-2">
         <GiWallet className="text-green-600" /> المحفظة أو الرصيد
       </h2>
 
       {/* الرصيد الحالي */}
-      <div className="bg-white shadow rounded-lg p-6 text-center">
+      <div className="border shadow rounded-lg p-6 text-center">
         <p className="text-gray-600 mb-2">الرصيد الحالي</p>
         <h3 className="text-3xl font-bold text-green-700">{balance} ج.م</h3>
       </div>
 
       {/* سجل العمليات */}
-      <div className="bg-white shadow rounded-lg p-4">
+      <div className="border shadow rounded-lg p-4">
         <h4 className="text-lg font-semibold mb-4">📋 سجل المعاملات</h4>
 
         {transactions.length === 0 ? (

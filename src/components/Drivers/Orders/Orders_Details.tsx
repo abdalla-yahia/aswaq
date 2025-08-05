@@ -34,12 +34,12 @@ export default function Orders_Details() {
   );
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-2">الطلبات المستلمة</h1>
       <p className="text-gray-600 dark:text-gray-400">تابع الطلبات المسندة إليك.</p>
 
       {/* فلترة */}
-      <div className="space-x-2 rtl:space-x-reverse">
+      <div className="space-x-2 rtl:space-x-reverse w-full">
         <button
           onClick={() => setFilter('all')}
           className={`px-3 py-1 rounded border ${

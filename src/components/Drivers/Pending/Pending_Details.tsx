@@ -24,11 +24,11 @@ export default function Pending_Details() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-2">طلبات قيد التوصيل</h1>
       <p className="text-gray-600 dark:text-gray-400">تابع الطلبات التي لم يتم توصيلها بعد.</p>
 
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow overflow-auto">
+      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow overflow-auto w-full">
         <table className="min-w-full text-right">
           <thead>
             <tr className="bg-gray-100 dark:bg-gray-800">

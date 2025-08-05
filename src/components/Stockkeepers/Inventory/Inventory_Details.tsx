@@ -35,7 +35,7 @@ export default function Inventory_Details() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-4">إدارة المخزون 🛠️</h1>
 
       {/* البحث */}
@@ -48,7 +48,7 @@ export default function Inventory_Details() {
       />
 
       {/* جدول */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow overflow-auto">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow overflow-auto w-full">
         <table className="min-w-full text-right">
           <thead>
             <tr className="bg-gray-100 dark:bg-gray-800">

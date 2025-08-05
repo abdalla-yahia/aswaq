@@ -41,8 +41,8 @@ export default function Wishlist_Deatails() {
   };
 
   return (
-    <div className="space-y-6 text-black">
-      <h2 className="text-2xl font-bold text-foreground">💖 المفضلة</h2>
+    <div className="space-y-6 text-foreground w-full">
+      <h2 className="text-2xl font-bold ">💖 المفضلة</h2>
 
       {wishlist.length === 0 ? (
         <div className="text-center text-gray-600 mt-10">
@@ -54,7 +54,7 @@ export default function Wishlist_Deatails() {
           {wishlist.map(product => (
             <div
               key={product.id}
-              className="border rounded-lg shadow-sm bg-white p-4 flex flex-col"
+              className="border rounded-lg shadow-sm items-center p-4 flex flex-col"
             >
               <Image
                 src={product.image}
@@ -71,7 +71,7 @@ export default function Wishlist_Deatails() {
                 )}
               </div>
 
-              <div className="mt-auto flex justify-between items-center gap-2">
+              <div className="mt-auto w-full flex justify-between items-center gap-2">
                 <button
                   onClick={() => addToCart(product.id)}
                   className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700 flex items-center gap-1"

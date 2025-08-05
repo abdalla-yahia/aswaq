@@ -24,7 +24,7 @@ export default function Add_Product_Details() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-6">
+    <div className="py-6 max-w-3xl mx-auto space-y-6 w-full">
       <h1 className="text-2xl font-bold mb-4">إضافة منتج جديد 📦</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white dark:bg-gray-900 p-6 rounded shadow">
@@ -92,7 +92,7 @@ export default function Add_Product_Details() {
 
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="bg-green-600 text-white px-4 py-2 w-full rounded hover:bg-green-700"
         >
           ➕ إضافة المنتج
         </button>

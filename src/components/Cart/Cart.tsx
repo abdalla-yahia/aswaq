@@ -29,9 +29,9 @@ export default function Cart() {
     setCartItems(filteredItems);
   };
   return (
-    <section className="flex justify-between items-start flex-wrap mt-52 px-5 gap-2">
+    <section className="flex justify-between items-start flex-wrap mt-52 px-5 gap-2 w-full">
       {/* Shopping Cart Items */}
-      <div className="max-w-3xl p-3 flex flex-col flex-wrap gap-4 justify-center items-start">
+      <div className="max-w-3xl shadow border rounded-2xl p-3 flex flex-col flex-wrap gap-4 justify-center items-start">
         {/* <MainTitle title="عربة التسوق" /> */}
         {cartItems.map((item, index) => (
           <ItemsCart
@@ -48,7 +48,7 @@ export default function Cart() {
         ))}
       </div>
       {/* Payed Method */}
-      <div className="max-w-3xl p-3 flex flex-col gap-4 justify-start items-start">
+      <div className="max-w-3xl shadow border rounded-2xl mb-5 p-3 flex flex-col gap-4 justify-start items-start">
         <PayedMethod totalPrice={totalPrice} />
       </div>
     </section>

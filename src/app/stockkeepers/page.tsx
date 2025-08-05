@@ -47,7 +47,7 @@ function StatCard({ title, value, icon }: { title: string; value: string | numbe
 
 export default function StockkeeperDashboardPage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold">لوحة تحكم أمين المخزن 🏬</h1>
       <p className="text-gray-600 dark:text-gray-400 mb-4">نظرة عامة على حالة المخزون.</p>
 
@@ -59,7 +59,7 @@ export default function StockkeeperDashboardPage() {
       </div>
 
       {/* Chart */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">حركة المخزون خلال الأسبوع</h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>
@@ -74,7 +74,7 @@ export default function StockkeeperDashboardPage() {
       </div>
 
       {/* Low stock table */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">منتجات قرب نفادها</h2>
         <table className="min-w-full text-right">
           <thead>
