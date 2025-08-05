@@ -45,15 +45,15 @@ export default function  Dashboard_Details() {
   const COLORS = ["#00C49F", "#FFBB28", "#FF4D4F"];
 
   return (
-    <div className="p-6 space-y-8 text-foreground w-full">
+    <div className="py-6 space-y-8 text-foreground w-full">
       <h1 className="text-2xl font-bold text-foreground">لوحة التحكم</h1>
 
       {/* كروت الإحصائيات */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-4">
         {stats.map((item, index) => (
           <div
             key={index}
-            className=" rounded-lg shadow p-4 border border-gray-200"
+            className=" rounded-lg shadow text-center p-4 border border-gray-200"
           >
             <p className="text-sm text-gray-500">{item.title}</p>
             <p className="text-2xl font-bold mt-2">{item.value}</p>
@@ -64,7 +64,7 @@ export default function  Dashboard_Details() {
       {/* الرسوم البيانية */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* حالات الطلبات */}
-        <div className=" rounded-lg shadow p-4 border border-gray-200">
+        <div className=" rounded-lg shadow p-4 ">
           <h2 className="text-lg font-semibold mb-4">حالات الطلبات</h2>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
@@ -88,7 +88,7 @@ export default function  Dashboard_Details() {
         </div>
 
         {/* الطلبات اليومية */}
-        <div className=" rounded-lg shadow p-4 border border-gray-200">
+        <div className=" rounded-lg shadow py-4 w-full">
           <h2 className="text-lg font-semibold mb-4">عدد الطلبات اليومية</h2>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={ordersPerDay}>

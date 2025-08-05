@@ -42,7 +42,7 @@ function StatCard({ title, value, icon }: { title: string; value: string | numbe
 
 export default function AdminDashboardPage() {
   return (
-    <div className="p-6 space-y-6 w-full">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold">لوحة التحكم</h1>
 
       {/* الكروت */}
@@ -53,7 +53,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* الرسم البياني */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">مبيعات الأسبوع</h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={salesData}>
@@ -67,7 +67,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* آخر الطلبات */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">آخر الطلبات</h2>
         <div className="overflow-auto">
           <table className="min-w-full text-right">

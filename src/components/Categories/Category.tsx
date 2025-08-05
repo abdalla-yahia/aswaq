@@ -27,7 +27,7 @@ export default function Category({ category }: { category: string }) {
         {/**Products Of Category */}
         <div className="flex flex-col justify-center items-start gap-2 w-5/6 md:4/6">
           {/**Banner Image*/}
-            <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover h-[200px] flex justify-center items-center mb-4 bg-white/70 rounded-lg shadow-md">
+            <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover h-[100px] md:h-[200px] flex justify-center items-center mb-4 bg-white/70 rounded-lg shadow-md">
               <Image src={ProductsOfCategory[0]?.image} alt={category} width={250} height={150} />
             </div>
           {/**Products */}

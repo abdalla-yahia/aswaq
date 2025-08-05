@@ -24,7 +24,7 @@ export default function Brands_Details() {
   const [data, setData] = useState(brands);
 
   return (
-    <div className="p-6  w-full">
+    <div className="py-6  w-full">
       <h1 className="text-2xl font-bold mb-6">إدارة البراندات</h1>
 
       <div className="overflow-auto rounded shadow">

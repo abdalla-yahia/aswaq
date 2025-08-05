@@ -28,7 +28,7 @@ export default function New_Details() {
   };
 
   return (
-    <div className="p-6 max-w-xl mx-auto w-full">
+    <div className="py-6 max-w-xl mx-auto w-full">
       <h1 className="text-2xl font-bold mb-6">إضافة تصنيف جديد</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white dark:bg-gray-900 p-6 rounded shadow">

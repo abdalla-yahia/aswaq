@@ -38,7 +38,7 @@ function UserStatCard({ title, value, icon }: { title: string; value: string | n
 
 export default function UserHomePage() {
   return (
-    <div className="p-6 space-y-6 w-full">
+    <div className="py-6 space-y-6 w-full">
       <h1 className="text-2xl font-bold">مرحبًا بك 👋</h1>
       <p className="text-gray-600 dark:text-gray-400 mb-4">هذا هو حسابك الشخصي، يمكنك متابعة كل شيء من هنا.</p>
 
@@ -50,7 +50,7 @@ export default function UserHomePage() {
       </div>
 
       {/* رسم بياني */}
-      <div className="bg-white dark:bg-gray-900 p-4 rounded shadow">
+      <div className="bg-white dark:bg-gray-900 py-4 rounded shadow w-full">
         <h2 className="text-xl font-semibold mb-4">مشترياتك خلال الأشهر الماضية</h2>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={chartData}>

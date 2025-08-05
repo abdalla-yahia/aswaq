@@ -6,7 +6,7 @@ export default function Comment_Content() {
                 <div className="w-full flex items-start justify-start gap-2 mb-4">
                     <img src="https://i.pravatar.cc/60" alt="avatar" className="rounded-2xl" />
                     <div className="ml-3 w-full">
-                        <h4 className="font-bold text-accent">John Doe</h4>
+                        <h4 className="font-bold text-gray-900">John Doe</h4>
                         <small className="text-gray-600">تم التعليق في 2020-01-01</small>
                         <h5 className="font-bold ">منتج جميل جدا , وخدمة ممتازة</h5>
                         <div className="ml-3 w-full flex text-center gap-2">

@@ -28,7 +28,7 @@ export default function Orders_Details() {
   const [data, setData] = useState(orders);
 
   return (
-    <div className="p-6 w-full">
+    <div className="py-6 w-full">
       <h1 className="text-2xl font-bold mb-4">إدارة الطلبات</h1>
 
       <div className="overflow-auto rounded shadow">

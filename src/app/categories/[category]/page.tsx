@@ -4,7 +4,7 @@ export default async function CategoriesPage({ params }:  {params: Promise<{ cat
   const { category } = await params;
   
   return (
-    <section className="p-main">
+    <section className="px-2">
       <Category category={decodeURIComponent(category)} />
     </section>
   )

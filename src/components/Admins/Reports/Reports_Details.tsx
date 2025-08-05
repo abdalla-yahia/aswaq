@@ -18,7 +18,7 @@ export default function Reports_Details() {
   const [report] = useState(dummyReports);
 
   return (
-    <div className="p-6 w-full">
+    <div className="py-6 w-full">
       <h1 className="text-2xl font-bold mb-6">التقارير المالية</h1>
 
       <div className="grid gap-4 grid-cols-1 md:grid-cols-3 mb-6">

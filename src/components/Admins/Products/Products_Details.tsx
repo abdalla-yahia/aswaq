@@ -38,7 +38,7 @@ export default function Products_Details() {
   };
 
   return (
-    <div className="p-6 space-y-6 text-foreground w-full">
+    <div className="py-6 space-y-6 text-foreground w-full">
       <div className="flex justify-between items-center ">
         <h1 className="text-2xl font-bold">إدارة المنتجات</h1>
         <button className="bg-blue-600 text-foreground px-4 py-2 rounded hover:bg-blue-700">

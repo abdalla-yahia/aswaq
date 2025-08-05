@@ -55,7 +55,7 @@ export default function Users_Details() {
   };
 
   return (
-    <div className="p-6 space-y-6 text-foreground w-full">
+    <div className="py-6 space-y-6 text-foreground w-full">
       <h1 className="text-2xl font-bold ">إدارة المستخدمين</h1>
 
       <div className="overflow-x-auto  rounded-lg shadow border border-gray-200">

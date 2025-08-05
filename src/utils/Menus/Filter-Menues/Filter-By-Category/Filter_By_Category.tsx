@@ -7,7 +7,7 @@ export default function Filter_By_Category() {
     const [toggle, setToggle] = useState(false)
     return (
         <div className="filter-by-category border-b pb-2 flex w-full flex-col justify-center items-start">
-            <h2 className="text-xl font-bold my-4">تصنيف بالنوع</h2>
+            <h2 className="text-[8px] md:text-xl font-bold my-4 hidden md:block">تصنيف بالنوع</h2>
             <div className="flex justify-between items-center w-1/2">
                 <label className="cursor-pointer " htmlFor="all-categories">الكل</label>
                 <div onClick={() => setToggle(!toggle)}>

@@ -2,13 +2,14 @@ import SubmitButton from "@/utils/Bottons/Submit-button";
 import Image from "next/image";
 import Link from "next/link";
 import products from '@/db/products_dataset.json';
+import * as icon from '@/utils/Icons/Icons';
 
 export default function Product_Info({id}:{id:string}) {
     const item= products.data.find(ele=>ele.id === parseInt(id))
   return (
     <>
         <h1 className="mb-5 text-3xl">تفاصيل {item?.title}</h1>
-        <div className="flex justif-start items-start w-full gap-3">
+        <div className="flex flex-col md:flex-row justify-center items-center md:justif-start md:items-start w-full gap-3">
             {/*Product Images */}
             <Image loading="lazy" className="shadow-accent" src={item?.image as string} alt={`منتج ${item?.title}`} width={350} height={250} />
       <div className="flex flex-col jusify-start items-start gap-3">
@@ -26,7 +27,7 @@ export default function Product_Info({id}:{id:string}) {
             <div className="flex justify-between items-center gap-2">
                 <h3 className="text-xl text-foreground">السعر : </h3>
                 <span className="line-through text-gray-600">350</span>
-                <p className="text-lg text-muted">{item?.price} جنيه</p>
+                <p className="text-lg text-muted">{item?.price} ج.م</p>
             </div>
              {/**Product Colors */}
             <div className="flex justify-between items-center gap-2">
@@ -57,8 +58,17 @@ export default function Product_Info({id}:{id:string}) {
             </div>
              {/**Add To Cart */}
             <div className="flex justify-between items-center gap-2">
-                <Link href="/cart">
-                    <SubmitButton text="أضف للعربة" bgcolor="bg-green-500" textcolor="" />
+                <Link href="/cart" className="flex gap-1 justify-center items-center px-2 bg-muted/50 rounded-2xl cursor-pointer">
+                    <SubmitButton text="أضف للعربة" bgcolor="" textcolor="" />
+                    <icon.FaCartPlus className="text-green-500"/>
+                </Link>
+                <Link href="/products" className="flex gap-1 justify-center items-center px-2 bg-red-200 rounded-2xl cursor-pointer">
+                    <SubmitButton text="أضف للمفضله" bgcolor="" textcolor="text-gray-500" />
+                    <icon.CiHeart className="text-white font-bold"/>
+                </Link>
+                <Link href="/products" className="flex gap-1 justify-center items-center px-2 bg-accent rounded-2xl cursor-pointer">
+                    <SubmitButton text="متابعة التسوق" bgcolor="" textcolor="text-gray-500" />
+                    <icon.FaShoppingCart className="text-blue-500"/>
                 </Link>
             </div>
             </div>

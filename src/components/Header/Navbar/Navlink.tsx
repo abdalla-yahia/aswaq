@@ -11,7 +11,7 @@ export default function Navlink() {
           <icon.FaOpencart />
           <span className="absolute top-5 -right-6 p-1 text-xs rounded-2xl bg-red-800 text-white">5</span>
         </Link>
-        <span className="text-[10px] text-orange-700 font-bold">2500 جنيه</span>
+        <span className="text-[10px] text-orange-600 font-bold">2500 ج.م</span>
         <Link href={'/login'} >
           <li >دخول</li>
           <icon.IoPersonCircleOutline />
