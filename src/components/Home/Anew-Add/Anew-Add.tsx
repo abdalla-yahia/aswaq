@@ -12,15 +12,15 @@ export default function AnewAddHome() {
     }else RandomProduct.push(products.data[15])
   }
   return (
-    <section className="w-full">
+    <section className="w-full px-2">
       <SectionName text="المضاف حديثأ" btn={true} btnText="المزيد..." href="/products" />
       <div className="w-full flex flex-col md:flex-row justify-center md:justify-between items-center md:items-start">
           {/**Aside Image*/}
-          <div className="w-1/4">
+          <div className="w-full md:w-1/4">
             <Image loading="lazy" src={RandomProduct[5]?.image} alt={RandomProduct[5]?.title} width={450} height={450} className="w-full h-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
           </div>
           {/**Products Container*/}
-          <div className="w-3/4 h-fit  flex justify-between items-start gap-0 flex-wrap p main">
+          <div className="w-full md:w-3/4 h-fit  flex justify-between items-start gap-0 flex-wrap py-8 px-3">
             
           {
             RandomProduct?.map((product) => (
