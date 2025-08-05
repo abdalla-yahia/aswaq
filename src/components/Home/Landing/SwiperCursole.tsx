@@ -40,13 +40,13 @@ export default function SwiperCursole() {
       {/* Controls */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/50 hover:bg-white/70 text-black rounded-full p-2"
+        className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/10 hover:bg-white/70 text-black rounded-full p-2"
       >
         <icon.RiArrowLeftSLine className='cursor-pointer hover:scale-150 transition-transform'/>
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/50 hover:bg-white/70 text-black rounded-full p-2"
+        className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/10 hover:bg-white/70 text-black rounded-full p-2"
       >
        <icon.RiArrowRightSLine className='cursor-pointer hover:scale-150 transition-transform'/>
       </button>

@@ -19,11 +19,11 @@ export default function Brand({ brand }: { brand: string }) {
       {/**Page Container */}
       <div className="flex w-full justify-between items-start gap-5">
         {/**Asid Filter Menue */}
-        <div className="flex w-1/6 md:2/6 justify-between items-start gap-2">
+        <div className="flex w-2/6 md:w-1/6 justify-between items-start gap-2">
           <FilterMenue />
         </div>
         {/**Products Of Brand */}
-        <div className="flex flex-col justify-center items-start gap-2 w-5/6 md:4/6">
+        <div className="flex flex-col justify-center items-start gap-2 w-4/6 md:w-5/6">
             {/**Banner Image*/}
           <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover mix-blend-screen h-[100px] md:h-[200px] mb-4 bg-white/70 rounded-lg shadow-md">
             <Image src={ProductsOfBrand[0]?.brandImage} alt={brand} width={100} height={100} className="w-full  h-[100px] md:h-[200px]"/>

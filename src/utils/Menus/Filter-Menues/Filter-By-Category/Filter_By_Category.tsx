@@ -9,20 +9,20 @@ export default function Filter_By_Category() {
         <div className="filter-by-category border-b pb-2 flex w-full flex-col justify-center items-start">
             <h2 className="text-[8px] md:text-xl font-bold my-4 hidden md:block">تصنيف بالنوع</h2>
             <div className="flex justify-between items-center w-1/2">
-                <label className="cursor-pointer " htmlFor="all-categories">الكل</label>
                 <div onClick={() => setToggle(!toggle)}>
                     <InputButton type='checkbox' placeholder="" name="" id="all-categories" />
                 </div>
+                <label className="cursor-pointer " htmlFor="all-categories">الكل</label>
             </div>
             {/**************@to-do map categories*************/}
             {
                 categories?.slice(0, !toggle ? 3 : categories?.length)?.map((category) => (
                     <div key={category?.id} className="flex justify-between items-center w-1/2">
-                        <label className="cursor-pointer " htmlFor={category?.id as unknown as string}>{category?.title}</label>
                         <div>
                             {/****************** @To-Do filter Products by Category *****************/}
                             <InputButton type='checkbox' placeholder="" name="" id={category?.id as unknown as string} />
                         </div>
+                        <label className="cursor-pointer " htmlFor={category?.id as unknown as string}>{category?.title}</label>
                     </div>
                 ))
             }

@@ -6,16 +6,16 @@ export default function Filter_By_Price() {
         {/**Price From */}
         <div className="flex justify-between flex-wrap items-center w-full ">
             <h4 className="w-1/3 "> من </h4>
-            <div className="flex items-center justify-between w-2/4 ">
-                <input defaultValue={0} type="number" min={0} className="border rounded w-full pr-2"/>
+            <div className="flex items-center justify-between w-full md:w-2/4 ">
+                <input  type="number" min={0} className="border rounded w-full pr-2"/>
             </div>
             <span className="font-bold">ج.م</span>
         </div>
         {/**Price To */}
         <div className="flex justify-between flex-wrap  items-center w-full ">
             <h4 className="w-1/3 ">إلى </h4>
-            <div className="flex items-center justify-between w-2/4 ">
-                <input defaultValue={0} type="number" min={0} className="border rounded w-full pr-2"/>
+            <div className="flex items-center justify-between w-full md:w-2/4 ">
+                <input  type="number" min={0} className="border rounded w-full pr-2"/>
             </div>
             <span className="font-bold">ج.م</span>
         </div>
