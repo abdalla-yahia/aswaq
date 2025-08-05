@@ -11,7 +11,7 @@ export default function ProductDetails({ id }: { id: string }) {
     const brand = productFound?.brand
     const title = productFound?.title as string
     return (
-        <div className="w-full flex my-5 p-main flex-col justify-center items-start">
+        <div className="w-full flex my-5 py-8 px-3 flex-col justify-center items-start">
             {/**Details Of Product */}
             <Product_Info id={id}/>
             {/**Add A New Comment From User*/}

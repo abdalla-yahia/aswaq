@@ -8,7 +8,7 @@ export default function Breadcrumb() {
   const segments = pathname.split('/').filter(Boolean);
 
   return (
-    <nav className="text-shadow-amber-500 text-gray-600 my-2 fixed top-[150px] md:top-[160px] right-3 md:right-[40px]">
+    <nav dir='ltr' className="text-shadow-amber-500 text-gray-600 my-2 fixed top-[150px] md:top-[160px] left-3 md:left-[40px]">
       <ol className="flex flex-wrap items-center gap-x-2 rtl:space-x-reverse">
         <li>
           <Link href="/" className="text-muted hover:text-amber-500">الرئيسية</Link>

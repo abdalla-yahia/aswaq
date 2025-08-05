@@ -10,7 +10,7 @@ export default function Brand({ brand }: { brand: string }) {
   const ProductsOfBrand = products?.data?.filter(product => product?.brand === brand)
   const randomNumber = Math.floor(Math.random() * 13)
   return (
-    <section className="Brand w-full flex flex-col justify-start items-start gap-0">
+    <section className="Brand w-full py-8 flex flex-col justify-start items-start gap-0">
       {/**Page Title */}
       <h1 className="mb-5 text-3xl flex justify-center items-center">قائمة منتجات
         <span className="mb-5  text-3xl mx-2 text-accent"> {brand} </span>

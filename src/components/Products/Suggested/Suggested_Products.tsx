@@ -10,7 +10,7 @@ export default function Suggested_Products() {
         }else RandomProduct.push(products.data[15])
   }
   return (
-    <div className="w-full p-main">
+    <div className="w-full py-6 px-2">
       <h1 className="mb-5 text-3xl">منتجات قد تعجبك </h1>
       <div className="w-full min-h-[400px]  flex justify-between items-start gap-0 flex-wrap p main">
       {

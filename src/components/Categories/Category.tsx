@@ -12,7 +12,7 @@ export default function Category({ category }: { category: string }) {
   const randomNumber = Math.floor(Math.random() * 13)
 
   return (
-    <section className="category w-full flex flex-col justify-start items-start gap-5">
+    <section className="category py-8 w-full flex flex-col justify-start items-start gap-5">
       {/**Page Title */}
       <h1 className="mb-5 text-3xl flex justify-center items-center">قائمة منتجات
         <h2 className="mb-5 text-3xl text-red-500 mx-5"> {category.toString()} </h2>
@@ -28,7 +28,7 @@ export default function Category({ category }: { category: string }) {
         <div className="flex flex-col justify-center items-start gap-2 w-5/6 md:4/6">
           {/**Banner Image*/}
             <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover h-[100px] md:h-[200px] flex justify-center items-center mb-4 bg-white/70 rounded-lg shadow-md">
-              <Image src={ProductsOfCategory[0]?.image} alt={category} width={250} height={150} />
+              <Image src={ProductsOfCategory[0]?.image} alt={category} width={250} height={150} className="w-[120px] md:w-[250px]  h-fit md:h-[200px]"/>
             </div>
           {/**Products */}
             <div className="flex w-full justify-between items-start flex-wrap ">
