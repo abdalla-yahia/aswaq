@@ -70,13 +70,13 @@ cd aswaq
 npm install
 ```
 ## Create .env file
-
+```bash
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 JWT_SECRET=your_jwt_secret
 CLOUDINARY_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
-
+```
 ## Generate Prisma client
 ```bash
 npx prisma generate
@@ -89,6 +89,7 @@ npm run dev
 ```
 
 📁 Folder Structure
+```bash
 
 /app           → Main application pages (App Router)
 /components    → Reusable UI components
@@ -97,17 +98,20 @@ npm run dev
 /prisma        → Prisma schema and migrations
 /public        → Static assets
 /features      → Actions & Reducers For Redux
-
+```
 
 📌 About the Project
 This project was created as part of a professional e-commerce solution tailored for local businesses dealing in steel and construction materials. It includes advanced role-based access, financial tracking, and modern UI/UX practices.
 
 📧 Contact
+```
 Developer: Abdalla Yahia
 Email: abdallayahia75@gmail.com
 LinkedIn: linkedin.com/in/abdalla-yahia
 GitHub: github.com/abdalla-yahia
-
+For any questions or concerns, please reach out to 
+[abdallayahia75@gmail.com] or [(+20)01211100554].
+```
 📜 License
 This project is licensed under the MIT License.
 
@@ -175,7 +179,7 @@ This project is licensed under the MIT License.
 ---
 
 ## 🗂️ هيكل المشروع
-
+```bash
 /app
 /(public pages)
 /app/admins
@@ -190,7 +194,7 @@ This project is licensed under the MIT License.
 /hooks
 /queries
 /types
-...
+```
 
 
 
@@ -228,11 +232,12 @@ npm run dev
 قم بعمل Fork، ثم Pull Request مع شرح واضح للتعديل.
 
 🧑‍💻 المطور
+```bash
 Abdalla Yahia
 Frontend Web Developer
 📍 Beni Suef, Egypt
 📧 abdallayahia75@gmail.com
 🌐 [LinkedIn](https://www.linkedin.com/in/abdalla-yahia/) | [GitHub](https://github.com/abdalla-yahia/)
-
+```
 📄 الرخصة
 مشروع Aswaq مفتوح المصدر تحت رخصة MIT License
