@@ -9,13 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.9",
+    "@graphql-tools/merge": "^9.1.1",
+    "@graphql-tools/schema": "^10.0.25",
     "@prisma/client": "^6.13.0",
+    "@reduxjs/toolkit": "^2.8.2",
+    "graphql": "^16.11.0",
+    "graphql-tag": "^2.12.6",
+    "graphql-yoga": "^5.15.1",
     "next": "15.4.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-fast-marquee": "^1.6.5",
     "react-icons": "^5.5.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-redux": "^9.2.0",
     "recharts": "^3.1.0",
     "tailwind-scrollbar": "^4.0.2"
   },

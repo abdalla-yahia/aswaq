@@ -1,37 +1,238 @@
 # [Aswaq Demo](https://aswaq-bns.vercel.app)
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🛒 Aswaq - E-commerce Platform for Steel Products
 
-First, run the development server:
+
+Aswaq is a full-featured e-commerce web application built with modern technologies. It is designed specifically for businesses that sell steel and reinforcement products, providing a seamless and organized shopping experience for customers, delivery staff, warehouse managers, and admins.
+
+---
+
+## ✨ Features
+
+### 🧑‍💼 Customer Panel
+- User registration and login
+- Product browsing and filtering
+- Product details with ratings and reviews
+- Add to favorites
+- Shopping cart and checkout flow
+- Track orders and view order history
+- Address book management
+- Wallet balance and coupons
+- Notifications and account settings
+
+### 📦 Stockkeeper Panel
+- Manage product inventory
+- Monitor stock levels
+- Handle shipping statuses
+- Generate inventory reports
+
+### 🚚 Delivery Panel
+- Dashboard for drivers
+- View and manage assigned deliveries
+- Update delivery statuses
+
+### 🔧 Admin Panel
+- Full user management (admins, customers, drivers, stockkeepers)
+- Product management (CRUD)
+- Orders and delivery management
+- Site settings and notifications
+- Financial reports (income statement, balance sheet, etc.)
+- Cash flow, expenses, returns, and purchases management
+
+---
+
+## 🧰 Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **UI**: Tailwind CSS
+- **State Management**: Redux Toolkit
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **API**: GraphQL
+- **Authentication**: JWT
+- **Media Handling**: Cloudinary
+- **Deployment**: Vercel
+
+---
+
+## 🛠️ Setup Instructions
+
+1. **Clone the repository**
 
 ```bash
+git clone https://github.com/your-username/aswaq.git
+cd aswaq
+```
+## Install dependencies
+
+```bash
+npm install
+```
+## Create .env file
+
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_NAME=your_cloudinary_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+## Generate Prisma client
+```bash
+npx prisma generate
+
+```
+## Run development server
+```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📁 Folder Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+/app           → Main application pages (App Router)
+/components    → Reusable UI components
+/lib           → Helper functions and utilities
+/graphql       → Queries and mutations
+/prisma        → Prisma schema and migrations
+/public        → Static assets
+/features      → Actions & Reducers For Redux
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+📌 About the Project
+This project was created as part of a professional e-commerce solution tailored for local businesses dealing in steel and construction materials. It includes advanced role-based access, financial tracking, and modern UI/UX practices.
 
-To learn more about Next.js, take a look at the following resources:
+📧 Contact
+Developer: Abdalla Yahia
+Email: abdallayahia75@gmail.com
+LinkedIn: linkedin.com/in/abdalla-yahia
+GitHub: github.com/abdalla-yahia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📜 License
+This project is licensed under the MIT License.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+####################################################################
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# 🛒 أسواق - متجر تجارة إلكترونية
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**أسواق** هو مشروع متجر إلكتروني متكامل مبني باستخدام أحدث تقنيات الويب، يهدف لتوفير تجربة تسوق سلسة للمستخدمين، ولوحة تحكم قوية للإدارة ومتابعة الطلبات والمخزون والمحاسبة.
+
+🔗 [Live Demo](https://aswaq-bns.vercel.app)
+
+---
+
+## ✨ الميزات الرئيسية
+
+### 👤 المستخدمين
+- تسجيل وتسجيل دخول باستخدام JWT
+- تعديل الملف الشخصي وإدارة العناوين
+- عرض وتتبع الطلبات
+- المفضلة والتقييمات
+- المحفظة والكوبونات
+- الإشعارات الفورية
+- إعدادات الحساب وتسجيل الخروج
+
+### 🛍️ المتجر
+- عرض المنتجات والفئات
+- نظام تصفية وفرز متقدم
+- تفاصيل المنتج مع التقييمات
+- عربة الشراء وسلة المفضلة
+- الدفع وتتبع حالة الطلب
+
+### 🚚 التوصيل (الدليفري)
+- لوحة تحكم خاصة بالدليفري
+- عرض الطلبات المرسلة وتحديث حالتها
+- إشعارات بالحالة الجديدة
+
+### 📦 أمين المخزن
+- إدارة المنتجات والمخزون
+- تقارير دورية
+- تنبيهات نقص الكمية
+
+### 🛠️ الأدمن
+- إدارة المستخدمين والمنتجات والطلبات
+- التحكم الكامل في المخزون والمحاسبة
+- عرض تقارير المبيعات والمشتريات
+- إدارة المصروفات، الخزينة، المرتجعات، الميزانية
+
+---
+
+## 🧰 التقنيات المستخدمة
+
+- **Next.js 15** - App Router
+- **React 18**
+- **TypeScript**
+- **Tailwind CSS**
+- **Prisma ORM**
+- **PostgreSQL**
+- **Cloudinary** (لرفع الصور)
+- **Redux Toolkit**
+- **Apollo Client** (للتواصل مع الـ API)
+- **JWT Authentication**
+- **GitHub Actions** (CI/CD)
+
+---
+
+## 🗂️ هيكل المشروع
+
+/app
+/(public pages)
+/app/admins
+/app/stockkeeper
+/app/drivers
+/app/(users)
+/api
+...
+/lib
+/components
+/constants
+/hooks
+/queries
+/types
+...
+
+
+
+## ⚙️ التثبيت والتشغيل محليًا
+
+
+# Clone the repo
+```bash
+git clone https://github.com/[your-username]/aswaq.git
+```
+# Install dependencies
+```bash
+cd aswaq
+npm install
+```
+# إعداد ملف البيئة
+```bash
+cp .env.example .env
+```
+# ثم ضع بيانات قاعدة البيانات و Cloudinary و JWT
+
+# تشغيل المشروع
+```bash
+npm run dev
+```
+📌 الملاحظات
+يدعم المشروع التصميم المتجاوب (Responsive Design)
+
+النظام يحتوي على صلاحيات منفصلة لكل نوع مستخدم
+
+قابلية للتوسع بسهولة مستقبلًا (modular structure)
+
+🤝 المساهمة
+أهلًا بأي مساهمات، اقتراحات أو إصلاحات!
+قم بعمل Fork، ثم Pull Request مع شرح واضح للتعديل.
+
+🧑‍💻 المطور
+Abdalla Yahia
+Frontend Web Developer
+📍 Beni Suef, Egypt
+📧 abdallayahia75@gmail.com
+🌐 [LinkedIn](https://www.linkedin.com/in/abdalla-yahia/) | [GitHub](https://github.com/abdalla-yahia/)
+
+📄 الرخصة
+مشروع Aswaq مفتوح المصدر تحت رخصة MIT License

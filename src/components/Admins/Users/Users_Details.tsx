@@ -10,7 +10,7 @@ type User = {
   status: "active" | "blocked";
 };
 
-export default function Users_Details() {
+export default function Users_Details({name}:{name?:string}) {
   const [users, setUsers] = useState<User[]>([
     {
       id: "1",
@@ -56,7 +56,7 @@ export default function Users_Details() {
 
   return (
     <div className="py-6 space-y-6 text-foreground w-full">
-      <h1 className="text-2xl font-bold ">إدارة المستخدمين</h1>
+      <h1 className="text-2xl font-bold ">إدارة المستخدمين {name?.toUpperCase()}</h1>
 
       <div className="overflow-x-auto  rounded-lg shadow border border-gray-200">
         <table className="min-w-full text-sm text-right">
