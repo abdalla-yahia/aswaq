@@ -104,14 +104,18 @@ npm run dev
 This project was created as part of a professional e-commerce solution tailored for local businesses dealing in steel and construction materials. It includes advanced role-based access, financial tracking, and modern UI/UX practices.
 
 📧 Contact
-```
-Developer: Abdalla Yahia
-Email: abdallayahia75@gmail.com
-LinkedIn: linkedin.com/in/abdalla-yahia
-GitHub: github.com/abdalla-yahia
-For any questions or concerns, please reach out to 
-[abdallayahia75@gmail.com] or [(+20)01211100554].
-```
+
+## 🧑‍💻 Developer
+
+**👤 Name:** Abdalla Yahia  
+**💼 Role:** Frontend Web Developer  
+
+**🌍 Location:** Beni Suef, Egypt  
+**📞 Phone:** +20 12 111 00554  
+**📧 Email:** [abdallayahia75@gmail.com](mailto:abdallayahia75@gmail.com)  
+**🔗 LinkedIn:** [linkedin.com/in/abdalla-yahia](https://linkedin.com/in/abdalla-yahia)  
+**💻 GitHub:** [github.com/abdalla-yahia](https://github.com/abdalla-yahia)
+
 📜 License
 This project is licensed under the MIT License.
 
@@ -231,13 +235,16 @@ npm run dev
 أهلًا بأي مساهمات، اقتراحات أو إصلاحات!
 قم بعمل Fork، ثم Pull Request مع شرح واضح للتعديل.
 
-🧑‍💻 المطور
-```bash
-Abdalla Yahia
-Frontend Web Developer
-📍 Beni Suef, Egypt
-📧 abdallayahia75@gmail.com
-🌐 [LinkedIn](https://www.linkedin.com/in/abdalla-yahia/) | [GitHub](https://github.com/abdalla-yahia/)
-```
+## 🧑‍💻 المطور
+
+**👤 الاسم:** عبدالله يحيى 
+**💼 المهنة:** Frontend Web Developer  
+
+**🌍 العنوان:** بني سويف, مصر  
+**📞 الهاتف:** +20 12 111 00554  
+**📧 البريد الالكتروني:** [abdallayahia75@gmail.com](mailto:abdallayahia75@gmail.com)  
+**🔗 لينكد إن:** [linkedin.com/in/abdalla-yahia](https://linkedin.com/in/abdalla-yahia)  
+**💻 جيت هب:** [github.com/abdalla-yahia](https://github.com/abdalla-yahia)
+
 📄 الرخصة
 مشروع Aswaq مفتوح المصدر تحت رخصة MIT License
