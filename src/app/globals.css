@@ -1,5 +1,12 @@
 @import "tailwindcss";
-
+html::-webkit-scrollbar {
+  background-color: var(--accent);
+  width: 10px;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: var(--background);
+  border-radius: 10px;
+  }
 
 :root {
   /* 🌞 Light Mode */
@@ -114,8 +121,38 @@
       padding:0px var(--padding-main);
     }
   }
-}
+  
+    .arrow-right-move:hover{
+    transform: translateX(0px);
+    transition: transform 0.5s;
+    animation: moveright .5s infinite linear;
+  }
+    .arrow-left-move:hover{
+    transform: translateX(0px);
+    transition: transform 0.5s;
+    animation: movelift .5s infinite linear;
+  }
 
+
+}
+@keyframes moveright {
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    
+    transform: translateX(10px);
+  }
+}
+@keyframes movelift {
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    
+    transform: translateX(-10px);
+  }
+}
 
 body {
   background: var(--background);

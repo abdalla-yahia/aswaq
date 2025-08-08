@@ -1,18 +1,20 @@
-import { prisma } from '@/libs/Prisma/Prisma-Client';
-import { createYoga } from 'graphql-yoga';
-import { makeExecutableSchema } from '@graphql-tools/schema';
-import { typeDefs, resolvers } from '@/app/api/graphql';
+// src/app/api/graphql/route.ts
+import { createYoga, createSchema } from 'graphql-yoga'
+import { typeDefs, resolvers } from '@/app/api/graphql'
+import { prisma } from '@/libs/Prisma/Prisma-Client'
 
-
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
-
-const yoga = createYoga({
-  schema,
-  context: () => ({ prisma }),
+const yoga = createYoga<{ req: Request }>({
+  schema: createSchema({
+    typeDefs,
+    resolvers,
+  }),
   graphqlEndpoint: '/api/graphql',
-});
+  fetchAPI: { Request, Response },
 
-export { yoga as GET, yoga as POST };
+  context: ({ request }) => ({
+    req: request,
+    prisma,
+  }),
+})
+
+export { yoga as GET, yoga as POST }

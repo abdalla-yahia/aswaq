@@ -26,9 +26,9 @@ export default function SwiperCursole() {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full bg-[var(--accent)]/40   mx-auto overflow-hidden rounded-lg">
+    <div className="relative  w-full bg-[var(--accent)]/40   mx-auto overflow-hidden rounded-lg">
       {/* Slides */}
-      <div className="flex w-full transition-transform duration-700 ease-in-out" style={{ transform: `translateX(${currentIndex * 100}%)` }}>
+      <div className="flex  w-full transition-transform duration-700 ease-in-out" style={{ transform: `translateX(${currentIndex * 100}%)` }}>
         {Sliders?.sliders?.map((slider, i) => (
         <div key={i} className="w-full flex-shrink-0">
             {/* <img src={src} alt='fs' width={250} height={250} /> */}
@@ -40,15 +40,15 @@ export default function SwiperCursole() {
       {/* Controls */}
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-3 -translate-y-1/2 bg-white/10 hover:bg-white/70 text-black rounded-full p-2"
-      >
-        <icon.RiArrowLeftSLine className='cursor-pointer hover:scale-150 transition-transform'/>
+        className="absolute top-1/2 left-3 group -translate-y-1/2 bg-white/10 hover:bg-white text-black rounded-full p-2"
+        >
+        <icon.RiArrowLeftSLine className='cursor-pointer arrow-left-move  group-hover:text-3xl transition-all duration-500'/>
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/10 hover:bg-white/70 text-black rounded-full p-2"
-      >
-       <icon.RiArrowRightSLine className='cursor-pointer hover:scale-150 transition-transform'/>
+        className="absolute top-1/2  right-3 group -translate-y-1/2 bg-white/10 hover:bg-white text-black rounded-full p-2"
+        >
+       <icon.RiArrowRightSLine className='cursor-pointer arrow-right-move  group-hover:text-3xl transition-all duration-500 '/>
       </button>
 
       {/* Indicators */}

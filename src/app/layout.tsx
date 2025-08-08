@@ -8,7 +8,7 @@ import Breadcrumb from "@/utils/BreadCrumb_Nav";
 import { ApolloProvider } from '@apollo/client';
 import { client } from '@/libs/Apollo/ApolloClient';
 import { Provider } from 'react-redux';
-import { store } from '@/libs/Redux_Store/Store';
+import { store } from '@/libs/Store/Store';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
