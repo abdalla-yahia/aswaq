@@ -143,7 +143,7 @@ export default function RootLayout({
           <ApolloProvider client={client} >
             <Header />
             <Breadcrumb />
-              <main className="min-h-screen mt-[155px]  bg-background text-foreground">
+              <main className="min-h-screen mt-[155px]  bg-background text-foreground select-none">
               {children}
               </main>
             <Footer />

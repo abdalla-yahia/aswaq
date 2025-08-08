@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { fetchAllUsers,fetchUserById } from "@/Features/Actions/users/usersActions"
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    user:[],
-    loading:true,
-    error:null 
+    users:[],
+    user:{},
+    loading:true as boolean,
+    error:null as string|null
 }
 
 const usersSlice = createSlice({
@@ -19,7 +21,7 @@ const usersSlice = createSlice({
     })
     .addCase(fetchAllUsers.fulfilled,(state,action)=>{
         state.loading = false
-        state.user = action?.payload
+        state.users = action?.payload
     })
     .addCase(fetchAllUsers.rejected,(state)=>{
         state.loading = false,
@@ -27,7 +29,7 @@ const usersSlice = createSlice({
     })
     .addCase(fetchUserById.pending,(state)=>{
         state.loading = true,
-        state.error = null
+        state.error = null 
         })
     .addCase(fetchUserById.fulfilled,(state,action)=>{
         state.loading = false
