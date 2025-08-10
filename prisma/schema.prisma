@@ -44,8 +44,8 @@ enum Status{
 enum Role {
   USER
   ADMIN
-  DELIVERY
-  STOREKEEPER
+  DRIVER
+  STOCKKEEPER
 }
 model Employee {
   id            String       @id @default(uuid())

@@ -1,4 +1,4 @@
-import { IoPersonCircleOutline, IoLogOutOutline } from "react-icons/io5";
+import { IoPersonCircleOutline, IoLogOutOutline,IoSettingsOutline } from "react-icons/io5";
 import { FaOpencart, FaRegEye, FaRegEyeSlash, FaWhatsapp, FaAddressCard, FaRegGrinHearts, FaUsers, FaMoneyBillWave,FaUserCircle,FaShoppingCart,FaStar,FaStarHalf,FaChartLine } from "react-icons/fa";
 import { FaMapLocationDot,FaCartPlus } from "react-icons/fa6";
 import { TbError404 } from "react-icons/tb";
@@ -16,4 +16,4 @@ import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { SiBrandfolder } from "react-icons/si";
 
 export {IoPersonCircleOutline,IoLogOutOutline,FaOpencart,FaRegEye,FaRegEyeSlash,FaWhatsapp,FaAddressCard,FaRegGrinHearts,FaUsers,FaMoneyBillWave,FaMapLocationDot,TbError404,BiSolidErrorAlt,CiTrash,CiHeart,CiSettings,RiArrowRightSLine,RiArrowLeftSLine,RiArrowDownSLine,RiCoupon3Fill,MdDeliveryDining,MdOutlineReviews,MdDashboard,MdInventory2,MdAssignment,MdLocalShipping,MdDoneAll,MdInventory,MdAddBox,MdWarningAmber,IoIosNotificationsOutline,HiOutlineChartBar,GiWallet,TbCategoryPlus,MdAddchart,VscTypeHierarchySub,MdAddToQueue
-,HiPencilSquare,FaUserCircle,MdOutlineLocalShipping,FaShoppingCart,FaCartPlus,FaStar,FaStarHalf,FaChartLine,BiSolidCategory,AiOutlineAppstoreAdd,SiBrandfolder,IoMdClose,IoMdCheckmark}
+,HiPencilSquare,FaUserCircle,MdOutlineLocalShipping,FaShoppingCart,FaCartPlus,FaStar,FaStarHalf,FaChartLine,BiSolidCategory,AiOutlineAppstoreAdd,SiBrandfolder,IoMdClose,IoMdCheckmark,IoSettingsOutline}

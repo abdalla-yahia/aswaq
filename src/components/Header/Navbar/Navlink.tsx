@@ -8,10 +8,11 @@ export default  function Navlink() {
 const { data, loading } = useQuery(GET_ME, {
     fetchPolicy: "network-only", // عشان يجيب آخر بيانات من السيرفر
   });
+
 console.log(data?.me?.image)
   return (
     <>
-      <ul className="flex w-full md:w-1/4 order-3 md:order-1 mb-2 md:mb-0 justify-center items-center gap-3 md:gap-0 text-xl">
+      <ul className="flex w-full md:w-1/3 order-3 md:order-1 mb-2 md:mb-0 justify-center items-start gap-3 md:gap-2 text-lg">
         <Link href={'/cart'} className=" relative">
           <li >العربة</li>
           <icon.FaOpencart />
@@ -26,6 +27,13 @@ console.log(data?.me?.image)
             (<icon.IoPersonCircleOutline />)
           }
         </Link>
+        {
+          data?.me &&
+          <Link href={`/${(data?.me?.role).toLowerCase()}s`} className="flex flex-col justify-center items-center text-center">
+          <p>لوحة التحكم</p>
+          <icon.IoSettingsOutline className=" animate-[spin_3s_ease-in-out_infinite]"/>
+        </Link>
+        }
       </ul>
     </>
   )
