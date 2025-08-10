@@ -18,11 +18,11 @@ console.log(data?.me?.image)
           <span className="absolute top-5 -right-6 p-1 text-xs rounded-2xl bg-red-800 text-white">5</span>
         </Link>
         <span className="text-[10px] text-orange-600 font-bold">2500 ج.م</span>
-        <Link href={'/login'} >
+        <Link href={'/login'} className="flex flex-col justify-center items-center text-center">
           <li >{data ? (`مرحباً ${(data?.me?.name).split(' ')[0]}`):'دخول'}</li>
           {
             (data?.me?.image) ? 
-            (<Image src={data?.me?.image} alt={`Image - ${data?.me?.name}`} width={50} height={50} className="rounded-full"/>) :
+            (<Image src={data?.me?.image} alt={`Image - ${data?.me?.name}`} width={40} height={40} className="rounded-full"/>) :
             (<icon.IoPersonCircleOutline />)
           }
         </Link>
