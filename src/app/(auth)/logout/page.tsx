@@ -9,7 +9,7 @@ export default function LogoutPage() {
   useEffect(() => {
     // 1. حذف بيانات الجلسة أو التوكن
     localStorage.removeItem('token'); // لو كنت بتستخدم localStorage
-    document.cookie = 'token=; Max-Age=0; path=/'; // لو كنت بتستخدم cookie
+    document.cookie = 'authToken=; Max-Age=0; path=/'; // لو كنت بتستخدم cookie
 
     // 2. توجيه المستخدم للصفحة الرئيسية أو تسجيل الدخول
     router.replace('/login');

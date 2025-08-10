@@ -12,7 +12,7 @@ export const SetCookies =(userPayload:TokenInterFace)=>{
   const token = GenerateToken(userPayload)
   const cookieOptions = {
     maxAge:  30 * 24 * 60 * 60,
-    httpOnly: false,
+    httpOnly: true,
     secure:process.env.NODE_ENV === 'production' && true,
     path:'/',
 }

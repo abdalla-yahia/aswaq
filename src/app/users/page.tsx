@@ -1,6 +1,8 @@
 'use client';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 
 const stats = [
   { title: 'عدد الطلبات', value: 7, icon: '📦' },
@@ -37,9 +39,13 @@ function UserStatCard({ title, value, icon }: { title: string; value: string | n
 }
 
 export default function UserHomePage() {
+  const { data, loading } = useQuery(GET_ME, {
+      fetchPolicy: "network-only", 
+    });
+
   return (
     <div className="py-6 space-y-6 w-full">
-      <h1 className="text-2xl font-bold">مرحبًا بك 👋</h1>
+      <h1 className="text-2xl font-bold">مرحبًا  👋 {data?.me?.name}</h1>
       <p className="text-gray-600 dark:text-gray-400 mb-4">هذا هو حسابك الشخصي، يمكنك متابعة كل شيء من هنا.</p>
 
       {/* كروت المعلومات */}

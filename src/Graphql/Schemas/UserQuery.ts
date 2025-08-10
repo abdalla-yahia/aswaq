@@ -29,7 +29,7 @@ $email:String
 $phone:String
 $password:String!
 $address:String
-$role:String
+
 ){
 CreateUser(
 id:$id
@@ -38,7 +38,6 @@ email:$email
 phone:$phone
 password:$password
 address:$address
-role:$role
 ) {
 message,
 token,
@@ -46,7 +45,45 @@ user{
   id
   name
   role
+  status
+  image
+}
+
+}
+}
+`
+
+export const LOGIN_USER = gql`
+mutation LoginUser(
+  $email:String
+  $phone:String
+  $password:String!
+) {
+loginUser (
+  email:$email
+  phone:$phone
+  password:$password
+) {
+token,
+message,
+user{
+id
+email
+role
+name
+image
 }
 }
 }
 `
+
+export const GET_ME = gql`
+  query Me {
+    me {
+      id
+      name
+      role
+      image
+    }
+  }
+`;

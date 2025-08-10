@@ -1,8 +1,8 @@
 'use client';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '@/libs/Apollo/ApolloClient';
-import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER } from "@/Graphql/Schemas/UserQuery";
-import { FormState } from "@/types/types";
+import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER } from "@/Graphql/Schemas/UserQuery";
+import { FormState, LoginUser } from "@/types/types";
 import { ApolloError } from "@apollo/client";
 
 
@@ -18,7 +18,7 @@ export const fetchAllUsers = createAsyncThunk('users/fetchAll',async () => {
   }
 );
 
-// Fetch User by ID
+//Fetch User by ID
 export const fetchUserById = createAsyncThunk('users/fetchuser',async (id)=>{
   try {
       const {data} = await client.query({query:GET_USER_BY_ID, variables:{id}});
@@ -29,7 +29,7 @@ export const fetchUserById = createAsyncThunk('users/fetchuser',async (id)=>{
   }
 })
 
-// Create A New User
+//Create A New User
 export const createUser = createAsyncThunk("users/create",async (user: FormState, { rejectWithValue }) => {
     try {
       const { data } = await client.mutate({
@@ -54,3 +54,17 @@ export const createUser = createAsyncThunk("users/create",async (user: FormState
     }
   }
 );
+
+//Login A Token User
+export const loginUser = createAsyncThunk('users/login',async (user:LoginUser)=>{
+  try {
+    const {data} = await client.mutate({
+      mutation:LOGIN_USER,
+      variables:user
+    })
+    return data?.loginUser
+  } catch (error) {
+    console.log(error)
+    return error
+  }
+})
