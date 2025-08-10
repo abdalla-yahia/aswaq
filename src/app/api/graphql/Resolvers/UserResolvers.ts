@@ -3,7 +3,6 @@ import { SetCookies } from '@/utils/generateToken';
 import { UserCreateSchemaValidaion } from '@/validations/UserValidation';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
-import { NextResponse } from 'next/server';
 //User Queries
 const usersQueries = {
     Query: {

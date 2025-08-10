@@ -3,9 +3,9 @@ import { typeDefs, resolvers } from '@/app/api/graphql';
 import { prisma } from '@/libs/Prisma/Prisma-Client';
 import { PrismaClient } from '@prisma/client';
 
-export function makeYoga() {
+ function makeYoga() {
+  
   const resHeaders = new Headers();
-
   const yoga = createYoga<{
     req: Request;
     prisma: PrismaClient;
