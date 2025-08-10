@@ -1,12 +1,12 @@
-'use client';
+'use client'
 import * as icon from '@/utils/Icons/Icons'
 import { useState } from "react";
 
-export default function PasswordButton({ name, placeholder }: { name?: string, placeholder?: string }) {
+export default function PasswordButton({ name, placeholder,onchange }: { name?: string, placeholder?: string,onchange?:(e:React.ChangeEvent<HTMLInputElement>)=>void }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="flex justify-center items-center  gap-2 w-full border rounded my-3 p-2 ">
-      <input type={!showPassword ? 'password' : 'text'} placeholder={placeholder} name={name} className="w-full outline-none border-none" />
+      <input onChange={onchange} type={!showPassword ? 'password' : 'text'} placeholder={placeholder} name={name} className="w-full outline-none border-none" />
       {!showPassword ?
         <icon.FaRegEyeSlash onClick={() => setShowPassword(true)} className="cursor-pointer" />
         :

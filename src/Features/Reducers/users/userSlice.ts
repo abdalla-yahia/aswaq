@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { fetchAllUsers,fetchUserById } from "@/Features/Actions/users/usersActions"
+import { fetchAllUsers,fetchUserById,createUser } from "@/Features/Actions/users/usersActions"
+import { FormState } from "@/types/types";
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     users:[],
-    user:{},
-    loading:true as boolean,
+    user:{} as {user:FormState},
+    loading:false as boolean,
     error:null as string|null
 }
 
@@ -30,7 +31,7 @@ const usersSlice = createSlice({
     .addCase(fetchUserById.pending,(state)=>{
         state.loading = true,
         state.error = null 
-        })
+    })
     .addCase(fetchUserById.fulfilled,(state,action)=>{
         state.loading = false
         state.user = action?.payload
@@ -38,7 +39,19 @@ const usersSlice = createSlice({
     .addCase(fetchUserById.rejected,(state)=>{
         state.loading = false,
         state.error = null
-        })
+    })
+    .addCase(createUser.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+    })
+    .addCase(createUser.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload;
+    })
+    .addCase(createUser.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string;
+    });
 }
 })
 

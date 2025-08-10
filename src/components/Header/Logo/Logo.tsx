@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 const governorates = [
@@ -42,7 +43,7 @@ export default function Logo() {
         </Link>
     <div className="text-black flex justify-center items-center">
           <li className=" hover:text-orange-400 font-bold text-center">توصيل إلى</li>
-          <select defaultValue={'بني سويف'} name="" id="" className="outline-none border-none text-gray-800 rounded-xl scrollbar-none bg-transparent">
+          <select  name="" id="" className="outline-none border-none text-gray-800 rounded-xl scrollbar-none bg-transparent">
             {
               governorates?.map((el,index)=>
               <option className="text-accent" key={index} value={el}>{el}</option>

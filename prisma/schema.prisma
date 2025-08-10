@@ -10,10 +10,13 @@ datasource db {
 model User {
   id             String   @id @default(uuid())
   name           String
-  email          String   @unique
+  email          String?   @unique
   password       String
-  phone          String?
+  phone          String?   @unique
+  address        String?
+  alladdresses   Addresses[]
   role           Role     @default(USER)
+  status         Status?   @default(ACTIVE)
   orders         Order[]
   deliveryOrders Order[]  @relation("Delivery")
   comments       Comment[]
@@ -25,14 +28,24 @@ model User {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
-
+model Addresses {
+  id       String   @id @default(uuid())
+  name  String
+  address String
+  phone  String?
+  user     User     @relation(fields: [id], references: [id])
+}
+enum Status{
+  ACTIVE
+  INACTIVE
+  PENDING
+}
 enum Role {
   USER
   ADMIN
   DELIVERY
   STOREKEEPER
 }
-
 model Employee {
   id            String       @id @default(uuid())
   fullName      String

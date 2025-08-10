@@ -10,7 +10,7 @@ export default function Filter_By_Category() {
             <h2 className="text-[8px] md:text-xl font-bold my-4 hidden md:block">تصنيف بالنوع</h2>
             <div className="flex justify-between items-center w-1/2">
                 <div onClick={() => setToggle(!toggle)}>
-                    <InputButton type='checkbox' placeholder="" name="" id="all-categories" />
+                    <InputButton onchange={()=>''} type='checkbox' placeholder="" name="" id="all-categories" />
                 </div>
                 <label className="cursor-pointer " htmlFor="all-categories">الكل</label>
             </div>
@@ -20,7 +20,7 @@ export default function Filter_By_Category() {
                     <div key={category?.id} className="flex justify-between items-center w-1/2">
                         <div>
                             {/****************** @To-Do filter Products by Category *****************/}
-                            <InputButton type='checkbox' placeholder="" name="" id={category?.id as unknown as string} />
+                            <InputButton onchange={()=>''} type='checkbox' placeholder="" name="" id={category?.id as unknown as string} />
                         </div>
                         <label className="cursor-pointer " htmlFor={category?.id as unknown as string}>{category?.title}</label>
                     </div>

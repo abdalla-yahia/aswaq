@@ -1,6 +1,6 @@
-
-export default function InputButton({type, placeholder,name,id}: {type: string, placeholder: string,name?: string,id?:string}) {
+'use client'
+export default function InputButton({type, placeholder,name,id,onchange}: {type: string, placeholder: string,name?: string,id?:string,onchange?:(e:React.ChangeEvent<HTMLInputElement>)=>void}) {
   return (
-    <input type={type} placeholder={placeholder} name={name} id={id} className="w-full p-2 my-3 border rounded" />
+    <input onChange={onchange} type={type} placeholder={placeholder} name={name} id={id} className="w-full p-2 my-3 border rounded" />
   )
 }
