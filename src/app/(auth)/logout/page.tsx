@@ -1,23 +1,25 @@
-'use client';
+"use client";
+import * as icon from '@/utils/Icons/Icons';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useMutation } from "@apollo/client";
+import { LOGOUT_USER } from "@/Graphql/Schemas/UserQuery";
 
-export default function LogoutPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // 1. حذف بيانات الجلسة أو التوكن
-    localStorage.removeItem('token'); // لو كنت بتستخدم localStorage
-    document.cookie = 'authToken=; Max-Age=0; path=/'; // لو كنت بتستخدم cookie
-
-    // 2. توجيه المستخدم للصفحة الرئيسية أو تسجيل الدخول
-    router.replace('/login');
-  }, [router]);
+export default function LogoutButton() {
+  const [logout, { loading }] = useMutation(LOGOUT_USER, {
+    onCompleted: async () => {
+      // Reset Apollo cache 
+      if (typeof window !== "undefined") {
+        localStorage.clear();
+        sessionStorage.clear();
+      }
+      window.location.href = "/login"; 
+    },
+    onError: (err) => {
+      console.error("Logout Error:", err.message);
+    },
+  });
 
   return (
-    <div className="flex items-center justify-center h-[70vh]">
-      <p className="text-gray-600 text-lg">جاري تسجيل الخروج...</p>
-    </div>
+    <icon.BiLogOutCircle onClick={() => logout()}  title={loading ? "جارٍ تسجيل الخروج..." : "خروج"}/>
   );
 }

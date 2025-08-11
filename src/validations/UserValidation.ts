@@ -39,5 +39,4 @@ export const UserLoginValidation = z.object({
   { message: "يجب إدخال البريد الإلكتروني أو رقم الهاتف" }
 );
 
-// export type CreateUserInput = z.infer<typeof UserCreateSchemaValidaion>;
  

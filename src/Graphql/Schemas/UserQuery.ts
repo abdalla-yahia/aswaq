@@ -87,3 +87,12 @@ export const GET_ME = gql`
     }
   }
 `;
+
+export const LOGOUT_USER = gql`
+  mutation Logout {
+    logout {
+      success
+      message
+    }
+  }
+`;

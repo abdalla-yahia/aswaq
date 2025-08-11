@@ -1,5 +1,5 @@
 'use client'
-import { useActionState, useEffect } from 'react';
+import { useActionState } from 'react';
 import InputButton from "../Bottons/Input-button";
 import PasswordButton from "../Bottons/Password-button";
 import SubmitButton from "../Bottons/Submit-button";
@@ -9,12 +9,10 @@ import { createUser } from '@/Features/Actions/users/usersActions';
 import { FormState } from '@/types/types';
 import { UserCreateSchemaValidaion } from '@/validations/UserValidation';
 import * as icon from '@/utils/Icons/Icons'
-import {useRouter} from 'next/navigation'
 
 export default function RegisterForm() {
   const { user, error, loading } = useSelector((state:RootState)=>state.user)
   const dispatch = useAppDispatch()
-  const router = useRouter()
 
   const registerAction = (prevState: FormState, formData: FormData): FormState => {
     
@@ -53,7 +51,7 @@ export default function RegisterForm() {
   
     //Redirect User To Homepage
     if(user?.user?.name){
-      router.replace('/');
+      window.location.href = "/";
     }
 
   console.log(user?.user?.name)

@@ -29,6 +29,11 @@ export const userSchemas = gql`
   token: String
   user: User!
 }
+ type LogoutResponse {
+    success: Boolean!
+    message: String!
+  }
+
   type Query {
     GetAllUsers: [User!]!
     GetUserById(id:ID!):User!
@@ -52,5 +57,7 @@ export const userSchemas = gql`
       phone:String
       password:String!
     ):AuthResponse
+    # Logout User
+    logout: LogoutResponse!
   }
 `;

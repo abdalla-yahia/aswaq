@@ -7,23 +7,22 @@ import PasswordButton from "@/utils/Bottons/Password-button";
 import SubmitButton from "@/utils/Bottons/Submit-button";
 import { UserLoginValidation } from "@/validations/UserValidation";
 import Image from "next/image";
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { useSelector } from "react-redux";
 import * as icon from '@/utils/Icons/Icons'
-import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
   const {user,error,loading} = useSelector((state:RootState)=>state.user)
   const dispatch = useAppDispatch()
-  const router = useRouter();
 
   const loginHandler = (prevstate:LoginUser,formdata:FormData):LoginUser=>{
     const loginData={
       ...prevstate,
       email:(formdata.get('Email') as string).toString().includes('@')? formdata.get('Email'):undefined,
-      phone:(!formdata.get('Email')).toString().includes('@')? formdata.get('Email'):undefined,
+      phone:(!(formdata.get('Email')as string).toString().includes('@'))? formdata.get('Email'):undefined,
       password:formdata.get('Password')
     }
+    console.log(loginData)
     //Check Validation of Login Data
     const validationLogin = UserLoginValidation.safeParse(loginData)
       if (!validationLogin.success) {
@@ -47,7 +46,7 @@ export default function LoginForm() {
 
     //Redirect Login User To Dashboard
     if(user?.user?.name){
-      router.replace('/users');
+      window.location.href = "/";;
     }
   return (
     <form action={actionState} >

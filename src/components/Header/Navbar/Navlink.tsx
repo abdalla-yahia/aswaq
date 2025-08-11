@@ -3,6 +3,7 @@ import * as icon from '@/utils/Icons/Icons';
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 import Image from "next/image";
+import LogoutButton from "@/app/(auth)/logout/page";
 
 export default  function Navlink() {
 const { data, loading } = useQuery(GET_ME, {
@@ -25,12 +26,20 @@ console.log(data?.me?.image)
         {/* <span className="text-[10px] text-orange-600 font-bold">2500 ج.م</span> */}
         <Link href={'/login'} className="flex flex-col justify-center items-center text-center">
           <li >{data ? (`مرحباً ${(data?.me?.name).split(' ')[0]}`):'دخول'}</li>
+          {/*Personal Image*/}
           {
             (data?.me?.image) ? 
             (<Image src={data?.me?.image} alt={`Image - ${data?.me?.name}`} width={40} height={40} className="rounded-full"/>) :
             (<icon.IoPersonCircleOutline />)
           }
+          {/*Logout Icon*/}
+          {
+            (data?.me?.name) ? 
+            (<LogoutButton />):
+            ('')
+          }
         </Link>
+        {/*Dashboard Icon*/}
         {
           data?.me &&
           <Link href={`/${(data?.me?.role).toLowerCase()}s`} className="flex flex-col justify-center items-center text-center">
