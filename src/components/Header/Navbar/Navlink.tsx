@@ -34,7 +34,7 @@ const { data, loading } = useQuery(GET_ME, {
           {/*Logout Icon*/}
           {
             (data?.me?.name) ? 
-            (<LogoutButton />):
+            (<Link href={'/logout'}><icon.BiLogOutCircle title="تسجيل الخروج"/></Link>):
             ('')
           }
         </Link>

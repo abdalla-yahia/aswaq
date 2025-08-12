@@ -1,7 +1,7 @@
 'use client';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '@/libs/Apollo/ApolloClient';
-import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER } from "@/Graphql/Schemas/UserQuery";
+import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER, DELETE_USER } from "@/Graphql/Schemas/UserQuery";
 import { FormState, LoginUser } from "@/types/types";
 import { toast, ToastContent, ToastOptions } from "react-toastify";
 import { ApolloError } from "@apollo/client";
@@ -69,4 +69,27 @@ export const loginUser = createAsyncThunk('users/login',async (user:LoginUser,th
   toast.error(message);
   return thunkAPI.rejectWithValue(message);
   }
+})
+
+//Delete User
+export const deleteUser = createAsyncThunk('users/delete',async (id:string,thunkAPI)=>{
+  try {
+        const {data}= await client.mutate({
+          mutation:DELETE_USER,
+          variables:{id}
+        })
+
+        if(data?.DeleteUser?.success == false){
+          toast.error('فشل فى حذف المستخدم')
+        }else toast.success('تم حذف المستخدم بنجاح')
+        return data?.DeleteUser
+  }catch(error){
+      const message = error instanceof ApolloError
+    ? error.message
+    : 'فشل في حذف المستخدم !! ';
+  
+  toast.error(message);
+  return thunkAPI.rejectWithValue(message);
+  }
+  
 })

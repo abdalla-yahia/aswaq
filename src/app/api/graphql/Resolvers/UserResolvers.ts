@@ -138,6 +138,36 @@ const userMutations = {
         return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
       }
     },
+    //Delete User
+    DeleteUser:async (_:unknown,args:{id:string},ctx:{prisma:PrismaClient,resHeaders:Headers})=>{
+      try{
+      if(!args?.id){
+        return {success:false,message:'لا يوجد رقم تعريفي للمستخدم'}
+      }
+      //Check Is User Exist On DB
+      const IsExist = await ctx.prisma.user.findUnique({
+        where:{id:args?.id}
+      })
+      if(!IsExist){
+        return {success:false,message:'هذا المستخدم لا يوجد في قاعدة البيانات'}
+      }
+      //Delete User From DB
+      await ctx.prisma.user.delete({
+        where:{id:args?.id}
+      })
+      //Delete Token From Headers
+      ctx.resHeaders.append(
+        'Set-Cookie',
+          `authToken=; HttpOnly; Path=/; Max-Age=0; SameSite=Strict; Secure=${
+            process.env.NODE_ENV === 'production'
+          }`
+      )
+      return { success: true, message: 'Delete User successfully' };
+
+    }catch(error){
+        return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
+    }
+    }
   },
 }
 

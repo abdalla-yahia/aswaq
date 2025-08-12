@@ -62,5 +62,9 @@ export const userSchemas = gql`
     ):AuthResponse
     # Logout User
     logout: LogoutResponse!
+    # Delete User
+    DeleteUser (
+      id:String!
+    ):LogoutResponse
   }
 `;

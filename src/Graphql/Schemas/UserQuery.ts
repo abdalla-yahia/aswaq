@@ -104,3 +104,12 @@ export const LOGOUT_USER = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+mutation deleteUser($id:String!) {
+  DeleteUser(id:$id){
+    message
+    success
+  }
+}
+`

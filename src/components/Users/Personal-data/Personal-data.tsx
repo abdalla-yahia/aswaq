@@ -2,13 +2,22 @@
 import * as icon from '@/utils/Icons/Icons'
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
+import { useAppDispatch } from '@/libs/Store/Store';
+import { deleteUser } from '@/Features/Actions/users/usersActions';
 
 export default function Personal_Data() {
   const { data, loading } = useQuery(GET_ME, {
     fetchPolicy: "network-only", 
   });
+  const dispatch = useAppDispatch()
+  //Handller Delete User
+  const DeleteUserHandller =(id:string)=>{
+    dispatch(deleteUser(id))
+    window.location.href='/';
+  }
   return (
-    <div className="max-w-5xl mx-auto text-foreground w-full border p-6 rounded-lg shadow">
+    <div className="max-w-5xl mx-auto text-foreground w-full border relative p-6 rounded-lg shadow">
+      <icon.CiTrash onClick={()=>DeleteUserHandller(data?.me?.id)} className='text-red-500 hover:text-red-600 absolute top-4 left-2 cursor-pointer' title='حذف الحساب'/>
       <div className="flex items-center gap-4">
         <icon.FaUserCircle className="text-6xl text-gray-400" />
         <div>
@@ -41,7 +50,11 @@ export default function Personal_Data() {
           </div>
           <div>
             <label className="text-sm text-gray-500">تاريخ الميلاد</label>
-            <p className="font-medium">{data?.me?.birthDate}</p>
+            <p className="font-medium">{new Date(Number(data?.me?.birthDate)).toLocaleString('ar-EG',{
+              year:'numeric',
+              month:'short',
+              day:'2-digit'
+            })}</p>
           </div>
         </div>
 
