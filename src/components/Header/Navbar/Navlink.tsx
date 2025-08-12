@@ -10,7 +10,6 @@ const { data, loading } = useQuery(GET_ME, {
     fetchPolicy: "network-only", // عشان يجيب آخر بيانات من السيرفر
   });
 
-console.log(data?.me?.image)
   return (
     <>
       <ul className="flex w-full md:w-1/3 order-3 md:order-1 mb-2 md:mb-0 justify-center items-start gap-3 md:gap-2 text-lg">
@@ -25,7 +24,7 @@ console.log(data?.me?.image)
         </Link>
         {/* <span className="text-[10px] text-orange-600 font-bold">2500 ج.م</span> */}
         <Link href={'/login'} className="flex flex-col justify-center items-center text-center">
-          <li >{data ? (`مرحباً ${(data?.me?.name).split(' ')[0]}`):'دخول'}</li>
+          <li >{data?.me?.name ? (`مرحباً ${(data?.me?.name).split(' ')[0]}`):'دخول'}</li>
           {/*Personal Image*/}
           {
             (data?.me?.image) ? 
@@ -41,7 +40,7 @@ console.log(data?.me?.image)
         </Link>
         {/*Dashboard Icon*/}
         {
-          data?.me &&
+          data?.me?.role &&
           <Link href={`/${(data?.me?.role).toLowerCase()}s`} className="flex flex-col justify-center items-center text-center">
           <p>لوحة التحكم</p>
           <icon.IoSettingsOutline className=" animate-[spin_3s_ease-in-out_infinite]"/>

@@ -3,17 +3,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '@/libs/Apollo/ApolloClient';
 import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER } from "@/Graphql/Schemas/UserQuery";
 import { FormState, LoginUser } from "@/types/types";
+import { toast, ToastContent, ToastOptions } from "react-toastify";
 import { ApolloError } from "@apollo/client";
-
 
 //Fetch All Users
 export const fetchAllUsers = createAsyncThunk('users/fetchAll',async () => {
     try {
-      const res = await client.query({ query: GET_All_USERS });
-      return res.data.GetAllUsers;
+      const {data}= await client.query({ query: GET_All_USERS });
+      return data.GetAllUsers;
     } catch (error ) {
-      console.error('Apollo error:', error);
-      return error;
+    toast.error('Error =>',error as ToastOptions<unknown> | undefined)
     }
   }
 );
@@ -24,47 +23,50 @@ export const fetchUserById = createAsyncThunk('users/fetchuser',async (id)=>{
       const {data} = await client.query({query:GET_USER_BY_ID, variables:{id}});
       return data.GetUserById;
   } catch (error) {
-    console.log('Error =>',error)
-    return error;
+    toast.error('Error =>',error as ToastOptions<unknown> | undefined)
   }
 })
 
 //Create A New User
-export const createUser = createAsyncThunk("users/create",async (user: FormState, { rejectWithValue }) => {
+export const createUser = createAsyncThunk("users/create",async (user: FormState,thunkAPI) => {
     try {
       const { data } = await client.mutate({
         mutation: CREATE_USER,
         variables:  user ,
       });
-
-      console.log(data);
+      console.log(data?.CreateUser)
+      if(data?.CreateUser?.success === false){
+        toast.error(data?.CreateUser?.message)
+      }else toast.success('تم إنشاء المستخدم بنجاح')
       return data.CreateUser;
     } catch (err) {
-      let message = "حدث خطأ أثناء إنشاء المستخدم";
-      if (err instanceof ApolloError) {
-        console.error("GraphQL Errors:", err.graphQLErrors);
-        console.error("Network Error:", err.networkError);
-        message = err.message;
-      } else if (err instanceof Error) {
-        console.error("Unexpected Error:", err);
-        message = err.message;
-      }
-
-      return rejectWithValue(message);
-    }
+  const message = err instanceof ApolloError
+    ? err.message
+    : 'فشل في انشاء المستخدم';
+  
+  toast.error(message);
+  return thunkAPI.rejectWithValue(message);
+}
   }
 );
 
 //Login A Token User
-export const loginUser = createAsyncThunk('users/login',async (user:LoginUser)=>{
+export const loginUser = createAsyncThunk('users/login',async (user:LoginUser,thunkAPI)=>{
   try {
     const {data} = await client.mutate({
       mutation:LOGIN_USER,
       variables:user
     })
+    if(data?.loginUser?.success == false){
+      toast.error(data?.loginUser?.message)
+      }else toast.success('تم دخول المستخدم بنجاح')
     return data?.loginUser
   } catch (error) {
-    console.log(error)
-    return error
+     const message = error instanceof ApolloError
+    ? error.message
+    : 'فشل في تسجيل الدخول ';
+  
+  toast.error(message);
+  return thunkAPI.rejectWithValue(message);
   }
 })

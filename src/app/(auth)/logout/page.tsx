@@ -3,6 +3,7 @@ import * as icon from '@/utils/Icons/Icons';
 
 import { useMutation } from "@apollo/client";
 import { LOGOUT_USER } from "@/Graphql/Schemas/UserQuery";
+import { toast } from 'react-toastify';
 
 export default function LogoutButton() {
   const [logout, { loading }] = useMutation(LOGOUT_USER, {
@@ -13,6 +14,7 @@ export default function LogoutButton() {
         sessionStorage.clear();
       }
       window.location.href = "/login"; 
+      toast.success('تم تسجيل الخروج بنجاح')
     },
     onError: (err) => {
       console.error("Logout Error:", err.message);

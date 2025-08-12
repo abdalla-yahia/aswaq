@@ -1,14 +1,27 @@
 'use client';
 import * as icon from '@/utils/Icons/Icons'
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 
 export default function Personal_Data() {
+  const { data, loading } = useQuery(GET_ME, {
+    fetchPolicy: "network-only", 
+  });
   return (
     <div className="max-w-5xl mx-auto text-foreground w-full border p-6 rounded-lg shadow">
       <div className="flex items-center gap-4">
         <icon.FaUserCircle className="text-6xl text-gray-400" />
         <div>
-          <h2 className="text-xl font-bold">محمد عبد الله</h2>
-          <p className="text-sm text-gray-500">انضم منذ: يناير 2024</p>
+          <h2 className="text-xl font-bold">{data?.me?.name}</h2>
+          <p className="text-sm text-gray-500">انضم منذ:
+             {data?.me?.createdAt
+  ? new Date(Number(data.me.createdAt)).toLocaleString('ar-EG', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit'
+    })
+  : '...جارٍ التحميل'}
+</p>
         </div>
       </div>
 
@@ -16,19 +29,19 @@ export default function Personal_Data() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-sm text-gray-500">البريد الإلكتروني</label>
-            <p className="font-medium">user@example.com</p>
+            <p className="font-medium">{data?.me?.email}</p>
           </div>
           <div>
             <label className="text-sm text-gray-500">رقم الهاتف</label>
-            <p className="font-medium">01001234567</p>
+            <p className="font-medium">{data?.me?.phone}</p>
           </div>
           <div>
             <label className="text-sm text-gray-500">الجنس</label>
-            <p className="font-medium">ذكر</p>
+            <p className="font-medium">{(data?.me?.gender)=='MALE'?'ذكر':(data?.me?.gender)=='FEMALE'?'أنثى':''}</p>
           </div>
           <div>
             <label className="text-sm text-gray-500">تاريخ الميلاد</label>
-            <p className="font-medium">1 يناير 1995</p>
+            <p className="font-medium">{data?.me?.birthDate}</p>
           </div>
         </div>
 

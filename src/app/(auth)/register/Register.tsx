@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Register() {
   return (
     <section className="register flex justify-center items-center">
-    <div className=" md:w-2/3 font-sans  items-center justify-center min-h-screen p-8 pb-20 gap-1 sm:p-20">
+    <div className="w-full md:w-2/3 font-sans  items-center justify-center min-h-screen p-8 pb-20 gap-1 sm:p-20">
       <h1 className="text-2xl font-bold text-center">تسجيل مستخدم جديد</h1>
       {/* Register Form */}
       <RegisterForm />

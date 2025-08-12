@@ -1,15 +1,26 @@
-import {email, z} from 'zod';
+import { Gender } from '@prisma/client';
+import {z} from 'zod';
 
 //Create User Validation
 export const UserCreateSchemaValidaion = z.object({
   name: z.string().min(3, "الاسم لازم يكون على الأقل 3 أحرف"),
-  email: z.string().email("البريد الإلكتروني غير صحيح").optional(),
-  phone:z.string().regex(/^\d{11}$/, "رقم الهاتف يجب أن يكون 11 رقم صحيح").optional(),
+  phone:z.string().regex(/^\d{11}$/, "رقم الهاتف يجب أن يكون 11 رقم صحيح"),
+  email: z.string().email("البريد الإلكتروني غير صحيح").optional().or(z.literal("")).nullable(),
   password: z.string().min(3, "كلمة السر لازم تكون 8 أحرف على الأقل").regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
       "كلمة المرور يجب أن تحتوي على حرف كبير وحرف صغير ورقم"
     ),
-  address : z.string().optional()
+gender: z.preprocess((val) => {
+  if (val === "") return null; // أو undefined لو تحب
+  return val;
+}, z.nativeEnum(Gender).nullable().optional()),
+  birthDate: z.preprocess((val) => {
+  if (typeof val === "string" && val.trim() !== "") {
+    return new Date(val);
+  }
+  return val;
+}, z.date().nullable().optional()),
+  address : z.string()
 }).refine(data => data.email || data.phone, {
   message: "Either email or phone is required",
   path: ["email"] // أو ["phone"]

@@ -9,6 +9,8 @@ export const userSchemas = gql`
   phone:           String
   address:         String
   image:           String
+  gender:          String
+  birthDate:       String
   alladdresses:    [String]
   role:            String
   status:          String
@@ -43,13 +45,14 @@ export const userSchemas = gql`
   type Mutation {
     # Create A New User
     CreateUser(
-    id:ID
     name: String!
     email: String
-    phone:String
+    phone:String!
     password:String!
-    address:String
-    role:String
+    gender:String
+    birthDate:String
+    address:String!
+    
     ): AuthResponse
     # Login A Token User
     loginUser (

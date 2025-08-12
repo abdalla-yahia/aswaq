@@ -17,7 +17,7 @@ const usersQueries = {
     me: async (_: unknown, __: unknown, ctx: { req: Request; prisma: PrismaClient }) => {
       const user = getUserFromRequest(ctx.req) as UserToken;
       if (!user) {
-        throw new Error('Not authenticated');
+        return {success:false,message:'Not authenticated',user:null};
       }
       return await ctx.prisma.user.findUnique({
         where: { id: user?.id },
@@ -28,63 +28,66 @@ const usersQueries = {
 
 const userMutations = {
   Mutation: {
+    //Create A New User
     CreateUser: async (_: unknown, args: CreateUser, ctx: { prisma: PrismaClient; resHeaders: Headers }) => {
       try {
-        if (!args.name || (!args.email && !args.phone) || !args.password) {
-          throw new Error('Name, Email or Phone, and Password are required');
+        if (!args.name || (!args.email && !args.phone) || !args.password || !args.address) {
+          return {success:false,message:'Name, Email or Phone, and Password are required'};
         }
-
+        //Check if User Existe in DB
         const existingUser = await ctx.prisma.user.findFirst({
           where: {
             OR: [
+              { phone: args.phone ?? undefined},
               { email: args.email ?? undefined },
-              { phone: args.phone ?? undefined },
             ],
           },
         });
+        //Check Is User Exist On DB
         if (existingUser) {
-          throw new Error('Email or Phone already exists');
+          return {success:false,message:'Email or Phone already exists',existingUser:null};
         }
-
+        //Validation Data
         const validationData = UserCreateSchemaValidaion.safeParse(args);
-        if (!validationData.success) throw new Error(validationData?.error?.message);
-
+        if (!validationData?.success) return{success:false,message:(validationData?.error?.message)};
+        //Hashed Password
         const genSalt = bcrypt.genSaltSync(10, 'a');
         const hashpassword = bcrypt.hashSync(validationData?.data?.password, genSalt);
         validationData.data.password = hashpassword;
-
+        //Create Anew User
         const NewUser = await ctx.prisma.user.create({
           data: validationData?.data,
         });
-
+        //Create Token And Set It On Cookies
         const tokenCookie = SetCookies({
           id: NewUser?.id,
           name: NewUser?.name,
           role: NewUser?.role,
         });
-
+        //Set Cookie On Headers
         ctx.resHeaders.append('Set-Cookie', tokenCookie);
-
+        //Return Successfull Results
         return {
+          success:true,
           message: 'User Created Successfully',
           token: tokenCookie,
           user: NewUser,
         };
       } catch (error: unknown) {
         console.error('Error in CreateUser mutation:', error);
-        throw new Error(error instanceof Error ? error.message : 'Internal server error');
+        return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
       }
     },
-
+    //Login User
     loginUser: async (_: unknown, args: LoginUser, ctx: { prisma: PrismaClient; resHeaders: Headers }) => {
       try {
         if ((!args.email && !args.phone) || !args.password) {
-          throw new Error('Email or Phone, and Password are required');
+          return {success:false,message:'Email or Phone, and Password are required'};
         }
-
+        //Check Valid Data Of Login
         const ValidateLogin = UserLoginValidation.safeParse(args);
-        if (!ValidateLogin.success) throw new Error('Invalid Data Login !!');
-
+        if (!ValidateLogin.success) return {success:false,message:'Invalid Data Login !!'};
+        //Check Is User Exist On Database By Email Or Phone
         const UserExist = await ctx.prisma.user.findFirst({
           where: {
             OR: [
@@ -93,14 +96,14 @@ const userMutations = {
             ],
           },
         });
-        if (!UserExist) throw new Error('User Not Found !!');
-
+        if (!UserExist) return {success:false,message:'User Not Found !!'};
+        //Compare Login User Password With It`s Password Saved On DB
         const CorrectPassword = await bcrypt.compare(
-          ValidateLogin?.data?.password,
+          ValidateLogin?.data.password,
           UserExist?.password
         );
-        if (!CorrectPassword) throw new Error('Some Thing Went Wrong');
-
+        if (!CorrectPassword) return {success:false,message:'Some Thing Went Wrong',CorrectPassword:null};
+        //Set Token On Headers With Cookies
         const tokenCookie = SetCookies({
           id: UserExist?.id,
           role: UserExist?.role,
@@ -110,16 +113,17 @@ const userMutations = {
         ctx.resHeaders.append('Set-Cookie', tokenCookie);
 
         return {
+          success:true,
           message: 'User Login Successfully',
           token: tokenCookie,
           user: UserExist,
         };
       } catch (error: unknown) {
         console.error('Error in loginUser mutation:', error);
-        throw new Error(error instanceof Error ? error.message : 'Internal server error');
+        return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
       }
     },
-
+    //Logout User By Delete User Token From Cookies  
     logout: async (_: unknown, __: unknown, ctx: { resHeaders: Headers }) => {
       try {
         ctx.resHeaders.append(
@@ -131,11 +135,11 @@ const userMutations = {
         return { success: true, message: 'Logged out successfully' };
       } catch (error) {
         console.error('Error in logout mutation:', error);
-        throw new Error(error instanceof Error ? error.message : 'Internal server error');
+        return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
       }
     },
   },
-};
+}
 
 export const userResolvers = {
   ...usersQueries,

@@ -23,21 +23,22 @@ query GetuserById($id:ID!){
 
 export const CREATE_USER = gql`
 mutation CreateUser(
-$id:ID
 $name:String!
 $email:String
-$phone:String
+$phone:String!
 $password:String!
-$address:String
-
+$address:String!
+$gender:String
+$birthDate:String
 ){
 CreateUser(
-id:$id
 name:$name
 email:$email
 phone:$phone
 password:$password
 address:$address
+gender:$gender
+birthDate:$birthDate
 ) {
 message,
 token,
@@ -82,8 +83,15 @@ export const GET_ME = gql`
     me {
       id
       name
+      email
       role
       image
+      alladdresses
+      createdAt
+      status
+      phone
+      gender
+      birthDate
     }
   }
 `;

@@ -1,5 +1,5 @@
 'use client'
-import { useActionState } from 'react';
+import { SetStateAction, useActionState, useState } from 'react';
 import InputButton from "../Bottons/Input-button";
 import PasswordButton from "../Bottons/Password-button";
 import SubmitButton from "../Bottons/Submit-button";
@@ -9,8 +9,25 @@ import { createUser } from '@/Features/Actions/users/usersActions';
 import { FormState } from '@/types/types';
 import { UserCreateSchemaValidaion } from '@/validations/UserValidation';
 import * as icon from '@/utils/Icons/Icons'
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import FullAddress from '../FullAddress';
+import { toast } from "react-toastify";
 
 export default function RegisterForm() {
+    const [birthDate, setBirthDate] = useState(null);
+    const [governorate, setGovernorate] = useState<{id:string,name:string}>({ id: '', name: '' });
+    const [department, setDepartment] = useState<{id:string,name:string}>({ id: '', name: '' });
+    const [neighborhood, setNeighborhood] = useState<{id:string,name:string}>({ id: '', name: '' });
+    const [addressDetails, setAddressDetails] = useState('');
+
+    const fullAddress = [
+  governorate.name,
+  department.name,
+  neighborhood.name,
+  addressDetails
+].filter(Boolean).join(' - ');
+
   const { user, error, loading } = useSelector((state:RootState)=>state.user)
   const dispatch = useAppDispatch()
 
@@ -18,10 +35,12 @@ export default function RegisterForm() {
     
     const newState =  {
       ...prevState,
-      name: formData.get('UserName') as string,
-      email:(formData.get('Email')?.toString().includes('@')) ? (formData.get('Email') as string):undefined ,
-      phone:(!formData.get('Email')?.toString().includes('@')) ? (formData.get('Email') as string ):undefined ,
-      address: formData.get('Address') as string,
+      name:formData.get('UserName') as string,
+      email:formData.get('Email') as string,
+      phone:formData.get('Phone') as string,
+      gender:formData.get('Gender') as string,
+      birthDate:new Date(birthDate as unknown as string),
+      address: fullAddress as string,
       password: formData.get('Password') as string,
       // ConfirmPassword: formData.get('ConfirmPassword') as string,
     };
@@ -34,7 +53,7 @@ export default function RegisterForm() {
     message: err.message
   }));
   console.log(errors.map(e => `${e.path}: ${e.message}`).join(', '))
-  throw new Error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
+  toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
 }
         dispatch(createUser(newState as FormState))
     return newState as FormState;
@@ -53,20 +72,43 @@ export default function RegisterForm() {
     if(user?.user?.name){
       window.location.href = "/";
     }
-
-  console.log(user?.user?.name)
   return (
      <form action={formAction}>
                 {/* User Name */}
-                <InputButton   type="text" placeholder="اسم المستخدم" name="UserName"/>
+                <InputButton   type="text" placeholder="اسم المستخدم" name="UserName" requird/>
+                {/* Phone */}
+                <InputButton  type="text" placeholder=" رقم الهاتف" name="Phone" requird/>
                 {/* Email */}
-                <InputButton  type="text" placeholder="الإيميل / رقم الهاتف" name="Email"/>
+                <InputButton  type="text" placeholder="البريد الإلكتروني" name="Email"/>
                 {/* Password */}
-                <PasswordButton  placeholder="الرقم السري" name="Password"/>
+                <PasswordButton  placeholder="الرقم السري" name="Password" requird/>
                 {/* Confirm Password */}
-                <PasswordButton  placeholder="تأكيد الرقم السري" name="ConfirmPassword"/>
-                {/* Address */}
-                <InputButton  type="text" placeholder="العنوان" name="Address"/>
+                <PasswordButton  placeholder="تأكيد الرقم السري" name="ConfirmPassword" requird/>
+                {/* Gender */}
+                <select name="Gender" id="" className="w-full p-2 my-3 border rounded bg-background">
+                  <option value=''>الجنس</option>
+                  <option value="MALE">ذكر</option>
+                  <option value="FEMALE">أنثى</option>
+                </select>
+                {/*PirthDate*/}
+                <div className="w-full p-2 my-3 border rounded bg-background">
+               <DatePicker
+                  selected={birthDate}
+                  onChange={(date) => setBirthDate(date as SetStateAction<null>)}
+                  dateFormat="yyyy-MM-dd"
+                  placeholderText="تاريخ الميلاد"
+                  maxDate={new Date()}
+                  minDate={new Date('1970-01-01')}
+                  showMonthDropdown
+                  showYearDropdown
+                  scrollableYearDropdown
+                  yearDropdownItemNumber={100} // عدد السنين اللي تظهر
+                  className="w-full"
+                  popperPlacement="bottom"
+                />
+                </div>
+                {/**************** Full Address **********************************/}
+                <FullAddress governorate={governorate} setGovernorate={setGovernorate} department={department} setDepartment={setDepartment} setNeighborhood={setNeighborhood} setAddressDetails={setAddressDetails} addressDetails={addressDetails}/>
                 {/* Submit Button */}
                 {error&&
                 <div className='flex gap-2'>
@@ -80,6 +122,7 @@ export default function RegisterForm() {
                 <p className="text-green-500 select-text">تم تسجيل المستخدم {user?.user?.name} بنجاح</p>
                 </div>
                 }
+                <p className='flex justify-start items-center text-center'>العلامة <span className='text-red-500 text-3xl mx-1'>*</span> تعني ان الحقل مطلوب </p>
                 <SubmitButton  text={loading ? "جارٍ التسجيل..." : "تسجيل"} bgcolor="bg-primary" textcolor="text-white"/>
             </form>
   )

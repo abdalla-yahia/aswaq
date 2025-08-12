@@ -1,4 +1,5 @@
 'use client'
+import { ToastContainer } from 'react-toastify';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -9,6 +10,7 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from '@/libs/Apollo/ApolloClient';
 import { Provider } from 'react-redux';
 import { store } from '@/libs/Store/Store';
+import ErrorBoundary from './ErrorBounder';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -141,14 +143,17 @@ export default function RootLayout({
       >
         <Provider store={store}>
           <ApolloProvider client={client} >
+            <ErrorBoundary >
             <Header />
             <Breadcrumb />
-              <main className="min-h-screen mt-[155px]  bg-background text-foreground select-none">
+              <main className="min-h-screen mt-[155px]  bg-background text-foreground">
               {children}
               </main>
             <Footer />
+            </ErrorBoundary>
           </ApolloProvider>
         </Provider>
+        <ToastContainer />
       </body>
     </html>
   );
