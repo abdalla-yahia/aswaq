@@ -87,6 +87,7 @@ export const GET_ME = gql`
       email
       role
       image
+      address
       alladdresses
       createdAt
       status

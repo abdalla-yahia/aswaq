@@ -1,8 +1,4 @@
 import { Gender } from "@prisma/client";
-// export enum Gender {
-//   MALE,
-//   FEMALE
-// }
 
 export interface CreateUser {
     id:string

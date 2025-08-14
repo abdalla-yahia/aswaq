@@ -4,8 +4,8 @@ import InputButton from "../Bottons/Input-button";
 import PasswordButton from "../Bottons/Password-button";
 import SubmitButton from "../Bottons/Submit-button";
 import { useSelector } from 'react-redux';
-import { useAppDispatch,RootState } from '@/libs/Store/Store';
-import { createUser } from '@/Features/Actions/users/usersActions';
+import { useAppDispatch, RootState } from '@/libs/Store/Store';
+import { createUser } from '@/Features/Actions/usersActions';
 import { FormState } from '@/types/types';
 import { UserCreateSchemaValidaion } from '@/validations/UserValidation';
 import * as icon from '@/utils/Icons/Icons'
@@ -15,52 +15,52 @@ import { toast } from "react-toastify";
 import { Gender } from '@prisma/client';
 
 export default function RegisterForm() {
-    const { user, error, loading } = useSelector((state:RootState)=>state.user)
-    const [birthDate, setBirthDate] = useState(null);
-    const [governorate, setGovernorate] = useState<{id:string,name:string}>({ id: '', name: '' });
-    const [department, setDepartment] = useState<{id:string,name:string}>({ id: '', name: '' });
-    const [neighborhood, setNeighborhood] = useState<{id:string,name:string}>({ id: '', name: '' });
-    const [addressDetails, setAddressDetails] = useState('');
+  const { user, error, loading } = useSelector((state: RootState) => state.user)
+  const [birthDate, setBirthDate] = useState(null);
+  const [governorate, setGovernorate] = useState<{ id: string, name: string }>({ id: '', name: '' });
+  const [department, setDepartment] = useState<{ id: string, name: string }>({ id: '', name: '' });
+  const [neighborhood, setNeighborhood] = useState<{ id: string, name: string }>({ id: '', name: '' });
+  const [addressDetails, setAddressDetails] = useState('');
 
-    const fullAddress = [
-      governorate.name,
-      department.name,
-      neighborhood.name,
-      addressDetails
-    ].filter(Boolean).join(' - ');
+  const fullAddress = [
+    governorate.name,
+    department.name,
+    neighborhood.name,
+    addressDetails
+  ].filter(Boolean).join(' - ');
 
   const dispatch = useAppDispatch()
 
   const registerAction = (prevState: FormState, formData: FormData): FormState => {
     const genderValue = formData.get('Gender') as string;
-    const newState =  {
+    const newState = {
       ...prevState,
-      name:formData.get('UserName') as string,
-      email:formData.get('Email') as string,
-      phone:formData.get('Phone') as string,
-      gender:genderValue ? (formData.get('Gender') as unknown as Gender) : null,
-      birthDate:new Date(birthDate as unknown as string),
+      name: formData.get('UserName') as string,
+      email: formData.get('Email') as string,
+      phone: formData.get('Phone') as string,
+      gender: genderValue ? (formData.get('Gender') as unknown as Gender) : null,
+      birthDate: new Date(birthDate as unknown as string),
       address: fullAddress as string,
       password: formData.get('Password') as string,
     };
-   
+
     //Check if the password is valid 
-    if(formData.get('ConfirmPassword') !== formData.get('Password')){
-      toast.error('الرقم السري غير متطابق') 
+    if (formData.get('ConfirmPassword') !== formData.get('Password')) {
+      toast.error('الرقم السري غير متطابق')
       return { ...prevState }
     }
-    console.log("قبل",newState)
+    console.log("قبل", newState)
     //Check Validation of Data
     const validationData = UserCreateSchemaValidaion.safeParse(newState)
     if (!validationData.success) {
-  const errors = validationData.error?.issues.map(err => ({
-    path: err.path.join('.'),
-    message: err.message
-  }));
-  toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
-}
-console.log("بعد",newState)
-  dispatch(createUser(newState as FormState))
+      const errors = validationData.error?.issues.map(err => ({
+        path: err.path.join('.'),
+        message: err.message
+      }));
+      toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
+    }
+    console.log("بعد", newState)
+    dispatch(createUser(newState as FormState))
     return newState as FormState;
   };
   //Inisialize Form
@@ -72,69 +72,69 @@ console.log("بعد",newState)
     // ConfirmPassword: '',
   };
 
-  
+
   const [state, formAction] = useActionState(registerAction, initialState);
-  
-    //Redirect User To Homepage
-    if(user?.user?.name){
-      window.location.href = "/";
-    }
+
+  //Redirect User To Homepage
+  if (user?.user?.name) {
+    window.location.href = "/";
+  }
 
   return (
-     <form action={formAction}>
-                {/* User Name */}
-                <InputButton   type="text" placeholder="اسم المستخدم" name="UserName" requird/>
-                {/* Phone */}
-                <InputButton  type="text" placeholder=" رقم الهاتف" name="Phone" requird/>
-                {/* Email */}
-                <InputButton  type="text" placeholder="البريد الإلكتروني" name="Email"/>
-                {/* Password */}
-                <PasswordButton  placeholder="الرقم السري" name="Password" requird/>
-                {/* Confirm Password */}
-                <PasswordButton  placeholder="تأكيد الرقم السري" name="ConfirmPassword" requird/>
-                {/* Gender */}
-                <select name="Gender" id="" className="w-full p-2 my-3 border rounded bg-background">
-                  <option value=''>الجنس</option>
-                  <option value="MALE">ذكر</option>
-                  <option value="FEMALE">أنثى</option>
-                </select>
-                {/*BirthDate*/}
-                <div className="w-full p-2 my-3 border rounded bg-background">
-               <DatePicker
-                  selected={birthDate}
-                  onChange={(date) => setBirthDate(date as SetStateAction<null>)}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="تاريخ الميلاد"
-                  maxDate={new Date()}
-                  minDate={new Date('1970-01-01')}
-                  showMonthDropdown
-                  showYearDropdown
-                  scrollableYearDropdown
-                  yearDropdownItemNumber={100} // عدد السنين اللي تظهر
-                  className="w-full"
-                  popperPlacement="bottom"
-                />
-                </div>
-                {/**************** Full Address **********************************/}
-                <FullAddress governorate={governorate} setGovernorate={setGovernorate} department={department} setDepartment={setDepartment} setNeighborhood={setNeighborhood} setAddressDetails={setAddressDetails} addressDetails={addressDetails}/>
-                {/* Submit Button */}
-                {error&&
-                <div className='flex gap-2'>
-                <icon.IoMdClose className="text-red-500" />
-                <p className="text-red-500 select-text">{error}</p>
-                </div> 
-                }
-                {user?.user?.name && 
-                <div className='flex gap-2'>
-                  <icon.IoMdCheckmark className="text-green-500" />
-                <p className="text-green-500 select-text">تم تسجيل المستخدم {user?.user?.name} بنجاح</p>
-                </div>
-                }
-                <p className='flex justify-start items-center text-center'>العلامة <span className='text-red-500 text-3xl mx-1'>*</span> تعني ان الحقل مطلوب </p>
-                {
-                  department.name && neighborhood.name &&
-                  <SubmitButton  text={loading ? "جارٍ التسجيل..." : "تسجيل"} bgcolor="bg-primary" textcolor="text-white"/>
-                }
-            </form>
+    <form action={formAction}>
+      {/* User Name */}
+      <InputButton type="text" placeholder="اسم المستخدم" name="UserName" requird />
+      {/* Phone */}
+      <InputButton type="text" placeholder=" رقم الهاتف" name="Phone" requird />
+      {/* Email */}
+      <InputButton type="text" placeholder="البريد الإلكتروني" name="Email" />
+      {/* Password */}
+      <PasswordButton placeholder="الرقم السري" name="Password" requird />
+      {/* Confirm Password */}
+      <PasswordButton placeholder="تأكيد الرقم السري" name="ConfirmPassword" requird />
+      {/* Gender */}
+      <select name="Gender" id="" className="w-full p-2 my-3 border rounded bg-background">
+        <option value=''>الجنس</option>
+        <option value="MALE">ذكر</option>
+        <option value="FEMALE">أنثى</option>
+      </select>
+      {/*BirthDate*/}
+      <div className="w-full p-2 my-3 border rounded bg-background">
+        <DatePicker
+          selected={birthDate}
+          onChange={(date) => setBirthDate(date as SetStateAction<null>)}
+          dateFormat="yyyy-MM-dd"
+          placeholderText="تاريخ الميلاد"
+          maxDate={new Date()}
+          minDate={new Date('1970-01-01')}
+          showMonthDropdown
+          showYearDropdown
+          scrollableYearDropdown
+          yearDropdownItemNumber={100} // عدد السنين اللي تظهر
+          className="w-full"
+          popperPlacement="bottom"
+        />
+      </div>
+      {/**************** Full Address **********************************/}
+      <FullAddress governorate={governorate} setGovernorate={setGovernorate} department={department} setDepartment={setDepartment} setNeighborhood={setNeighborhood} setAddressDetails={setAddressDetails} addressDetails={addressDetails} />
+      {/* Submit Button */}
+      {error &&
+        <div className='flex gap-2'>
+          <icon.IoMdClose className="text-red-500" />
+          <p className="text-red-500 select-text">{error}</p>
+        </div>
+      }
+      {user?.user?.name &&
+        <div className='flex gap-2'>
+          <icon.IoMdCheckmark className="text-green-500" />
+          <p className="text-green-500 select-text">تم تسجيل المستخدم {user?.user?.name} بنجاح</p>
+        </div>
+      }
+      <p className='flex justify-start items-center text-center'>العلامة <span className='text-red-500 text-3xl mx-1'>*</span> تعني ان الحقل مطلوب </p>
+      {
+        department.name && neighborhood.name &&
+        <SubmitButton text={loading ? "جارٍ التسجيل..." : "تسجيل"} bgcolor="bg-primary" textcolor="text-white" />
+      }
+    </form>
   )
 }

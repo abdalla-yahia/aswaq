@@ -107,7 +107,7 @@ const userMutations = {
           id: UserExist?.id,
           role: UserExist?.role
         });
-        ctx.resHeaders.append('Set-Cookie',`authToken=${tokenCookie}; HttpOnly; Path=/; Max-Age=31557600; SameSite=Strict; Secure=${process.env.NODE_ENV === 'production'}`)
+        ctx.resHeaders.append('Set-Cookie', tokenCookie);
         
         return {
           success:true,

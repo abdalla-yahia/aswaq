@@ -8,64 +8,69 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid())
+  id             String                @id @default(uuid())
   name           String
-  email          String?   @unique
+  email          String?               @unique
   password       String
-  phone          String   @unique
+  phone          String                @unique
   address        String
   image          String?
-  gender         Gender? 
+  gender         Gender?
   birthDate      DateTime?
   alladdresses   Addresses[]
-  role           Role     @default(USER)
-  status         Status?   @default(ACTIVE)
+  role           Role                  @default(USER)
+  status         Status?               @default(ACTIVE)
   orders         Order[]
-  deliveryOrders Order[]  @relation("Delivery")
+  deliveryOrders Order[]               @relation("Delivery")
   comments       Comment[]
   reviews        Review[]
   userEmployee   Employee?
   treasury       TreasuryTransaction[] // ✅ مضاف لعلاقة الخزينة
   customerRating CustomerRating[]
   deliveryReview DeliveryReview[]
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
 }
+
 model Addresses {
-  id       String   @id @default(uuid())
-  name  String
+  id      String  @id @default(uuid())
+  name    String
   address String
-  phone  String?
-  user     User     @relation(fields: [id], references: [id])
+  phone   String?
+  user    User    @relation(fields: [id], references: [id])
 }
-enum Status{
+
+enum Status {
   ACTIVE
   INACTIVE
   PENDING
 }
+
 enum Gender {
   MALE
   FEMALE
 }
+
 enum Role {
   USER
   ADMIN
   DRIVER
   STOCKKEEPER
 }
+
 model Employee {
-  id            String       @id @default(uuid())
-  fullName      String
-  email         String?      @unique
-  phone         String?
-  jobTitle      String
-  role          EmployeeRole
-  salary        Float
-  hiredAt       DateTime     @default(now())
-  userAccount   User?        @relation(fields: [userId], references: [id])
-  userId        String?      @unique
-  expenses      Expense[]    @relation("EmployeeExpenses")
-  createdAt     DateTime     @default(now())
+  id          String       @id @default(uuid())
+  fullName    String
+  email       String?      @unique
+  phone       String?
+  jobTitle    String
+  role        EmployeeRole
+  salary      Float
+  hiredAt     DateTime     @default(now())
+  userAccount User?        @relation(fields: [userId], references: [id])
+  userId      String?      @unique
+  expenses    Expense[]    @relation("EmployeeExpenses")
+  createdAt   DateTime     @default(now())
 }
 
 enum EmployeeRole {
@@ -77,71 +82,71 @@ enum EmployeeRole {
 }
 
 model Product {
-  id             String     @id @default(uuid())
-  title          String
-  description    String?
-  price          Float
-  oldPrice       Float?     // السعر القديم
-  discountValue  Float?     // نسبة الخصم
-  quantity       Int        // الكمية المعروضة
-  image          String?    // الصورة الرئيسية
-  gallery        ProductImage[]
-  category       Category?  @relation(fields: [categoryId], references: [id])
-  categoryId     String?
-  brand          Brand?     @relation(fields: [brandId], references: [id])
-  brandId        String?
-  comments       Comment[]
-  reviews        Review[]
-  orders         OrderProduct[]
-  inventoryLogs  InventoryTransaction[]
-  colors         String[]   // ألوان متاحة
-  sizes          String[]   // مقاسات متاحة
-  totalSales     Int        @default(0)
-  isFeatured     Boolean    @default(false)
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  id            String                 @id @default(uuid())
+  title         String
+  description   String?
+  price         Float
+  oldPrice      Float? // السعر القديم
+  discountValue Float? // نسبة الخصم
+  quantity      Int // الكمية المعروضة
+  image         String? // الصورة الرئيسية
+  gallery       ProductImage[]
+  category      Category?              @relation(fields: [categoryId], references: [id])
+  categoryId    String?
+  brand         Brand?                 @relation(fields: [brandId], references: [id])
+  brandId       String?
+  comments      Comment[]
+  reviews       Review[]
+  orders        OrderProduct[]
+  inventoryLogs InventoryTransaction[]
+  colors        String[] // ألوان متاحة
+  sizes         String[] // مقاسات متاحة
+  totalSales    Int                    @default(0)
+  isFeatured    Boolean                @default(false)
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
 }
 
 model Comment {
-  id         String   @id @default(uuid())
-  content    String
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String
-  product    Product  @relation(fields: [productId], references: [id])
-  productId  String
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  content   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime @default(now())
 }
 
 model Review {
-  id         String   @id @default(uuid())
-  rating     Int
-  content    String?
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String
-  product    Product  @relation(fields: [productId], references: [id])
-  productId  String
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  rating    Int
+  content   String?
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime @default(now())
 }
 
 model Order {
-  id                   String             @id @default(uuid())
-  user                 User               @relation(fields: [userId], references: [id])
-  userId               String
-  delivery             User?              @relation("Delivery", fields: [deliveryId], references: [id])
-  deliveryId           String?
-  status               OrderStatus        @default(PENDING)
-  products             OrderProduct[]
-  totalAmount          Float
-  paid                 Boolean            @default(false)
-  deliveredAt          DateTime?
-  shippedAt            DateTime?
-  customerLat          Float?             // 🆕 إحداثيات العميل
-  customerLng          Float?
-  acceptedByDelivery   Boolean            @default(false) // 🆕
-  deliveryLocations    DeliveryLocation[] // 🆕 تتبع موقع الدليفري
-  deliveryReview       DeliveryReview[]
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
+  id                 String             @id @default(uuid())
+  user               User               @relation(fields: [userId], references: [id])
+  userId             String
+  delivery           User?              @relation("Delivery", fields: [deliveryId], references: [id])
+  deliveryId         String?
+  status             OrderStatus        @default(PENDING)
+  products           OrderProduct[]
+  totalAmount        Float
+  paid               Boolean            @default(false)
+  deliveredAt        DateTime?
+  shippedAt          DateTime?
+  customerLat        Float? // 🆕 إحداثيات العميل
+  customerLng        Float?
+  acceptedByDelivery Boolean            @default(false) // 🆕
+  deliveryLocations  DeliveryLocation[] // 🆕 تتبع موقع الدليفري
+  deliveryReview     DeliveryReview[]
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
 }
 
 enum OrderStatus {
@@ -154,13 +159,13 @@ enum OrderStatus {
 }
 
 model OrderProduct {
-  id         String   @id @default(uuid())
-  order      Order    @relation(fields: [orderId], references: [id])
-  orderId    String
-  product    Product  @relation(fields: [productId], references: [id])
-  productId  String
-  quantity   Int
-  price      Float
+  id        String  @id @default(uuid())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Float
 }
 
 model DeliveryLocation {
@@ -173,13 +178,13 @@ model DeliveryLocation {
 }
 
 model InventoryTransaction {
-  id          String     @id @default(uuid())
-  product     Product    @relation(fields: [productId], references: [id])
-  productId   String
-  quantity    Int
-  value       Float
-  type        InventoryType
-  createdAt   DateTime   @default(now())
+  id        String        @id @default(uuid())
+  product   Product       @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  value     Float
+  type      InventoryType
+  createdAt DateTime      @default(now())
 }
 
 enum InventoryType {
@@ -190,13 +195,13 @@ enum InventoryType {
 }
 
 model TreasuryTransaction {
-  id          String     @id @default(uuid())
-  user        User?      @relation(fields: [userId], references: [id])
-  userId      String?
-  amount      Float
-  type        TreasuryType
-  note        String?
-  createdAt   DateTime   @default(now())
+  id        String       @id @default(uuid())
+  user      User?        @relation(fields: [userId], references: [id])
+  userId    String?
+  amount    Float
+  type      TreasuryType
+  note      String?
+  createdAt DateTime     @default(now())
 }
 
 enum TreasuryType {
@@ -207,34 +212,34 @@ enum TreasuryType {
 }
 
 model Expense {
-  id            String     @id @default(uuid())
-  amount        Float
-  category      String
-  note          String?
-  employee      Employee?  @relation("EmployeeExpenses", fields: [employeeId], references: [id])
-  employeeId    String?
-  createdAt     DateTime   @default(now())
+  id         String    @id @default(uuid())
+  amount     Float
+  category   String
+  note       String?
+  employee   Employee? @relation("EmployeeExpenses", fields: [employeeId], references: [id])
+  employeeId String?
+  createdAt  DateTime  @default(now())
 }
 
 model IncomeStatement {
-  id              String   @id @default(uuid())
-  periodStart     DateTime
-  periodEnd       DateTime
-  totalSales      Float
-  totalReturns    Float
-  totalExpenses   Float
-  netIncome       Float
-  createdAt       DateTime @default(now())
+  id            String   @id @default(uuid())
+  periodStart   DateTime
+  periodEnd     DateTime
+  totalSales    Float
+  totalReturns  Float
+  totalExpenses Float
+  netIncome     Float
+  createdAt     DateTime @default(now())
 }
 
 model TrialBalance {
-  id              String   @id @default(uuid())
-  periodStart     DateTime
-  periodEnd       DateTime
-  totalDebit      Float
-  totalCredit     Float
-  isBalanced      Boolean
-  createdAt       DateTime @default(now())
+  id          String   @id @default(uuid())
+  periodStart DateTime
+  periodEnd   DateTime
+  totalDebit  Float
+  totalCredit Float
+  isBalanced  Boolean
+  createdAt   DateTime @default(now())
 }
 
 model FinancialPosition {
@@ -247,56 +252,54 @@ model FinancialPosition {
   createdAt        DateTime @default(now())
 }
 
-
 model Category {
-  id            String      @id @default(uuid())
+  id            String     @id @default(uuid())
   name          String
   description   String?
   image         String?
   parentId      String?
-  parent        Category?   @relation("Subcategories", fields: [parentId], references: [id])
-  subcategories Category[]  @relation("Subcategories")
+  parent        Category?  @relation("Subcategories", fields: [parentId], references: [id])
+  subcategories Category[] @relation("Subcategories")
   products      Product[]
-  createdAt     DateTime    @default(now())
+  createdAt     DateTime   @default(now())
 }
 
 model Brand {
-  id          String     @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   logo        String?
   description String?
   products    Product[]
-  createdAt   DateTime   @default(now())
+  createdAt   DateTime  @default(now())
 }
 
 model ProductImage {
-  id         String   @id @default(uuid())
-  url        String
-  product    Product  @relation(fields: [productId], references: [id])
-  productId  String
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  url       String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime @default(now())
 }
 
-
 model CustomerRating {
-  id              String    @id @default(uuid())
+  id              String   @id @default(uuid())
   userId          String
-  user            User      @relation(fields: [userId], references: [id])
-  totalOrders     Int       @default(0)
-  completedOrders Int       @default(0)
-  canceledOrders  Int       @default(0)
-  trustScore      Float     @default(0.0) // يحسب تلقائيًا كنسبة استلام مقابل إجمالي
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  user            User     @relation(fields: [userId], references: [id])
+  totalOrders     Int      @default(0)
+  completedOrders Int      @default(0)
+  canceledOrders  Int      @default(0)
+  trustScore      Float    @default(0.0) // يحسب تلقائيًا كنسبة استلام مقابل إجمالي
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model DeliveryReview {
-  id          String   @id @default(uuid())
-  order       Order    @relation(fields: [orderId], references: [id])
-  orderId     String
-  delivery    User     @relation(fields: [deliveryId], references: [id])
-  deliveryId  String
-  rating      Int
-  comment     String?
-  createdAt   DateTime @default(now())
+  id         String   @id @default(uuid())
+  order      Order    @relation(fields: [orderId], references: [id])
+  orderId    String
+  delivery   User     @relation(fields: [deliveryId], references: [id])
+  deliveryId String
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
 }

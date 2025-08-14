@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '@/libs/Apollo/ApolloClient';
 import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER, DELETE_USER, UPDATE_USER } from "@/Graphql/Schemas/UserQuery";
 import { FormState, LoginUser } from "@/types/types";
-import { toast, ToastContent, ToastOptions } from "react-toastify";
+import { toast, ToastOptions } from "react-toastify";
 import { ApolloError } from "@apollo/client";
 import { UpdateUser } from "@/interfaces/usersInterface";
 

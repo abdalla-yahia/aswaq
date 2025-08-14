@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-
-// استبدل reducers دول بملفات السلايس اللي هاتنشئها
-import usersSlice from '@/Features/Reducers/users/userSlice';
+import usersSlice from '@/Features/Reducers/userSlice';
+import addressSlice from '@/Features/Reducers/AddressSlices';
 
 export const store = configureStore({
   reducer: {
     user: usersSlice,
+    address: addressSlice
   },
 });
 
