@@ -4,11 +4,17 @@ import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 import { useAppDispatch } from '@/libs/Store/Store';
 import { deleteUser } from '@/Features/Actions/users/usersActions';
+import { useState } from 'react';
+import EditUserDataForm from '@/utils/Forms/Edit-User-Data-Form';
+import Image from 'next/image';
+
 
 export default function Personal_Data() {
+  const [isEdit,setIsEdit] = useState(false)
   const { data, loading } = useQuery(GET_ME, {
     fetchPolicy: "network-only", 
   });
+  // console.log(data?.me)
   const dispatch = useAppDispatch()
   //Handller Delete User
   const DeleteUserHandller =(id:string)=>{
@@ -17,13 +23,16 @@ export default function Personal_Data() {
   }
   return (
     <div className="max-w-5xl mx-auto text-foreground w-full border relative p-6 rounded-lg shadow">
-      <icon.CiTrash onClick={()=>DeleteUserHandller(data?.me?.id)} className='text-red-500 hover:text-red-600 absolute top-4 left-2 cursor-pointer' title='حذف الحساب'/>
+      <button onClick={()=>DeleteUserHandller(data?.me?.id)} className='text-white hover:bg-red-600 rounded absolute bottom-4 bg-sky-500 p-2 left-4 cursor-pointer'>حذف الحساب</button>
       <div className="flex items-center gap-4">
-        <icon.FaUserCircle className="text-6xl text-gray-400" />
+        {data?.me?.image ? 
+        (<Image src={data?.me?.image} alt={`${data?.me?.name}-صورة`} width={80} height={80} className="rounded-full" />) :
+          (<icon.FaUserCircle className="text-6xl text-gray-400" />)
+        }
         <div>
           <h2 className="text-xl font-bold">{data?.me?.name}</h2>
           <p className="text-sm text-gray-500">انضم منذ:
-             {data?.me?.createdAt
+              {data?.me?.createdAt
   ? new Date(Number(data.me.createdAt)).toLocaleString('ar-EG', {
       year: 'numeric',
       month: 'short',
@@ -57,9 +66,14 @@ export default function Personal_Data() {
             })}</p>
           </div>
         </div>
-
+            {/*Edit User Data Form*/}
+          {
+            isEdit && (
+                <EditUserDataForm setIsEdit={setIsEdit } />
+            )
+          }
         <div className="flex gap-4 mt-6">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          <button onClick={()=>setIsEdit(!isEdit)} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
             تعديل البيانات
           </button>
           <button className="bg-gray-100 text-gray-800 px-4 py-2 rounded hover:bg-gray-200">

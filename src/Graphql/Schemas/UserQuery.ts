@@ -22,13 +22,14 @@ query GetuserById($id:ID!){
 `
 
 export const CREATE_USER = gql`
+
 mutation CreateUser(
 $name:String!
 $email:String
 $phone:String!
 $password:String!
 $address:String!
-$gender:String
+$gender:Gender
 $birthDate:String
 ){
 CreateUser(
@@ -113,3 +114,16 @@ mutation deleteUser($id:String!) {
   }
 }
 `
+
+export const UPDATE_USER = gql`
+mutation updateUser($id:String!,$data:UserInput!) {
+  updateUser(id:$id,data:$data){
+    message
+    token
+    user{
+      id
+      name
+    }
+  }
+  }
+  `

@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         protocol:'https',
         hostname:'static.vecteezy.com',
         pathname: '/**',
+      },
+      {
+        protocol:'https',
+        hostname:'res.cloudinary.com',
+        pathname: '/**',
       }
     ]
     

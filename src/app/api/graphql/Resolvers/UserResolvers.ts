@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { CreateUser } from '@/interfaces/usersInterface';
+import { CreateUser, UpdateUser } from '@/interfaces/usersInterface';
 import { LoginUser, UserToken } from '@/types/types';
 import { SetCookies } from '@/libs/generateToken';
-import { UserCreateSchemaValidaion, UserLoginValidation } from '@/validations/UserValidation';
+import { UserCreateSchemaValidaion, UserLoginValidation, UserUpdateValidation } from '@/validations/UserValidation';
 import bcrypt from 'bcrypt';
 import { getUserFromRequest } from '@/libs/getUserFromRequest';
 
@@ -61,7 +61,6 @@ const userMutations = {
         //Create Token And Set It On Cookies
         const tokenCookie = SetCookies({
           id: NewUser?.id,
-          name: NewUser?.name,
           role: NewUser?.role,
         });
         //Set Cookie On Headers
@@ -106,12 +105,10 @@ const userMutations = {
         //Set Token On Headers With Cookies
         const tokenCookie = SetCookies({
           id: UserExist?.id,
-          role: UserExist?.role,
-          name: UserExist?.name,
+          role: UserExist?.role
         });
-
-        ctx.resHeaders.append('Set-Cookie', tokenCookie);
-
+        ctx.resHeaders.append('Set-Cookie',`authToken=${tokenCookie}; HttpOnly; Path=/; Max-Age=31557600; SameSite=Strict; Secure=${process.env.NODE_ENV === 'production'}`)
+        
         return {
           success:true,
           message: 'User Login Successfully',
@@ -167,6 +164,34 @@ const userMutations = {
     }catch(error){
         return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
     }
+    },
+    //Update User 
+    updateUser:async (_:unknown,args:UpdateUser,ctx:{prisma:PrismaClient,resHeaders:Headers})=>{
+      try{
+        //Check Is User Exist On DB
+        const IsExist = await ctx.prisma.user.findUnique({
+          where:{id:args?.id}
+          })
+        if(!IsExist){
+          return {success:false,message:'هذا المستخدم لا يوجد في قاعدة البيانات' }
+        }
+        //ValisationData
+        const ValidationData = UserUpdateValidation.safeParse(args.data)
+        if(!ValidationData.success){
+          return {success:false,message:ValidationData.error.issues[0].message }
+        }
+        //Update User From DB
+        const updatedUser = await ctx.prisma.user.update({
+            where:{id:args?.id},
+            data:args.data
+        })
+
+          return { success: true, message: 'Update User successfully',user:updatedUser };
+          }catch(error){
+            console.error(error)
+            return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
+            }
+
     }
   },
 }

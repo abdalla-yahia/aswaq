@@ -1,10 +1,11 @@
 'use client';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '@/libs/Apollo/ApolloClient';
-import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER, DELETE_USER } from "@/Graphql/Schemas/UserQuery";
+import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER, DELETE_USER, UPDATE_USER } from "@/Graphql/Schemas/UserQuery";
 import { FormState, LoginUser } from "@/types/types";
 import { toast, ToastContent, ToastOptions } from "react-toastify";
 import { ApolloError } from "@apollo/client";
+import { UpdateUser } from "@/interfaces/usersInterface";
 
 //Fetch All Users
 export const fetchAllUsers = createAsyncThunk('users/fetchAll',async () => {
@@ -42,7 +43,7 @@ export const createUser = createAsyncThunk("users/create",async (user: FormState
     } catch (err) {
   const message = err instanceof ApolloError
     ? err.message
-    : 'فشل في انشاء المستخدم';
+    : `${err} فشل في انشاء المستخدم` ;
   
   toast.error(message);
   return thunkAPI.rejectWithValue(message);
@@ -92,4 +93,27 @@ export const deleteUser = createAsyncThunk('users/delete',async (id:string,thunk
   return thunkAPI.rejectWithValue(message);
   }
   
+})
+
+//Update User 
+export const updateUser = createAsyncThunk('users/update',async (user:UpdateUser,thunkAPI)=>{
+  try {
+    const { data } = await client.mutate({
+      mutation: UPDATE_USER,
+      variables: {
+        id:user?.id,
+        data: user?.data 
+      }
+      });
+      if(data?.updateUser?.success == false){
+        toast.error(data?.updateUser?.message)
+        }else toast.success('تم تعديل المستخدم بنجاح')
+        return data?.updateUser
+        } catch (error) {
+          const message = error instanceof ApolloError
+          ? error?.message
+          : 'فشل في تعديل المستخدم !! ';
+          toast.error(message);
+        return thunkAPI?.rejectWithValue(message);
+  }
 })

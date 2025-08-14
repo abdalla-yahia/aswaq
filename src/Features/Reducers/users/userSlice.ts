@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { fetchAllUsers,fetchUserById,createUser,loginUser,deleteUser } from "@/Features/Actions/users/usersActions"
+import { fetchAllUsers,fetchUserById,createUser,loginUser,deleteUser,updateUser } from "@/Features/Actions/users/usersActions"
 import { FormState } from "@/types/types";
 import { createSlice } from "@reduxjs/toolkit"
 
@@ -75,6 +75,18 @@ const usersSlice = createSlice({
     .addCase(deleteUser.rejected,(state,action)=>{
         state.loading = false
         state.error = action.payload as string
+    })
+    .addCase(updateUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+    })
+    .addCase(updateUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+    })
+    .addCase(updateUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
     })
 }
 })

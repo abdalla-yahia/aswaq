@@ -11,6 +11,7 @@ import { client } from '@/libs/Apollo/ApolloClient';
 import { Provider } from 'react-redux';
 import { store } from '@/libs/Store/Store';
 import ErrorBoundary from './ErrorBounder';
+import "react-datepicker/dist/react-datepicker.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

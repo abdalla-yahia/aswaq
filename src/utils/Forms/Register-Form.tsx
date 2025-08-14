@@ -10,11 +10,12 @@ import { FormState } from '@/types/types';
 import { UserCreateSchemaValidaion } from '@/validations/UserValidation';
 import * as icon from '@/utils/Icons/Icons'
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 import FullAddress from '../FullAddress';
 import { toast } from "react-toastify";
+import { Gender } from '@prisma/client';
 
 export default function RegisterForm() {
+    const { user, error, loading } = useSelector((state:RootState)=>state.user)
     const [birthDate, setBirthDate] = useState(null);
     const [governorate, setGovernorate] = useState<{id:string,name:string}>({ id: '', name: '' });
     const [department, setDepartment] = useState<{id:string,name:string}>({ id: '', name: '' });
@@ -22,42 +23,47 @@ export default function RegisterForm() {
     const [addressDetails, setAddressDetails] = useState('');
 
     const fullAddress = [
-  governorate.name,
-  department.name,
-  neighborhood.name,
-  addressDetails
-].filter(Boolean).join(' - ');
+      governorate.name,
+      department.name,
+      neighborhood.name,
+      addressDetails
+    ].filter(Boolean).join(' - ');
 
-  const { user, error, loading } = useSelector((state:RootState)=>state.user)
   const dispatch = useAppDispatch()
 
   const registerAction = (prevState: FormState, formData: FormData): FormState => {
-    
+    const genderValue = formData.get('Gender') as string;
     const newState =  {
       ...prevState,
       name:formData.get('UserName') as string,
       email:formData.get('Email') as string,
       phone:formData.get('Phone') as string,
-      gender:formData.get('Gender') as string,
+      gender:genderValue ? (formData.get('Gender') as unknown as Gender) : null,
       birthDate:new Date(birthDate as unknown as string),
       address: fullAddress as string,
       password: formData.get('Password') as string,
-      // ConfirmPassword: formData.get('ConfirmPassword') as string,
     };
-    console.log(newState)
-      //Check Validation of Data
+   
+    //Check if the password is valid 
+    if(formData.get('ConfirmPassword') !== formData.get('Password')){
+      toast.error('الرقم السري غير متطابق') 
+      return { ...prevState }
+    }
+    console.log("قبل",newState)
+    //Check Validation of Data
     const validationData = UserCreateSchemaValidaion.safeParse(newState)
     if (!validationData.success) {
   const errors = validationData.error?.issues.map(err => ({
     path: err.path.join('.'),
     message: err.message
   }));
-  console.log(errors.map(e => `${e.path}: ${e.message}`).join(', '))
   toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
 }
-        dispatch(createUser(newState as FormState))
+console.log("بعد",newState)
+  dispatch(createUser(newState as FormState))
     return newState as FormState;
   };
+  //Inisialize Form
   const initialState: FormState = {
     name: '',
     email: '',
@@ -65,6 +71,7 @@ export default function RegisterForm() {
     password: '',
     // ConfirmPassword: '',
   };
+
   
   const [state, formAction] = useActionState(registerAction, initialState);
   
@@ -72,6 +79,7 @@ export default function RegisterForm() {
     if(user?.user?.name){
       window.location.href = "/";
     }
+
   return (
      <form action={formAction}>
                 {/* User Name */}
@@ -90,7 +98,7 @@ export default function RegisterForm() {
                   <option value="MALE">ذكر</option>
                   <option value="FEMALE">أنثى</option>
                 </select>
-                {/*PirthDate*/}
+                {/*BirthDate*/}
                 <div className="w-full p-2 my-3 border rounded bg-background">
                <DatePicker
                   selected={birthDate}
@@ -123,7 +131,10 @@ export default function RegisterForm() {
                 </div>
                 }
                 <p className='flex justify-start items-center text-center'>العلامة <span className='text-red-500 text-3xl mx-1'>*</span> تعني ان الحقل مطلوب </p>
-                <SubmitButton  text={loading ? "جارٍ التسجيل..." : "تسجيل"} bgcolor="bg-primary" textcolor="text-white"/>
+                {
+                  department.name && neighborhood.name &&
+                  <SubmitButton  text={loading ? "جارٍ التسجيل..." : "تسجيل"} bgcolor="bg-primary" textcolor="text-white"/>
+                }
             </form>
   )
 }
