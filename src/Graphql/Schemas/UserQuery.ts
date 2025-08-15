@@ -7,6 +7,8 @@ export const GET_All_USERS = gql`
       id
       name
       email
+      status
+      role
     }
   }
 `;

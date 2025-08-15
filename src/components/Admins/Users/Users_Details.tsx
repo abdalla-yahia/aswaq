@@ -1,59 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { User } from "@/types/types";
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role?: "user" | "admin" | "delivery" | "storekeeper";
-  status?: "active" | "blocked";
-};
 
 export default function Users_Details({users}:{users:User[]}) {
-  // const [users, setUsers] = useState<User[]>([
-  //   {
-  //     id: "1",
-  //     name: "محمد أحمد",
-  //     email: "mohamed@example.com",
-  //     role: "user",
-  //     status: "active",
-  //   },
-  //   {
-  //     id: "2",
-  //     name: "فاطمة علي",
-  //     email: "fatma@example.com",
-  //     role: "admin",
-  //     status: "blocked",
-  //   },
-  //   {
-  //     id: "3",
-  //     name: "أحمد عبد الله",
-  //     email: "ahmed@example.com",
-  //     role: "delivery",
-  //     status: "active",
-  //   },
-  // ]);
-
-  // const handleToggleStatus = (id: string) => {
-  //   setUsers((prev) =>
-  //     prev.map((user) =>
-  //       user.id === id
-  //         ? {
-  //             ...user,
-  //             status: user.status === "active" ? "blocked" : "active",
-  //           }
-  //         : user
-  //     )
-  //   );
-  // };
-
-  // const handleDelete = (id: string) => {
-  //   if (confirm("هل أنت متأكد من حذف المستخدم؟")) {
-  //     setUsers((prev) => prev.filter((user) => user.id !== id));
-  //   }
-  // };
-
+  
   return (
     <div className="py-6 space-y-6 text-foreground w-full">
       <h1 className="text-2xl font-bold ">إدارة المستخدمين </h1>
@@ -75,11 +26,11 @@ export default function Users_Details({users}:{users:User[]}) {
                 <td className="p-3">{user.name}</td>
                 <td className="p-3">{user.email}</td>
                 <td className="p-3">
-                  {user.role === "user"
+                  {user?.role === "USER"
                     ? "مستخدم"
-                    : user.role === "admin"
+                    : user?.role === "ADMIN"
                     ? "أدمن"
-                    : user.role === "delivery"
+                    : user?.role === "DRIVER"
                     ? "مندوب توصيل"
                     : "أمين مخزن"}
                 </td>
@@ -91,7 +42,7 @@ export default function Users_Details({users}:{users:User[]}) {
                         : "bg-red-100 text-red-700"
                     }`}
                   >
-                    {user.status === "active" ? "نشط" : "محظور"}
+                    {user?.status === "ACTIVE" ? "نشط" : "محظور"}
                   </span>
                 </td>
                 <td className="p-3 space-x-2">
@@ -99,7 +50,7 @@ export default function Users_Details({users}:{users:User[]}) {
                     // onClick={() => handleToggleStatus(user.id)}
                     className="text-blue-600 hover:underline"
                   >
-                    {user.status === "active" ? "حظر" : "تفعيل"}
+                    {user?.status === "ACTIVE" ? "حظر" : "تفعيل"}
                   </button>
                   <button
                     // onClick={() => handleDelete(user.id)}

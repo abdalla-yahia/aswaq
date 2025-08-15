@@ -2,6 +2,8 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '@/Graphql/Schemas/UserQuery';
 
 const stats = [
   { title: 'طلبات اليوم', value: 12, icon: '🛒' },
@@ -41,9 +43,12 @@ function StatCard({ title, value, icon }: { title: string; value: string | numbe
 }
 
 export default function AdminDashboardPage() {
+  const {data,loading} = useQuery(GET_ME,{
+    fetchPolicy: 'network-only',
+  })
   return (
     <div className="py-6 space-y-6 w-full">
-      <h1 className="text-2xl font-bold">لوحة التحكم</h1>
+      <h1 className="text-2xl font-bold">لوحة تحكم المسؤول {data?.me?.name}</h1>
 
       {/* الكروت */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

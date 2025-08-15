@@ -13,7 +13,6 @@ export default function AdminUsersPage() {
     dispatch(fetchAllUsers())
   }, [dispatch])
 
-  console.log(users)
   return (
     <Users_Details users={users} />
   );
