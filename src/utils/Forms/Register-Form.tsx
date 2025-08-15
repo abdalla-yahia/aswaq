@@ -14,7 +14,6 @@ import FullAddress from '../FullAddress';
 import { toast } from "react-toastify";
 import { Gender } from '@prisma/client';
 import { createAddress } from '@/Features/Actions/addressesActions';
-import { CreateAddress } from '@/interfaces/addressInterface';
 
 
 export default function RegisterForm() {
