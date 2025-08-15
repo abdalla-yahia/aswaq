@@ -35,7 +35,6 @@ export const createUser = createAsyncThunk("users/create",async (user: FormState
         mutation: CREATE_USER,
         variables:  user ,
       });
-      console.log(data?.CreateUser)
       if(data?.CreateUser?.success === false){
         toast.error(data?.CreateUser?.message)
       }else toast.success('تم إنشاء المستخدم بنجاح')

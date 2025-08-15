@@ -1,21 +1,21 @@
 import * as icon from '@/utils/Icons/Icons';
 
-export default function Addresses_Details() {
+export default function Addresses_Details({name,address,phone}:{name:string,address:string,phone?:string}) {
   return (
     <div className="flex rounded-2xl shadow shadow-accent/50 justify-between text-foreground w-full  items-start  p-2">
           {/**Card Details*/}
           <div className="card-content flex justify-start items-start flex-col gap-2">
              <div className="flex w-full gap-2">
               <h1 className="text-lg font-bold "> اسم العنوان : </h1>
-              <h2 className="text-lg font-bold text-muted">عنوان المنزل</h2>
+              <h2 className="text-lg font-bold text-muted">{name}</h2>
             </div>
             <div className="flex w-full gap-2">
               <h1 className="text-lg font-bold "> العنوان  : </h1>
-              <h2 className="text-lg font-bold text-muted">القاهرة -  لتسعين - ش 16</h2>
+              <h2 className="text-lg font-bold text-muted">{address}</h2>
             </div>
-            <div className="flex w-full gap-2">
+             <div className="flex w-full gap-2">
               <h1 className="text-lg font-bold "> رقم الهاتف : </h1>
-              <h2 className="text-lg font-bold text-muted">01234567890</h2>
+              <h2 className="text-lg font-bold text-muted">{phone}</h2>
             </div>
            
             {/* {address.isDefault && (

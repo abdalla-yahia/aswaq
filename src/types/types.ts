@@ -1,6 +1,7 @@
 import { Gender } from "@prisma/client";
 
 export type FormState = {
+  id?:string
   name: string
   email?: string|null
   phone?:string|null
@@ -31,4 +32,11 @@ export type LoginUser = {
 export type UserToken = {
   id:string
   role:string
+}
+
+export type FormAddress = {
+  name:string
+  address:string
+  phone?:string
+  userId:string
 }

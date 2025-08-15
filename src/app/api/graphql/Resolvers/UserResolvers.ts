@@ -21,8 +21,12 @@ const usersQueries = {
       }
       return await ctx.prisma.user.findUnique({
         where: { id: user?.id },
+        include:{
+          alladdresses:true
+        }
       });
     },
+
   },
 };
 
@@ -199,4 +203,5 @@ const userMutations = {
 export const userResolvers = {
   ...usersQueries,
   ...userMutations,
+
 };

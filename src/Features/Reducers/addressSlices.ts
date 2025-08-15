@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {getAllAddresses} from '../Actions/addressesActions'
+import {getAllAddresses,createAddress} from '../Actions/addressesActions'
+import { CreateAddress } from '@/interfaces/addressInterface'
 
 const initialstate = {
-    address:[],
+    AllAddress:[],
+    address:{} as CreateAddress,
     loading:false,
     error:null  as string | null,
 }
@@ -23,6 +25,17 @@ const addressSlice = createSlice({
             .addCase(getAllAddresses.rejected,(state,action)=>{
             state.error = action.payload as string
             state.loading = false
+            })
+            .addCase(createAddress.pending,state=>{
+                state.loading = true
+            })
+            .addCase(createAddress.fulfilled,(state,action)=>{
+                state.address = action.payload
+                state.loading = false
+            })
+            .addCase(createAddress.rejected,(state,action)=>{
+                state.error = action.payload as string
+                state.loading = false
             })
 }
 

@@ -49,6 +49,7 @@ user{
   role
   status
   image
+  phone
 }
 
 }
@@ -88,12 +89,17 @@ export const GET_ME = gql`
       role
       image
       address
-      alladdresses
       createdAt
       status
       phone
       gender
       birthDate
+      alladdresses{
+        id
+        name
+        phone
+        address
+      }
     }
   }
 `;

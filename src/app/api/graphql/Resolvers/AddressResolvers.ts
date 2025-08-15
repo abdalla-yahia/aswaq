@@ -12,9 +12,15 @@ const AddressQueries = {
 
 const AddressREsolvers = {
     Mutation :{
-        // createAddress:async (_: unknown, args: CreateAddress, ctx: { prisma:PrismaClient})=>{
-        //     return ctx.prisma.addresses.create({data:args})
-        // }
+        createAddress:async (_: unknown, args: CreateAddress, ctx: { prisma:PrismaClient})=>{
+            try {
+                return ctx.prisma.addresses.create({
+                    data:args
+                })
+            } catch (error) {
+                return error
+            }
+        }
     }
 }
 

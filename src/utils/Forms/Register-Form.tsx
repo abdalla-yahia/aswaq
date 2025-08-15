@@ -1,5 +1,5 @@
 'use client'
-import { SetStateAction, useActionState, useState } from 'react';
+import { SetStateAction, useActionState, useEffect, useState } from 'react';
 import InputButton from "../Bottons/Input-button";
 import PasswordButton from "../Bottons/Password-button";
 import SubmitButton from "../Bottons/Submit-button";
@@ -13,6 +13,9 @@ import DatePicker from 'react-datepicker';
 import FullAddress from '../FullAddress';
 import { toast } from "react-toastify";
 import { Gender } from '@prisma/client';
+import { createAddress } from '@/Features/Actions/addressesActions';
+import { CreateAddress } from '@/interfaces/addressInterface';
+
 
 export default function RegisterForm() {
   const { user, error, loading } = useSelector((state: RootState) => state.user)
@@ -32,7 +35,7 @@ export default function RegisterForm() {
   const dispatch = useAppDispatch()
 
   const registerAction = (prevState: FormState, formData: FormData): FormState => {
-    const genderValue = formData.get('Gender') as string;
+    const genderValue = formData.get('Gender') as Gender;
     const newState = {
       ...prevState,
       name: formData.get('UserName') as string,
@@ -61,7 +64,9 @@ export default function RegisterForm() {
     }
     console.log("بعد", newState)
     dispatch(createUser(newState as FormState))
-    return newState as FormState;
+    
+    
+      return newState as FormState;
   };
   //Inisialize Form
   const initialState: FormState = {
@@ -76,9 +81,17 @@ export default function RegisterForm() {
   const [state, formAction] = useActionState(registerAction, initialState);
 
   //Redirect User To Homepage
-  if (user?.user?.name) {
-    window.location.href = "/";
-  }
+  useEffect(()=>{
+    if (user?.user?.id) {
+      dispatch(createAddress({
+        userId: user?.user?.id,
+        name:'العنوان الرئيسي',
+        address: fullAddress,
+        phone:user?.user?.phone ? user?.user?.phone :''
+      }))
+      window.location.href = "/";
+    }
+  },[user?.user?.id])
 
   return (
     <form action={formAction}>

@@ -37,7 +37,8 @@ model Addresses {
   name    String
   address String
   phone   String?
-  user    User    @relation(fields: [id], references: [id])
+  userId  String
+  user    User    @relation(fields: [userId], references: [id])
 }
 
 enum Status {

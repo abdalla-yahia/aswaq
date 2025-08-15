@@ -36,7 +36,7 @@ type LogoutResponse {
   image: String
   gender: Gender
   birthDate: String
-  alladdresses: [String]
+  alladdresses: [Address]
   role: String
   status: String
   orders: [String]
@@ -55,7 +55,8 @@ type LogoutResponse {
 type Query {
   GetAllUsers: [User!]!
   GetUserById(id: ID!): User!
-  me: User
+  me: User!
+  
 }
 
 
