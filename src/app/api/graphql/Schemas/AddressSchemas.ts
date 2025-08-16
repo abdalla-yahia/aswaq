@@ -8,7 +8,10 @@ type Address {
     phone:String
     userId:String!
 }
-
+type Status {
+    success:Boolean
+    message:String
+}
 type Query {
     addresses: [Address!]!
     }
@@ -17,6 +20,6 @@ type Query {
 type Mutation {
     createAddress(name: String!, address: String!, phone: String,userId:String!): Address!
     updateAddress(id: ID!, name: String!, address: String!, phone: String): Address
-    deleteAddress(id: ID!): Boolean!
+    deleteAddress(id: ID!): Status!
     }
 `

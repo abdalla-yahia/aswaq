@@ -21,3 +21,14 @@ mutation createAddress($name:String!,$address:String!,$phone:String,$userId:Stri
     }
 }
 `
+
+// export const UPDATE_ADDRESS = gql``
+
+export const DELETE_ADDRESS = gql`
+mutation deleteAddress($id:ID!){
+    deleteAddress(id:$id){
+        success
+        message
+    }
+    }
+`
