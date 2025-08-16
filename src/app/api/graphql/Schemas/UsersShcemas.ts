@@ -93,8 +93,8 @@ type Mutation {
   changePassword(
     id: String!
     oldPassword: String!
-    password:String!
-  ):User
+    newPassword:String!
+  ):LogoutResponse!
   
 }
 

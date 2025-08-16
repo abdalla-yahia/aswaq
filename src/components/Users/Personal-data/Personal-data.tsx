@@ -60,16 +60,19 @@ export default function Personal_Data() {
           </div >
           <div className='flex flex-wrap gap-2'>
             <label className="text-sm text-gray-500">تاريخ الميلاد</label>
-            <p className="font-medium">{new Date(Number(data?.me?.birthDate)).toLocaleString('ar-EG', {
+            <p className="font-medium">{data?.me?.birthDate?(new Date(Number(data?.me?.birthDate)).toLocaleString('ar-EG', {
               year: 'numeric',
               month: 'short',
               day: '2-digit'
-            })}</p>
+            })):'جارٍ التحميل .....'
+            
+            }</p>
           </div>
         </div>
         {/*Edit User Data Form*/}
         {
-          isEdit && (
+          isEdit 
+            && (
             <EditUserDataForm setIsEdit={setIsEdit} />
           )
         }

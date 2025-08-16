@@ -50,5 +50,5 @@ export type FormAddress = {
 export type PasswordState = {
     id:string
     oldPassword:string
-    password:string
+    newPassword:string
 }

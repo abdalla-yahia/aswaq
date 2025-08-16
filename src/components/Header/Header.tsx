@@ -13,8 +13,9 @@ export default function Header() {
           <Logo />
         </div>
         <SubNavBar />
-        <p className="text-sm flex justify-center text-gray-900 absolute top-0 left-0 p-0 bg-yellow-500 w-full text-center">ملحوظه:- الموقع مازال تحت الإنشاء ولم يتم  اخراج النسخة النهائية وهذه النسخة تحدث يومياً
-          <icon.IoWarning className="text-orange-600 text-lg animate-ping" />
+        <p className="text-[10px] flex justify-center text-gray-900 absolute top-0 left-0 p-0 bg-yellow-500 w-full text-center">ملحوظه:- الموقع مازال تحت الإنشاء ولم يتم  اخراج النسخة النهائية وهذه النسخة تحدث يومياً
+          <icon.IoWarning className="text-orange-600 text-lg absolute left-5" />
+          <icon.IoWarning className="text-orange-600 text-lg animate-ping absolute left-5" />
         </p>
     </div>
 

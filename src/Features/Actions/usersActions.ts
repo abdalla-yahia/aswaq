@@ -122,12 +122,16 @@ export const changeUserPassword = createAsyncThunk('users/changepassword',async(
   try{
     const {data}= await client.mutate({
       mutation: CHANGE_PASSWORD,
-      variables:NewData
+      variables:{
+        id:NewData?.id,
+        oldPassword:NewData?.oldPassword,
+        newPassword:NewData?.newPassword
+      }
         });
-        if(data?.changePasswordUser?.success == false){
-          toast.error(data?.changePasswordUser?.message)
+        if(data?.changePassword?.success == false){
+          toast.error(data?.changePassword?.message)
           }else toast.success('تم تعديل كلمة المرور بنجاح')
-          return data?.changePasswordUser;
+          return data?.changePassword;
   }catch(error){
     toast.error('فشل في تغيير الرقم السري')
   }

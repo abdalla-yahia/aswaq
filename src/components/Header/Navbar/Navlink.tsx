@@ -3,7 +3,6 @@ import * as icon from '@/utils/Icons/Icons';
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 import Image from "next/image";
-import LogoutButton from "@/app/(auth)/logout/page";
 
 export default  function Navlink() {
 const { data, loading } = useQuery(GET_ME, {

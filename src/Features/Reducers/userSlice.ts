@@ -14,7 +14,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   users: [],
   user: {} as { user: FormState },
-  password:{} as PasswordState,
+  password:{} as {success: boolean,message:string},
   loading: false as boolean,
   error: null as string | null,
 };

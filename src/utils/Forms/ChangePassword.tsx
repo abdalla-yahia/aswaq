@@ -27,7 +27,7 @@ export default function ChangePassword({setIsChangePassword}:{setIsChangePasswor
             ...prevState,
             id:data?.me?.id,
             oldPassword:formData.get('OldPassword') as string,
-            password:formData.get('NewPassword') as string
+            newPassword:formData.get('NewPassword') as string
         }
         //Check If NewPassword is equal to Confirmpassword
         if(newPassword !== confirmPassword){
@@ -36,7 +36,7 @@ export default function ChangePassword({setIsChangePassword}:{setIsChangePasswor
         }
         //Check Validation Password
         const PasswordSchema = UserCreateSchemaValidaion.pick({ password: true });
-        const Validation = PasswordSchema.safeParse({password:changeState?.password})
+        const Validation = PasswordSchema.safeParse({password:changeState?.newPassword})
         if(!Validation.success){
             toast.error(Validation.error.issues[0].message)
             return prevState;
@@ -47,12 +47,12 @@ export default function ChangePassword({setIsChangePassword}:{setIsChangePasswor
     //InitialaState 
     const inisialState = {
         id:data?.me?.id,
-        password: "",
+        newPassword: "",
         oldPassword: "",
     }
     const [state,actionState] = useActionState(RechangeState,inisialState)
-
-    if(password?.id){
+    
+    if(password?.success === true){
         window.location.href = '/logout'
     }
   return (
@@ -76,7 +76,7 @@ export default function ChangePassword({setIsChangePassword}:{setIsChangePasswor
             error && <p className="text-red-500" >فشل في تحديث الرقم السري</p>
         }
         {
-            password?.id && <p className="text-green-500" >تم تغيير الرقم السري بنجاح</p>
+            password?.success && <p className="text-green-500" >تم تغيير الرقم السري بنجاح</p>
         }
         <SubmitButton text={loading ? "جارٍ الحفظ..." : "حفظ"} bgcolor="bg-blue-500" textcolor="text-white" />
     </form>

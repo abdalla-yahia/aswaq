@@ -214,9 +214,9 @@ const userMutations = {
         }
         //Check Validation Password 
         const PasswordSchema = UserCreateSchemaValidaion.pick({ password: true });
-        const validationPassword = PasswordSchema.safeParse({password:args?.password})
+        const validationPassword = PasswordSchema.safeParse({password:args?.newPassword})
         if(!validationPassword.success){
-          return {success:false,message:validationPassword.error.issues[0].message }
+          return {success:false,message:validationPassword.error.issues.map(e=>e.message).join(", ") }
           }
         //Hash New Password
         const genSalt =  bcrypt.genSaltSync(10)

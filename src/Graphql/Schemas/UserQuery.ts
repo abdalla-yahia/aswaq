@@ -139,9 +139,9 @@ mutation updateUser($id:String!,$data:UserInput!) {
 
 export const CHANGE_PASSWORD = gql`
 mutation changePassword($id:String!,$oldPassword:String!,$newPassword:String!) {
-  changePassword(id:$id,oldPassword:$oldPassword,password:$newPassword){
-    id
-    name
+  changePassword(id:$id,oldPassword:$oldPassword,newPassword:$newPassword){
+    success
+    message
   }
   }
 `
