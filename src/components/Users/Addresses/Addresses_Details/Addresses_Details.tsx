@@ -1,21 +1,16 @@
 'use client'
 import { deleteAddress } from '@/Features/Actions/addressesActions';
-import { RootState, useAppDispatch } from '@/libs/Store/Store';
+import { useAppDispatch } from '@/libs/Store/Store';
 import * as icon from '@/utils/Icons/Icons';
-import { useSelector } from 'react-redux';
 
 export default function Addresses_Details({id,name,Address,phone}:{id:string,name:string,Address:string,phone?:string}) {
-  const {status,error,loading} = useSelector((state:RootState)=>state.address)
   const dispatch= useAppDispatch()
 
   const DeleteAddressHandller = ()=>{
     // Delete Address Logic
     dispatch(deleteAddress(id))
   }
-  console.log(status)
-  if(status?.success){
-    window.location.reload()
-  }
+  
   return (
     <div className="flex rounded-2xl shadow shadow-accent/50 justify-between text-foreground w-full  items-start  p-2">
           {/**Card Details*/}
@@ -38,9 +33,7 @@ export default function Addresses_Details({id,name,Address,phone}:{id:string,nam
             <icon.HiPencilSquare title='تعديل العنوان' className='text-green-500 cursor-pointer' />
             <icon.CiTrash onClick={()=>DeleteAddressHandller()} title='حذف العنوان' className='text-red-500 cursor-pointer'/>
           </div>
-          {
-            loading && <p className='text-yellow-500'>جارٍ حذف العنوان</p>
-          }
+         
         </div>
   )
 }
