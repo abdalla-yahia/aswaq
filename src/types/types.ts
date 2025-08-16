@@ -10,13 +10,12 @@ export type User = {
 export type FormState = {
   id?:string
   name: string
-  email?: string|null
-  phone?:string|null
-  address?: string
+  email: string|null
+  phone:string|null
+  address: string
   password: string
   gender?:Gender | undefined
   birthDate?:Date
-  ConfirmPassword?: string
 };
 export type FormEdit = {
   id:string
@@ -46,4 +45,10 @@ export type FormAddress = {
   address:string
   phone?:string
   userId:string
+}
+
+export type PasswordState = {
+    id:string
+    oldPassword:string
+    password:string
 }

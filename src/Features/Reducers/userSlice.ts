@@ -6,13 +6,15 @@ import {
   loginUser,
   deleteUser,
   updateUser,
+  changeUserPassword,
 } from "@/Features/Actions/usersActions";
-import { FormState } from "@/types/types";
+import { FormState, PasswordState } from "@/types/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   users: [],
   user: {} as { user: FormState },
+  password:{} as PasswordState,
   loading: false as boolean,
   error: null as string | null,
 };
@@ -89,7 +91,19 @@ const usersSlice = createSlice({
       .addCase(updateUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      });
+      })
+      .addCase(changeUserPassword.pending , state=>{
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(changeUserPassword.fulfilled , (state,action)=>{
+        state.loading = false;
+        state.password = action.payload;
+      })
+      .addCase(changeUserPassword.rejected , (state,action)=>{
+        state.loading = false;
+        state.error = action.payload as string
+      })
   },
 });
 

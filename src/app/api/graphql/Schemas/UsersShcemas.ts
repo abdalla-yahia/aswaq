@@ -6,6 +6,7 @@ export const userSchemas = gql`
   MALE
   FEMALE
 }
+
 type AuthResponse {
   message: String
   token: String
@@ -88,6 +89,13 @@ type Mutation {
     id: String!
     data: UserInput
   ): AuthResponse
+  # Change Password
+  changePassword(
+    id: String!
+    oldPassword: String!
+    password:String!
+  ):User
+  
 }
 
   

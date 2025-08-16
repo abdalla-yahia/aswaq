@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useActionState } from "react";
 import { useSelector } from "react-redux";
 import * as icon from '@/utils/Icons/Icons'
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const { user, error, loading } = useSelector((state: RootState) => state.user)
@@ -22,7 +23,6 @@ export default function LoginForm() {
       phone: (!(formdata.get('Email') as string).toString().includes('@')) ? formdata.get('Email') : undefined,
       password: formdata.get('Password')
     }
-    console.log(loginData)
     //Check Validation of Login Data
     const validationLogin = UserLoginValidation.safeParse(loginData)
     if (!validationLogin.success) {
@@ -30,8 +30,7 @@ export default function LoginForm() {
         path: err.path.join('.'),
         message: err.message
       }));
-      console.log(errors.map(e => `${e.path}: ${e.message}`).join(', '))
-      throw new Error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
+      toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
     }
     dispatch(loginUser(loginData as LoginUser))
     return loginData as LoginUser
@@ -58,7 +57,7 @@ export default function LoginForm() {
       {error &&
         <div className='flex gap-2'>
           <icon.IoMdClose className="text-red-500" />
-          <p className="text-red-500 select-text">{error}</p>
+          <p className="text-red-500 select-text">فشل في تسجيل الدخول !!</p>
         </div>
       }
       {user?.user?.name &&

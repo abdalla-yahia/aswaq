@@ -1,8 +1,8 @@
 'use client';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from '@/libs/Apollo/ApolloClient';
-import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER, DELETE_USER, UPDATE_USER } from "@/Graphql/Schemas/UserQuery";
-import { FormState, LoginUser } from "@/types/types";
+import { GET_USER_BY_ID, GET_All_USERS,CREATE_USER,LOGIN_USER, DELETE_USER, UPDATE_USER, CHANGE_PASSWORD } from "@/Graphql/Schemas/UserQuery";
+import { FormState, LoginUser, PasswordState } from "@/types/types";
 import { toast, ToastOptions } from "react-toastify";
 import { ApolloError } from "@apollo/client";
 import { UpdateUser } from "@/interfaces/usersInterface";
@@ -66,7 +66,7 @@ export const loginUser = createAsyncThunk('users/login',async (user:LoginUser,th
     ? error.message
     : 'فشل في تسجيل الدخول ';
   
-  toast.error(message);
+  toast.error('تأكد من بيانات تسجيل الدخول اولاً !!');
   return thunkAPI.rejectWithValue(message);
   }
 })
@@ -114,5 +114,21 @@ export const updateUser = createAsyncThunk('users/update',async (user:UpdateUser
           : 'فشل في تعديل المستخدم !! ';
           toast.error(message);
         return thunkAPI?.rejectWithValue(message);
+  }
+})
+
+//Change Password 
+export const changeUserPassword = createAsyncThunk('users/changepassword',async(NewData:PasswordState)=>{
+  try{
+    const {data}= await client.mutate({
+      mutation: CHANGE_PASSWORD,
+      variables:NewData
+        });
+        if(data?.changePasswordUser?.success == false){
+          toast.error(data?.changePasswordUser?.message)
+          }else toast.success('تم تعديل كلمة المرور بنجاح')
+          return data?.changePasswordUser;
+  }catch(error){
+    toast.error('فشل في تغيير الرقم السري')
   }
 })

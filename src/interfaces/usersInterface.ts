@@ -1,15 +1,13 @@
 import { Gender } from "@prisma/client";
 
 export interface CreateUser {
-    id:string
     name: string;
-    email?: string|null;
-    phone?: string|null;
+    email: string|null;
+    phone: string;
     password: string;
-    address?: string
+    address: string
     gender?: Gender;
     birthDate?:Date
-    role:string
 }
 
 

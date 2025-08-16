@@ -21,6 +21,10 @@ import { PrismaClient } from '@prisma/client';
     }),
     graphqlEndpoint: '/api/graphql',
     fetchAPI: { Request, Response },
+    // ❌ اقفل GraphiQL في production
+    graphiql: process.env.NODE_ENV !== "production",
+    // ❌ اقفل introspection في production
+    maskedErrors: process.env.NODE_ENV === "production",
     context: ({ request }) => ({
       req: request,
       prisma,

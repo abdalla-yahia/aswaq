@@ -7,10 +7,12 @@ import { deleteUser } from '@/Features/Actions/usersActions';
 import { useState } from 'react';
 import EditUserDataForm from '@/utils/Forms/Edit-User-Data-Form';
 import Image from 'next/image';
+import ChangePassword from '../../../utils/Forms/ChangePassword';
 
 
 export default function Personal_Data() {
   const [isEdit, setIsEdit] = useState(false)
+  const [isChangePassword, setIsChangePassword] = useState(false)
   const { data, loading } = useQuery(GET_ME, {
     fetchPolicy: "network-only",
   });
@@ -23,8 +25,7 @@ export default function Personal_Data() {
   }
   return (
     <div className="max-w-5xl mx-auto text-foreground w-full border relative p-6 rounded-lg shadow">
-      <button onClick={() => DeleteUserHandller(data?.me?.id)} className='text-white hover:bg-red-600 rounded absolute bottom-4 bg-sky-500 p-2 left-4 cursor-pointer'>حذف الحساب</button>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col md:flex-row items-center gap-4">
         {data?.me?.image ?
           (<Image src={data?.me?.image} alt={`${data?.me?.name}-صورة`} width={80} height={80} className="rounded-full" />) :
           (<icon.FaUserCircle className="text-6xl text-gray-400" />)
@@ -44,20 +45,20 @@ export default function Personal_Data() {
       </div>
 
       <div className="mt-6 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+          <div className='flex flex-wrap gap-2'>
             <label className="text-sm text-gray-500">البريد الإلكتروني</label>
             <p className="font-medium">{data?.me?.email}</p>
           </div>
-          <div>
+          <div className='flex flex-wrap gap-2'>
             <label className="text-sm text-gray-500">رقم الهاتف</label>
             <p className="font-medium">{data?.me?.phone}</p>
           </div>
-          <div>
+          <div className='flex flex-wrap gap-2'>
             <label className="text-sm text-gray-500">الجنس</label>
             <p className="font-medium">{(data?.me?.gender) == 'MALE' ? 'ذكر' : (data?.me?.gender) == 'FEMALE' ? 'أنثى' : ''}</p>
-          </div>
-          <div>
+          </div >
+          <div className='flex flex-wrap gap-2'>
             <label className="text-sm text-gray-500">تاريخ الميلاد</label>
             <p className="font-medium">{new Date(Number(data?.me?.birthDate)).toLocaleString('ar-EG', {
               year: 'numeric',
@@ -72,13 +73,20 @@ export default function Personal_Data() {
             <EditUserDataForm setIsEdit={setIsEdit} />
           )
         }
-        <div className="flex gap-4 mt-6">
-          <button onClick={() => setIsEdit(!isEdit)} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        {/*Change  Password*/}
+        {
+          isChangePassword && (
+            <ChangePassword setIsChangePassword={setIsChangePassword} />
+            )
+        }
+        <div className="flex gap-1 mt-6 w-full ">
+          <button onClick={() => setIsEdit(!isEdit)} className="bg-blue-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-blue-700">
             تعديل البيانات
           </button>
-          <button className="bg-gray-100 text-gray-800 px-4 py-2 rounded hover:bg-gray-200">
+          <button onClick={() => setIsChangePassword(!isChangePassword)} className="bg-gray-100 text-gray-800 px-4 py-2 cursor-pointer rounded hover:bg-gray-200">
             تغيير كلمة المرور
           </button>
+          <button onClick={() => DeleteUserHandller(data?.me?.id)} className='text-white hover:bg-red-600 rounded  mr-auto  bg-sky-500 p-2  cursor-pointer'>حذف الحساب</button>
         </div>
       </div>
     </div>

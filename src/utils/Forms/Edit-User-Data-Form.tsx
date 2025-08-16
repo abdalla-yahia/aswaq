@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useActionState, useState } from 'react'
+import React, { Dispatch, SetStateAction, useActionState, useEffect, useState } from 'react'
 import SubmitButton from '@/utils/Bottons/Submit-button';
 import DatePicker from 'react-datepicker';
 import * as icon from '@/utils/Icons/Icons';
@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { Gender } from '@prisma/client';
 
 export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<SetStateAction<boolean>> }) {
-  const { user, error } = useSelector((state: RootState) => state.user)
+  const { user, error,loading } = useSelector((state: RootState) => state.user)
   const [birthDate, setBirthDate] = useState(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
@@ -47,7 +47,6 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
             : null,
       },
     }
-    console.log("قبل", editState)
     //Validation Data
     const validationData = UserUpdateValidation.safeParse(editState.data)
     if (!validationData.success) {
@@ -57,7 +56,6 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
       }));
       toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
     }
-    console.log("بعد", editState)
     dispatch(updateUser(editState))
     return editState as FormEdit;
   }
@@ -73,22 +71,25 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
       birthDate: data?.me?.birthDate
     }
   }
+  //Set User Old Image On Preview
+  useEffect(()=>{
+    if(data?.me?.image){
+      setImageUrl(data?.me?.image)
+    }
+  },[data?.me?.image]) 
+  console.log(imageUrl)
+  //Form Action State
   const [state, formAction] = useActionState(EditUserDataHandller, initialState)
+  //Reload Page After Submite Edit Data
   if (user?.user?.name) {
     setIsEdit(false)
     window.location.reload()
   }
   return (
-    <form action={formAction} className='flex flex-col justify-between text-black items-center gap-1 absolute top-0 left-0 h-fit w-fit bg-accent p-5'>
+    <form action={formAction} className='flex flex-col justify-between text-black items-center gap-1 absolute top-0 left-0 h-fit w-full md:w-fit bg-accent p-5 mb-8'>
       <icon.IoMdClose onClick={() => setIsEdit(false)} className='text-2xl cursor-pointer text-red-500 absolute top-2 left-2 font-semibold' title='إغلاق' />
       {/*User Image*/}
       <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
-      {/* <div className="flex items-center gap-4">
-                    <label className="text-lg font-bold" htmlFor='userimage'>
-                    <input type="file" name="UserImage" id="userimage" className='hidden'/>
-                    <icon.FaUserCircle className="text-6xl text-gray-400" />
-                    </label>
-                </div> */}
       {/* User Name */}
       <InputButton type="text" placeholder={data?.me?.name || "اسم المستخدم"} name="UserName" />
       {/* Email */}
@@ -102,7 +103,7 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
         <option value="FEMALE">أنثى</option>
       </select>
       {/*BirthDate*/}
-      <div className=" p-2 my-3 border rounded ">
+      <div className=" p-2 my-3 border rounded w-full">
         <DatePicker
           selected={birthDate}
           onChange={(date) => setBirthDate(date as SetStateAction<null>)}
@@ -130,7 +131,7 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
           <p className="text-green-500 select-text">تم تعديل المستخدم {user?.user?.name} بنجاح</p>
         </div>
       }
-      <SubmitButton text='حفظ التعديلات' bgcolor='bg-blue-500' textcolor='white' />
+      <SubmitButton text={loading?'جارٍ حفظ التعديلات....':'حفظ'} bgcolor='bg-blue-500' textcolor='white' />
     </form>
   )
 }

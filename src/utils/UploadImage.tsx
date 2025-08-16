@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 
 export default function UploadImage({
@@ -41,10 +42,11 @@ export default function UploadImage({
           className="hidden"
           onChange={(e) => handleUpload(e.target.files?.[0] || null)}
         />
-        <img
+        <Image
           src={preview || imageUrl || "/images/logo.png"}
           alt="Uploaded"
           width={100}
+          height={100}
         />
       </label>
     </div>

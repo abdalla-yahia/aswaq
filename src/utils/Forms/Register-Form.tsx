@@ -23,6 +23,7 @@ export default function RegisterForm() {
   const [department, setDepartment] = useState<{ id: string, name: string }>({ id: '', name: '' });
   const [neighborhood, setNeighborhood] = useState<{ id: string, name: string }>({ id: '', name: '' });
   const [addressDetails, setAddressDetails] = useState('');
+  const [checkPasswordValid,setCheckPasswordValid]=useState('')
 
   const fullAddress = [
     governorate.name,
@@ -67,13 +68,16 @@ export default function RegisterForm() {
     
       return newState as FormState;
   };
+
   //Inisialize Form
   const initialState: FormState = {
     name: '',
     email: '',
     address: '',
     password: '',
-    // ConfirmPassword: '',
+    phone:'',
+    gender:undefined,
+    birthDate:new Date(birthDate as unknown as string),
   };
 
 
@@ -91,7 +95,6 @@ export default function RegisterForm() {
       window.location.href = "/";
     }
   },[user?.user?.id])
-
   return (
     <form action={formAction}>
       {/* User Name */}
@@ -101,7 +104,14 @@ export default function RegisterForm() {
       {/* Email */}
       <InputButton type="text" placeholder="البريد الإلكتروني" name="Email" />
       {/* Password */}
-      <PasswordButton placeholder="الرقم السري" name="Password" requird />
+      <PasswordButton onchange={(e)=>setCheckPasswordValid(e.target.value)} placeholder="الرقم السري" name="Password" requird />
+      {/*Check Valid Rols Password*/}
+      <ul>
+        <li className={`${/[A-Z]/.test(checkPasswordValid)?'text-green-500':'text-gray-500'} text-[12px] flex justify-start items-center`}> {/[A-Z]/.test(checkPasswordValid) && <icon.IoMdCheckmark className='text-green-500 text-[12px]'/>} يجب أن يحتوي الرقم السري على حرف كبير</li>
+        <li className={`${/[a-z]/.test(checkPasswordValid)?'text-green-500':'text-gray-500'} text-[12px] flex justify-start items-center`}> {/[a-z]/.test(checkPasswordValid) && <icon.IoMdCheckmark className='text-green-500 text-[12px]'/>} يجب أن يحتوي الرقم السري على الأقل 1 حرف صغير</li>
+        <li className={`${/[0-9]/.test(checkPasswordValid)?'text-green-500':'text-gray-500'} text-[12px] flex justify-start items-center`}> {/[0-9]/.test(checkPasswordValid) && <icon.IoMdCheckmark className='text-green-500 text-[12px]'/>} يجب أن يحتوي الرقم السري على الأقل 1 رقم</li>
+        <li className={`${checkPasswordValid?.length >= 8 ?'text-green-500':'text-gray-500'} text-[12px] flex justify-start items-center`}> {checkPasswordValid?.length >= 8  && <icon.IoMdCheckmark className='text-green-500 text-[12px]'/>} يجب أن يكون الرقم السري على الأقل 8 أحرف</li>
+      </ul>
       {/* Confirm Password */}
       <PasswordButton placeholder="تأكيد الرقم السري" name="ConfirmPassword" requird />
       {/* Gender */}
@@ -133,7 +143,7 @@ export default function RegisterForm() {
       {error &&
         <div className='flex gap-2'>
           <icon.IoMdClose className="text-red-500" />
-          <p className="text-red-500 select-text">{error}</p>
+          <p className="text-red-500 select-text">فشلت عملية تسجيل المستخدم الجديد !!</p>
         </div>
       }
       {user?.user?.name &&

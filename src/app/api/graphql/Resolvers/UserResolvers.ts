@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { CreateUser, UpdateUser } from '@/interfaces/usersInterface';
-import { LoginUser, UserToken } from '@/types/types';
+import { LoginUser, PasswordState, UserToken } from '@/types/types';
 import { SetCookies } from '@/libs/generateToken';
 import { UserCreateSchemaValidaion, UserLoginValidation, UserUpdateValidation } from '@/validations/UserValidation';
 import bcrypt from 'bcrypt';
@@ -53,9 +53,9 @@ const userMutations = {
         }
         //Validation Data
         const validationData = UserCreateSchemaValidaion.safeParse(args);
-        if (!validationData?.success) return{success:false,message:(validationData?.error?.message)};
+        if (!validationData?.success) return{success:false,message:(validationData?.error?.issues.map(e=>e.message))};
         //Hashed Password
-        const genSalt = bcrypt.genSaltSync(10, 'a');
+        const genSalt = bcrypt.genSaltSync(10,'a');
         const hashpassword = bcrypt.hashSync(validationData?.data?.password, genSalt);
         validationData.data.password = hashpassword;
         //Create Anew User
@@ -76,7 +76,7 @@ const userMutations = {
           token: tokenCookie,
           user: NewUser,
         };
-      } catch (error: unknown) {
+      } catch (error) {
         console.error('Error in CreateUser mutation:', error);
         return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
       }
@@ -119,9 +119,9 @@ const userMutations = {
           token: tokenCookie,
           user: UserExist,
         };
-      } catch (error: unknown) {
+      } catch (error) {
         console.error('Error in loginUser mutation:', error);
-        return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
+        return {success:false,message:'غير معروف'};
       }
     },
     //Logout User By Delete User Token From Cookies  
@@ -196,8 +196,43 @@ const userMutations = {
             return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
             }
 
+    },
+    //Change User Password
+    changePassword:async (_:unknown,args:PasswordState,ctx:{prisma:PrismaClient})=>{
+      try{
+        //Check Is User Exist On DB
+        const IsExist = await ctx.prisma.user.findUnique({
+        where:{id:args?.id}
+        })
+        if(!IsExist){
+        return {success:false,message:'هذا المستخدم لا يوجد في قاعدة البيانات'}
+        }
+        //Check Old Password
+        const checkPassword = await bcrypt.compare(args?.oldPassword,IsExist?.password)
+        if(!checkPassword){
+        return {success:false,message:'كلمة المرور القديمة غير صحيحة'}
+        }
+        //Check Validation Password 
+        const PasswordSchema = UserCreateSchemaValidaion.pick({ password: true });
+        const validationPassword = PasswordSchema.safeParse({password:args?.password})
+        if(!validationPassword.success){
+          return {success:false,message:validationPassword.error.issues[0].message }
+          }
+        //Hash New Password
+        const genSalt =  bcrypt.genSaltSync(10)
+        const hashPassword =  bcrypt.hashSync(validationPassword?.data?.password,genSalt)
+        //Update User Password From DB
+        const updatedUser = await ctx.prisma.user.update({
+        where:{id:args?.id},
+        data:{password:hashPassword}
+        })
+        return { success: true, message: 'Change Password successfully',user:updatedUser };
+      }catch(error){
+        console.error(error)
+        return {success:false,message:(error instanceof Error ? error.message : 'Internal server error')};
     }
   },
+}
 }
 
 export const userResolvers = {
