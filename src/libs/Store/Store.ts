@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import usersSlice from '@/Features/Reducers/userSlice';
 import addressSlice from '@/Features/Reducers/addressSlices';
+import categorySlice from '@/Features/Reducers/categorySlice';
 
 export const store = configureStore({
   reducer: {
     user: usersSlice,
-    address: addressSlice
+    address: addressSlice,
+    category:categorySlice
   },
 });
 

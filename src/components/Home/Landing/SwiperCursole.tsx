@@ -32,7 +32,7 @@ export default function SwiperCursole() {
         {Sliders?.sliders?.map((slider, i) => (
         <div key={i} className="w-full flex-shrink-0">
             {/* <img src={src} alt='fs' width={250} height={250} /> */}
-            <Slider img1={slider?.img1} img2={slider?.img2} text={slider?.text} paragraph={slider?.paragraph} paragraph2={slider?.paragraph2} bgcolor={slider?.bgColor}/>
+            <Slider img1={slider?.img1} img2={slider?.img2} text={slider?.text} textColor={slider?.textColor} paragraph={slider?.paragraph} paragraphColor={slider?.paragraphColor} paragraph2={slider?.paragraph2} paragraph2Color={slider?.paragraph2Color} bgcolor={slider?.bgColor}/>
         </div>
         ))}
       </div>

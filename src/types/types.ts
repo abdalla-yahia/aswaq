@@ -52,3 +52,19 @@ export type PasswordState = {
     oldPassword:string
     newPassword:string
 }
+
+export type CreateCategory = {
+  id?:string
+  name:string
+  description?:string
+  image?:string
+  parentId?:string|null
+  products?:string[]
+}
+export type UpdateCategory = {
+  id:string
+  name?:string
+  description?:string
+  image?:string
+  parentId?:string|null
+}
