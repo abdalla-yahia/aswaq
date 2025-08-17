@@ -1,4 +1,5 @@
 import { CreateAddress } from "@/interfaces/addressInterface";
+import { AddressNewValidation } from "@/validations/AddressValidation";
 import { PrismaClient } from "@prisma/client";
 
 
@@ -20,6 +21,42 @@ const AddressREsolvers = {
                 })
             } catch (error) {
                 return error
+            }
+        },
+        //Update Address
+        updateAddress:async (_:unknown,args:CreateAddress,ctx:{prisma:PrismaClient})=>{
+            try {
+                //Check If Address Already Exist
+                const IsExist = await ctx.prisma.addresses.findUnique({
+                    where:{id:args?.id}
+                })
+                if(!IsExist){
+                    return {success:false,message:"العنوان ليس موجود في قاعدة البيانات"}
+                }
+                const GetDataValidation = AddressNewValidation.pick({
+                    name:true,
+                    address:true,
+                    phone:true
+                })
+                const Validation = GetDataValidation.safeParse({
+                    name:args?.name,
+                    address:args?.address,
+                    phone:args?.phone
+                })
+                if(!Validation.success){
+                    return {success:false,message:Validation?.error?.issues?.map(e=>e?.message).join(', ')}
+                }
+                //Update Address
+                await ctx.prisma.addresses.update({
+                    where:{id:args?.id},
+                    data:Validation?.data
+                })
+                return {
+                    success:true,
+                    message:'Address Updated Successfully'
+                }
+            } catch (error) {
+                return{success:false,message:error}
             }
         },
         //Delete An Existe Address

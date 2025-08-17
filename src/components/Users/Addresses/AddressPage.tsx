@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from "@/libs/Store/Store";
 
 export default function AddressPage() {
-  const {status,error,loading} = useSelector((state:RootState)=>state.address)
+  const {status} = useSelector((state:RootState)=>state.address)
   const {data} = useQuery(GET_ME,{
     fetchPolicy: 'network-only',
   })
@@ -23,12 +23,9 @@ export default function AddressPage() {
         {/**Card Address */}
         {
           data?.me?.alladdresses?.map((address:CreateAddress) => (
-            <Addresses_Details key={address?.id} id={address?.id as string} name={address?.name} Address={address?.address} phone={address?.phone}/>
+            <Addresses_Details key={address?.id} id={address?.id as string} name={address?.name} Address={address?.address} phone={address?.phone} userId={address?.userId}/>
           ))
         }
-          {
-            loading && <p className='text-yellow-500'>جارٍ حذف العنوان</p>
-          }
       </div>
       {/**Add A new Addresses*/}
       <Add_New_Addresses />

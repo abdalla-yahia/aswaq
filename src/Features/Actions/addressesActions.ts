@@ -1,4 +1,4 @@
-import { CREATE_ADDRESS, DELETE_ADDRESS, GET_ALL_ADDRESSES } from "@/Graphql/Schemas/AddressQuery";
+import { CREATE_ADDRESS, DELETE_ADDRESS, GET_ALL_ADDRESSES, UPDATE_ADDRESS } from "@/Graphql/Schemas/AddressQuery";
 import { CreateAddress } from "@/interfaces/addressInterface";
 import { client } from "@/libs/Apollo/ApolloClient";
 import { ApolloError } from "@apollo/client";
@@ -39,6 +39,22 @@ export const createAddress  = createAsyncThunk('address/create',async (NewAddres
         }
         })
 
+//Edit Address
+export const updateAddress = createAsyncThunk('address/update',async(NewData:CreateAddress)=>{
+    try {
+        const {data} = await client.mutate({
+            mutation:UPDATE_ADDRESS,
+            variables:NewData
+        })
+        if(data?.updateAddress?.success === false){
+            toast.error(data?.updateAddress?.message)
+        }else toast.success('تم  تحديث العنوان بنجاح')
+        return data?.updateAddress
+    } catch (error) {
+        toast.error('فشل في تحديث العنوان')
+        console.error(error)
+    }
+})
 //Delete Address
 export const deleteAddress = createAsyncThunk('address/delete',async (id: string)=>{
     try {

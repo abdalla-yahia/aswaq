@@ -22,7 +22,14 @@ mutation createAddress($name:String!,$address:String!,$phone:String,$userId:Stri
 }
 `
 
-// export const UPDATE_ADDRESS = gql``
+export const UPDATE_ADDRESS = gql`
+mutation updataAddress($id:ID!,$name:String!,$address:String!,$phone:String){
+    updateAddress(id:$id,name:$name,address:$address,phone:$phone){
+        success
+        message
+    }
+}
+`
 
 export const DELETE_ADDRESS = gql`
 mutation deleteAddress($id:ID!){

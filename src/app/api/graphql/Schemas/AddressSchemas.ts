@@ -19,7 +19,7 @@ type Query {
 
 type Mutation {
     createAddress(name: String!, address: String!, phone: String,userId:String!): Address!
-    updateAddress(id: ID!, name: String!, address: String!, phone: String): Address
+    updateAddress(id: ID!, name: String!, address: String!, phone: String): Status!
     deleteAddress(id: ID!): Status!
     }
 `
