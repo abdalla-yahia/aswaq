@@ -22,7 +22,7 @@ export default function UploadImage({
       "upload_preset",
       process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!
     );
-
+    //Upload Image On Cloud
     const res = await fetch(
       `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
       { method: "POST", body: formData }
@@ -33,8 +33,8 @@ export default function UploadImage({
   };
 
   return (
-    <div>
-      <label htmlFor="uploadimage" className="cursor-pointer">
+    <div className="w-full flex justify-center" >
+      <label htmlFor="uploadimage" className="cursor-pointer" title="ارفع صورة من الملفات">
         <input
           type="file"
           id="uploadimage"
@@ -43,9 +43,9 @@ export default function UploadImage({
           onChange={(e) => handleUpload(e.target.files?.[0] || null)}
         />
         <Image
-          src={preview || imageUrl || "/images/logo.png"}
+          src={preview || imageUrl || "https://static.vecteezy.com/system/resources/previews/009/875/156/large_2x/3d-picture-icon-blue-white-color-free-png.png"}
           alt="Uploaded"
-          width={100}
+          width={150}
           height={100}
         />
       </label>

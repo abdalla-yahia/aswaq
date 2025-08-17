@@ -1,7 +1,7 @@
 'use client'
 import { useActionState, useState } from "react";
-import InputButton from "../Bottons/Input-button";
-import SubmitButton from "../Bottons/Submit-button";
+import InputButton from "../../Bottons/Input-button";
+import SubmitButton from "../../Bottons/Submit-button";
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 import { CreateAddress } from "@/interfaces/addressInterface";
@@ -11,54 +11,54 @@ import { createAddress } from "@/Features/Actions/addressesActions";
 import { AddressNewValidation } from "@/validations/AddressValidation";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import FullAddress from "../FullAddress";
+import FullAddress from "../../FullAddress";
 
 export default function Anew_Addresses_Form() {
-  const {address,error,loading} = useSelector((state:RootState)=>state.address)
-    const [governorate, setGovernorate] = useState<{ id: string, name: string }>({ id: '', name: '' });
-    const [department, setDepartment] = useState<{ id: string, name: string }>({ id: '', name: '' });
-    const [neighborhood, setNeighborhood] = useState<{ id: string, name: string }>({ id: '', name: '' });
-    const [addressDetails, setAddressDetails] = useState('');
-  
-    const fullAddress = [
-      governorate.name,
-      department.name,
-      neighborhood.name,
-      addressDetails
-    ].filter(Boolean).join(' - ');
+  const { address, error, loading } = useSelector((state: RootState) => state.address)
+  const [governorate, setGovernorate] = useState<{ id: string, name: string }>({ id: '', name: '' });
+  const [department, setDepartment] = useState<{ id: string, name: string }>({ id: '', name: '' });
+  const [neighborhood, setNeighborhood] = useState<{ id: string, name: string }>({ id: '', name: '' });
+  const [addressDetails, setAddressDetails] = useState('');
 
-  const {data}= useQuery(GET_ME,{
+  const fullAddress = [
+    governorate.name,
+    department.name,
+    neighborhood.name,
+    addressDetails
+  ].filter(Boolean).join(' - ');
+
+  const { data } = useQuery(GET_ME, {
     fetchPolicy: 'network-only',
   })
   const dispatch = useAppDispatch()
-  const AddAnewAddress = (prevState:CreateAddress,formData:FormData):FormAddress=>{
+  const AddAnewAddress = (prevState: CreateAddress, formData: FormData): FormAddress => {
     const newAddress = {
       ...prevState,
-      name:formData.get('NameAddres') as string,
-      address:fullAddress as string,
-      phone:formData.get('PhoneAddress') as string,
-      userId:data?.me?.id
+      name: formData.get('NameAddres') as string,
+      address: fullAddress as string,
+      phone: formData.get('PhoneAddress') as string,
+      userId: data?.me?.id
     }
     //Check Validation Inputs
     const validation = AddressNewValidation.safeParse(newAddress)
-    if(!validation.success){
-      toast.error(validation?.error?.issues.map(e=>e.message))
+    if (!validation.success) {
+      toast.error(validation?.error?.issues.map(e => e.message))
     }
     console.log(newAddress)
     dispatch(createAddress(newAddress))
     return newAddress as FormAddress;
-  
-  }
-
-  const initialState:FormAddress = {
-    name:'',
-    address:'',
-    phone:'',
-    userId:'',
 
   }
-  const [state, formAction] = useActionState(AddAnewAddress,initialState);
-  if(address?.name){
+
+  const initialState: FormAddress = {
+    name: '',
+    address: '',
+    phone: '',
+    userId: '',
+
+  }
+  const [state, formAction] = useActionState(AddAnewAddress, initialState);
+  if (address?.name) {
     window.location.reload()
   }
   return (
@@ -71,7 +71,7 @@ export default function Anew_Addresses_Form() {
         <div className="flex justify-between items-center w-full gap-2">
           <h2>اسم العنون : </h2>
           <div className="w-3/4">
-            <InputButton  type="text" name="NameAddres" placeholder="أضف اسم العنوان " requird/>
+            <InputButton type="text" name="NameAddres" placeholder="أضف اسم العنوان " requird />
           </div>
         </div>
         {/*Address */}
@@ -85,7 +85,7 @@ export default function Anew_Addresses_Form() {
         <div className="flex justify-between items-center w-full gap-2">
           <h2>رقم الهاتف : </h2>
           <div className="w-3/4">
-            <InputButton  type="text" name="PhoneAddress" placeholder="أضف رقم الهاتف للعنوان " />
+            <InputButton type="text" name="PhoneAddress" placeholder="أضف رقم الهاتف للعنوان " />
           </div>
         </div>
         {
@@ -94,8 +94,8 @@ export default function Anew_Addresses_Form() {
         {
           address?.name && <p className="text-green-500">تم حفظ عنوان  {address?.name} بنجاح</p>
         }
-          <p className='flex justify-start items-center text-center'>العلامة <span className='text-red-500 text-3xl mx-1'>*</span> تعني ان الحقل مطلوب </p>
-        {department.name && neighborhood.name  && <SubmitButton  text={loading?'جارٍ الحفظ....':'حفظ'} bgcolor="bg-accent" textcolor="" />}
+        <p className='flex justify-start items-center text-center'>العلامة <span className='text-red-500 text-3xl mx-1'>*</span> تعني ان الحقل مطلوب </p>
+        {department.name && neighborhood.name && <SubmitButton text={loading ? 'جارٍ الحفظ....' : 'حفظ'} bgcolor="bg-accent" textcolor="" />}
       </div>
     </form>
   )

@@ -37,5 +37,7 @@ type Mutation {
         image:String
         parentId:String
     ):CreateStatus!
+    # Deletet Category
+    deleteACategory(id:ID!):CreateStatus
 }
 `

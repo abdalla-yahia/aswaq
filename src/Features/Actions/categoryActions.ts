@@ -1,4 +1,4 @@
-import { CREATE_CATEGORY, GET_ALL_CATEGORIES, UPDATE_CATEGORY } from "@/Graphql/Schemas/CategoryQuery";
+import { CREATE_CATEGORY, DELETE_CATEGORY, GET_ALL_CATEGORIES, UPDATE_CATEGORY } from "@/Graphql/Schemas/CategoryQuery";
 import { client } from "@/libs/Apollo/ApolloClient";
 import { CreateCategory, UpdateCategory } from "@/types/types";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -50,6 +50,23 @@ export const updateCategory = createAsyncThunk('category/update',async (NewData:
         return data?.updateACategory
     } catch (error) {
         toast.error('فشل فى تحديث التصنيف')
+        console.error(error)
+    }
+})
+
+//Delete Category
+export const deleteCategory = createAsyncThunk('category/delete',async(id:string)=>{
+    try {
+        const {data}= await client.mutate({
+            mutation:DELETE_CATEGORY,
+            variables:{id}
+        })
+        if(data?.deleteACategory?.success === false){
+            toast.error(data?.deleteACategory?.message)
+        }else toast.success('تم حذف التصنيف بنجاح')
+        return data?.deleteACategory
+    } catch (error) {
+        toast.error('فشل في حذف التصنيف')
         console.error(error)
     }
 })

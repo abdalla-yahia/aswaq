@@ -1,4 +1,4 @@
-import Create_Anew_Category from "@/utils/Forms/Create_Anew_Category";
+import Create_Anew_Category from "@/utils/Forms/Category/Create_Anew_Category";
 
 
 export default function New_Details() {

@@ -1,6 +1,6 @@
 import {gql} from '@apollo/client';
 
-
+//Create Anew Category
 export const CREATE_CATEGORY = gql`
 
 mutation createCategory($name:String!,$description:String,$image:String,$parentId:String){
@@ -15,7 +15,7 @@ mutation createCategory($name:String!,$description:String,$image:String,$parentI
     }
 }
 `
-
+//Fetch All Categories
 export const GET_ALL_CATEGORIES = gql`
 query {
     AllCategories{
@@ -31,10 +31,18 @@ query {
     }
 }
 `
-
+//Update Category
 export const UPDATE_CATEGORY = gql`
 mutation updateACategory($id:ID!,$name:String,$description:String,$image:String,$parentId:String){
     updateACategory(id:$id,name:$name,description:$description,image:$image,parentId:$parentId){
+        message
+    }
+}
+`
+//Delete Category
+export const DELETE_CATEGORY = gql`
+mutation deleteACategory($id:ID!){
+    deleteACategory(id:$id){
         message
     }
 }

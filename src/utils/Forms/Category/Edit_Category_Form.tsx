@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
-import InputButton from "../Bottons/Input-button";
-import SubmitButton from "../Bottons/Submit-button";
-import UploadImage from "../UploadImage";
+import InputButton from "../../Bottons/Input-button";
+import SubmitButton from "../../Bottons/Submit-button";
+import UploadImage from "../../UploadImage";
 import { GET_ALL_CATEGORIES } from "@/Graphql/Schemas/CategoryQuery";
 import { SetStateAction, useActionState, useState } from "react";
 import { useAppDispatch } from "@/libs/Store/Store";
@@ -44,9 +44,11 @@ export default function Edit_Category_Form({cat}:{cat:UpdateCategory}) {
         parentId:cat?.parentId
     }
     const [state,actionState] = useActionState(EditCategory,initialState)
-    if(state?.id){
-        window.location.reload()
-    }
+
+    // @To-Do Reload Page After Update Element
+    //     window.location.reload()
+    // 
+    
   return (
     <form action={actionState} >
          {/*Category Image*/}
@@ -54,7 +56,7 @@ export default function Edit_Category_Form({cat}:{cat:UpdateCategory}) {
                 {/*Category Image URL*/}
                 <InputButton type="text" placeholder="رابط الصورة" name="CategoryImageUrl" />
                 {/*Category Name*/}
-                <InputButton type="text" placeholder={cat?.name || "اسم التصنيف"} name="CategoryName" requird/>
+                <InputButton type="text" placeholder={cat?.name || "اسم التصنيف"} name="CategoryName" />
                 {/*Category Description*/}
                 <InputButton type="text" placeholder={cat?.description || 'وصف التصنيف'} name="CategoryDescription" />
                 {/*Category ParentId*/}

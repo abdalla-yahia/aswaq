@@ -1,5 +1,5 @@
 
-import LoginForm from "@/utils/Forms/Login-Form";
+import LoginForm from "@/utils/Forms/Auth/Login-Form";
 import Image from "next/image";
 import Link from "next/link";
 

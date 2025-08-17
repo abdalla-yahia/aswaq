@@ -3,7 +3,8 @@ import { deleteAddress } from '@/Features/Actions/addressesActions';
 import { useAppDispatch } from '@/libs/Store/Store';
 import * as icon from '@/utils/Icons/Icons';
 import { useState } from 'react';
-import Edite_Address_Form from '../../../../utils/Forms/Edite_Address_Form';
+import Edite_Address_Form from '../../../../utils/Forms/Address/Edite_Address_Form';
+import swal from 'sweetalert';
 
 export default function Addresses_Details({id,name,Address,phone,userId}:{id:string,name:string,Address:string,phone?:string,userId:string}) {
   const [isEditAddress,setIsEditAddress] = useState(false)
@@ -11,7 +12,25 @@ export default function Addresses_Details({id,name,Address,phone,userId}:{id:str
 
   const DeleteAddressHandller = ()=>{
     // Delete Address Logic
-    dispatch(deleteAddress(id))
+    swal({
+            title: "هل أنت متأكد من الحذف؟",
+            text: "بمجرد حذف التصنيف سيتم مسحة نهائياً ولن تستطع إستعادة بياناته مرة أخرى!",
+            icon: "warning",
+            dangerMode: true,
+            buttons:["إلغاء", "حذف"]
+          })
+        .then((willDelete) => {
+          if (willDelete) {
+            dispatch(deleteAddress(id))
+            swal("تم حذف التصنيف", {
+              icon: "success",
+            });
+            window.location.reload()
+          } else {
+            swal("أنت الأن في أمان لم يتم الحذف!");
+          }
+        });
+    
   }
   
   return (

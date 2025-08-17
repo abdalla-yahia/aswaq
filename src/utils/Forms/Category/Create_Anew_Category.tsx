@@ -1,8 +1,8 @@
 'use client'
 import { SetStateAction, useActionState, useState } from "react";
-import InputButton from "../Bottons/Input-button";
-import SubmitButton from "../Bottons/Submit-button";
-import UploadImage from "../UploadImage";
+import InputButton from "../../Bottons/Input-button";
+import SubmitButton from "../../Bottons/Submit-button";
+import UploadImage from "../../UploadImage";
 import { CreateCategory } from "@/types/types";
 import { CreateCategoryValidation } from "@/validations/CategoryValidation";
 import { toast } from "react-toastify";

@@ -1,4 +1,4 @@
-import RegisterForm from "@/utils/Forms/Register-Form";
+import RegisterForm from "@/utils/Forms/Auth/Register-Form";
 import Image from "next/image";
 import Link from "next/link";
 

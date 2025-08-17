@@ -71,6 +71,19 @@ const categoryMutations = {
                 return {success:false,message:error}
             }
         },
+        deleteACategory:async(_:unknown,args:{id:string},ctx:{prisma:PrismaClient})=>{
+            try{
+                //Check If Category Existes
+                const IsExists = await ctx.prisma.category.findUnique({where:{id:args?.id}})
+                if(!IsExists){
+                    return {success:false,message:'هذا التصنيف ليس موجود'}
+                }
+                const DeleteCategory = await ctx.prisma.category.delete({where:{id:args?.id}})
+                return {success:true,message:'Category Deleted Successfully',category:DeleteCategory}
+            }catch(error){
+                return {success:false,message:error}
+            }
+        },
     }
 }
 
