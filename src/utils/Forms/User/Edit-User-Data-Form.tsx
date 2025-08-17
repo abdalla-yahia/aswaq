@@ -4,13 +4,13 @@ import DatePicker from 'react-datepicker';
 import * as icon from '@/utils/Icons/Icons';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '@/Graphql/Schemas/UserQuery';
-import InputButton from '../Bottons/Input-button';
+import InputButton from '../../Bottons/Input-button';
 import { FormEdit } from '@/types/types';
 import { UserUpdateValidation } from '@/validations/UserValidation';
 import { toast } from 'react-toastify';
 import { RootState, useAppDispatch } from '@/libs/Store/Store';
 import { updateUser } from '@/Features/Actions/usersActions';
-import UploadImage from '../UploadImage';
+import UploadImage from '../../UploadImage';
 import { useSelector } from 'react-redux';
 import { Gender } from '@prisma/client';
 

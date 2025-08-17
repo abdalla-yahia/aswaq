@@ -1,8 +1,8 @@
 'use client'
 import { SetStateAction, useActionState, useEffect, useState } from 'react';
-import InputButton from "../Bottons/Input-button";
-import PasswordButton from "../Bottons/Password-button";
-import SubmitButton from "../Bottons/Submit-button";
+import InputButton from "../../Bottons/Input-button";
+import PasswordButton from "../../Bottons/Password-button";
+import SubmitButton from "../../Bottons/Submit-button";
 import { useSelector } from 'react-redux';
 import { useAppDispatch, RootState } from '@/libs/Store/Store';
 import { createUser } from '@/Features/Actions/usersActions';
@@ -10,7 +10,7 @@ import { FormState } from '@/types/types';
 import { UserCreateSchemaValidaion } from '@/validations/UserValidation';
 import * as icon from '@/utils/Icons/Icons'
 import DatePicker from 'react-datepicker';
-import FullAddress from '../FullAddress';
+import FullAddress from '../../FullAddress';
 import { toast } from "react-toastify";
 import { Gender } from '@prisma/client';
 import { createAddress } from '@/Features/Actions/addressesActions';
