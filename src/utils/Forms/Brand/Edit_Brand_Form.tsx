@@ -47,7 +47,7 @@ export default function Edit_Brand_Form({brand}:{brand:UpdateBrand}) {
          {/*Brand Image*/}
                 <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
                 {/*Brand Image URL*/}
-                <InputButton type="text" placeholder="رابط الصورة" name="BrandImageUrl" />
+                <InputButton type="text" onchange={(e)=>setImageUrl(e.target.value)} placeholder="رابط الصورة" name="BrandImageUrl" />
                 {/*Brand Name*/}
                 <InputButton type="text" placeholder={brand?.name || "اسم البراند"} name="BrandName" />
                 {/*Brand Description*/}

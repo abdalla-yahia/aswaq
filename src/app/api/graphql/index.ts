@@ -7,6 +7,8 @@ import {categorySchema} from './Schemas/CategorySchemas';
 import {CategoryResolvers} from './Resolvers/CategoryResolvers';
 import { brandSchema } from './Schemas/BrandSchemas';
 import { BrandResolvers } from './Resolvers/BrandResolvers';
+import { productResolvers } from './Resolvers/ProductResolvers';
+import { productSchemas } from './Schemas/ProductSchemas';
 
 
 export const typeDefs = mergeTypeDefs([
@@ -18,6 +20,7 @@ export const typeDefs = mergeTypeDefs([
   AddressSchemas,
   categorySchema,
   brandSchema,
+  productSchemas,
 ]);
 
 export const resolvers = mergeResolvers([
@@ -25,4 +28,5 @@ export const resolvers = mergeResolvers([
   AddressResolvers,
   CategoryResolvers,
   BrandResolvers,
+  productResolvers,
 ]);

@@ -1,21 +1,25 @@
 'use client'
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import categories from "@/utils/Get_All_Categories"
 import DropDown from "@/components/Header/DropDown/DropDown"
+import { useQuery } from "@apollo/client"
+import { GET_ALL_CATEGORIES } from "@/Graphql/Schemas/CategoryQuery"
+import { CreateCategory } from "@/types/types"
 
 
 export default function SubNavBar() {
+    const {data} = useQuery(GET_ALL_CATEGORIES,{
+        fetchPolicy: 'network-only',
+    })
     const [count,setCount]=useState(5)
     const [toggle,setToggle]=useState(false)
     const [show,setShow]=useState(false)
 
     useEffect(()=>{
         if(toggle){
-            setCount(categories?.length)
+            setCount(data?.AllCategories?.category?.length)
         }else setCount(5)
     },[toggle])
-
     const handleClicked =(e:React.MouseEvent<HTMLDivElement>)=>{
            const target = e.target as HTMLElement;
                 if (target.closest('a')) {
@@ -27,12 +31,12 @@ export default function SubNavBar() {
     <nav className="w-full bg-background relative">
         <ul className="w-full bg-background flex justify-start items-start pr-5 gap-0 overflow-scroll scrollbar-none">
             {
-                categories?.slice(0,count).map(category=>{
+                data?.AllCategories?.category?.slice(0,count).map((category:CreateCategory)=>{
                     return(
                         <li onMouseEnter={() => setShow(true)}
                             onMouseLeave={() => setShow(false)}
                             className="hover:bg-accent hover:text-black transition-all group px-5" key={category?.id}>
-                                <Link href={`/categories/${category.title}`}>{category?.title}</Link>
+                                <Link href={`/categories/${category.name}`}>{category?.name}</Link>
                             <div onClick={(e)=>handleClicked(e)} 
                             className={`menu_category shadow transition-all hidden  md:group-hover:block absolute z-50 top-6 right-0 h-fit bg-gradient-to-l from-[var(--accent)] to-[var(--background)] min-w-full 
                             ${show ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}

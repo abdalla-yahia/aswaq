@@ -1,4 +1,4 @@
-import { Gender } from "@prisma/client";
+import { DiscountType, Gender, ProductStatus } from "@prisma/client";
 export type User = {
   id: string;
   name: string;
@@ -87,4 +87,30 @@ export type UpdateBrand = {
   name?:string
   description?:string
   logo?:string
+}
+
+export type CreateProductType = {
+  id?: string
+  title: string
+  description?: string
+  price:number
+  oldPrice?: number
+  discountType?: DiscountType
+  discountValue?: number
+  quantity: number
+  image?: string
+  category?: {
+    id: string
+    name: string
+  }
+  brand?: {
+    id: string
+    name: string
+  }
+  categoryId?: string |null
+  brandId?: string |null
+  isFeatured?: boolean
+  status?: ProductStatus
+  metaTitle?: string
+  metaDesc?: string
 }

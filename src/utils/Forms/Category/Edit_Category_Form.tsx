@@ -54,7 +54,7 @@ export default function Edit_Category_Form({cat}:{cat:UpdateCategory}) {
          {/*Category Image*/}
                 <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
                 {/*Category Image URL*/}
-                <InputButton type="text" placeholder="رابط الصورة" name="CategoryImageUrl" />
+                <InputButton type="text" onchange={(e)=>setImageUrl(e.target.value)} placeholder="رابط الصورة" name="CategoryImageUrl" />
                 {/*Category Name*/}
                 <InputButton type="text" placeholder={cat?.name || "اسم التصنيف"} name="CategoryName" />
                 {/*Category Description*/}

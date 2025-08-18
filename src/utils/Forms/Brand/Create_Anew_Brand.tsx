@@ -42,7 +42,7 @@ export default function Create_Anew_Brand() {
         {/*Brand Image*/}
         <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
         {/*Brand Image URL*/}
-        <InputButton type="text" placeholder="رابط الصورة" name="BrandImageUrl" />
+        <InputButton type="text" onchange={(e)=>setImageUrl(e.target.value)} placeholder="رابط الصورة" name="BrandImageUrl" />
         {/*Brand Name*/}
         <InputButton type="text" placeholder="اسم البراند" name="BrandName" requird/>
         {/*Brand Description*/}

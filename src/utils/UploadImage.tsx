@@ -1,14 +1,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function UploadImage({
-  imageUrl,
-  setImageUrl
-}: {
-  imageUrl: string;
-  setImageUrl: (url: string) => void;
-}) {
-  const [preview, setPreview] = useState<string>("");
+export default function UploadImage({imageUrl,setImageUrl}: {imageUrl: string;setImageUrl: (url: string) => void;}) {
+  const [preview, setPreview] = useState<string>(imageUrl);
 
   const handleUpload = async (file: File | null) => {
     if (!file) return;

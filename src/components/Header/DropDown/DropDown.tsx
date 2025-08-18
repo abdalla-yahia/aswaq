@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Products from '@/db/products_dataset.json';
 import BrandCard from "@/components/Brands/Brand-Card/Brand-Card";
+import { CreateCategory } from "@/types/types";
 
-export default function DropDown({category}:{category:{id:number,title:string,image:string}}) {
+export default function DropDown({category}:{category:CreateCategory}) {
     const brands:{id:number,title:string,brnadImage:string}[] = [];
-    const productsOfCategory = Products?.data?.filter(product => product?.category === category?.title);
+    const productsOfCategory = Products?.data?.filter(product => product?.category === category?.name);
     
     productsOfCategory?.forEach(product=>{
         const brandExist = brands?.find(brand=>brand.title === product.brand)
@@ -21,7 +22,7 @@ export default function DropDown({category}:{category:{id:number,title:string,im
     return (
     <>
     {/**Category Title*/}
-    <h2 className="text-2xl font-bold mx-2 text-accent">{category?.title}</h2>
+    <h2 className="text-2xl font-bold mx-2 text-accent">{category?.name}</h2>
     <div className="w-full px-5 flex justify-between items-start">
         
     {/**Category Content*/}
@@ -79,7 +80,7 @@ export default function DropDown({category}:{category:{id:number,title:string,im
     </div>
     {/**Category Image*/}
     <div className="flex flex-col items-start w-1/4">
-            <Image src={category?.image} alt={category?.title} width={350} height={350} />
+            <Image src={category?.image as string} alt={category?.name} width={350} height={350} />
         </div>
     </div>
     </>

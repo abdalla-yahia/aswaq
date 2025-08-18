@@ -49,7 +49,7 @@ export default function Create_Anew_Category() {
         {/*Category Image*/}
         <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
         {/*Category Image URL*/}
-        <InputButton type="text" placeholder="رابط الصورة" name="CategoryImageUrl" />
+        <InputButton type="text" onchange={(e)=>setImageUrl(e.target.value)} placeholder="رابط الصورة" name="CategoryImageUrl" />
         {/*Category Name*/}
         <InputButton type="text" placeholder="اسم التصنيف" name="CategoryName" requird/>
         {/*Category Description*/}

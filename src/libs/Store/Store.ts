@@ -4,6 +4,7 @@ import usersSlice from '@/Features/Reducers/userSlice';
 import addressSlice from '@/Features/Reducers/addressSlices';
 import categorySlice from '@/Features/Reducers/categorySlice';
 import brandSlice from '@/Features/Reducers/brandSlice';
+import productSlice from '@/Features/Reducers/productSlices';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     address: addressSlice,
     category:categorySlice,
     brand:brandSlice,
+    product:productSlice,
   },
 });
 
