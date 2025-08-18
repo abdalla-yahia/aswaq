@@ -18,6 +18,7 @@ export default function Sub_Details() {
               <th className="p-3">الصورة</th>
               <th className="p-3">الاسم الفرعي</th>
               <th className="p-3">التصنيف الرئيسي</th>
+              <th className="p-3">الوصف</th>
               <th className="p-3">عدد المنتجات</th>
               <th className="p-3">الإجراءات</th>
             </tr>

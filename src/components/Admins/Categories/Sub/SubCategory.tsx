@@ -41,6 +41,7 @@ export default function SubCategory({sub}: { sub: CreateCategory }) {
                 <td className="p-3 font-medium">{sub?.name}</td>
                 <td className="p-3">{sub?.parent?.name}</td>
                 <td className="p-3">{sub?.description}</td>
+                <td className="p-3">{sub?.products?.length || 0}</td>
                 <td className="p-3 space-x-2 rtl:space-x-reverse">
                     {/*Actions Of Category*/}
                         <div className="flex gap-2">
