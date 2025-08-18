@@ -107,7 +107,7 @@ const productsMutations = {
     deleteProduct: async (_: unknown, args: { id: string }, ctx: { prisma: PrismaClient }) => {
       try {
         const deletedProduct = await ctx.prisma.product.delete({
-          where: { id: args.id },
+          where: { id: args?.id },
         });
         return { success: true, message: 'Product deleted successfully', product: deletedProduct };
       } catch (error) {

@@ -179,3 +179,10 @@ export const GET_PRODUCTS_BY_BRAND_ID = gql`
         }
     }
 `;
+
+// GraphQL mutation to delete a product
+export const DELETE_PRODUCT = gql`
+    mutation deleteProduct($id: ID!) {
+        deleteProduct(id: $id)
+    }
+`;
