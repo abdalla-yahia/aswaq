@@ -8,6 +8,7 @@ type Category {
     image:String
     parentId:String
     products:[String]
+    parent:Category
 }
 type CreateStatus {
     message:String

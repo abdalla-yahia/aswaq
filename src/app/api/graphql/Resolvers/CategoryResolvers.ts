@@ -6,7 +6,14 @@ const categoryQueries = {
     Query:{
         AllCategories:async (_:unknown,__:unknown,ctx:{prisma:PrismaClient})=>{
             try{
-                const AllCategories = await ctx.prisma.category.findMany()
+                const AllCategories = await ctx.prisma.category.findMany({
+                    include:{
+                        parent:true
+                    },
+                    orderBy:{
+                        createdAt:'desc'
+                    }
+                })
                 return {success:true,message:'Get All Categories Successfully',category:AllCategories}
             }catch(error){
                 return {success:false,message:error}

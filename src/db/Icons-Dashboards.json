@@ -140,12 +140,7 @@
       "icon": "VscTypeHierarchySub",
       "href": "/admins/categories/sub"
     },
-    {
-      "id": 12,
-      "title": "إضافة تصنيف فرعي جديد",
-      "icon": "AiOutlineAppstoreAdd",
-      "href": "/admins/categories/sub/new"
-    },
+
     {
       "id": 13,
       "title": "البراندات",

@@ -60,6 +60,10 @@ export type CreateCategory = {
   image?:string
   parentId?:string|null
   products?:string[]
+  parent?:{
+    id:string
+    name:string
+  } | null
 }
 export type UpdateCategory = {
   id:string

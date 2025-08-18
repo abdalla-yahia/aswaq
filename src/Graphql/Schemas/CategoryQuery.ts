@@ -27,6 +27,10 @@ query {
             image
             parentId
             products
+            parent{
+                id
+                name
+            }
         }
     }
 }
