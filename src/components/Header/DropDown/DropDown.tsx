@@ -1,19 +1,25 @@
+'use client'
 import Image from "next/image";
-import Products from '@/db/products_dataset.json';
 import BrandCard from "@/components/Brands/Brand-Card/Brand-Card";
-import { CreateCategory } from "@/types/types";
+import { CreateCategory, CreateProductType } from "@/types/types";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_PRODUCTS } from "@/Graphql/Schemas/ProducrQuery";
 
 export default function DropDown({category}:{category:CreateCategory}) {
+    const {data: AllProducts} = useQuery(GET_ALL_PRODUCTS,{
+        fetchPolicy: "cache-and-network"
+    })
+    const Products = AllProducts?.AllProducts?.products as CreateProductType[] | undefined;
     const brands:{id:number,title:string,brnadImage:string}[] = [];
-    const productsOfCategory = Products?.data?.filter(product => product?.category === category?.name);
+    const productsOfCategory = Products?.filter((product:CreateProductType) => product?.category?.name === category?.name);
     
-    productsOfCategory?.forEach(product=>{
-        const brandExist = brands?.find(brand=>brand.title === product.brand)
+    productsOfCategory?.forEach((product:CreateProductType)=>{
+        const brandExist = brands?.find(brand=>brand.title === product?.brand?.name)
         if(!brandExist){
             brands.push({
                 id:brands.length + 1,
-                title:product?.brand,
-                brnadImage:product?.brandImage
+                title:product?.brand?.name as string,
+                brnadImage:product?.brand?.logo as string
             })
         }
     }

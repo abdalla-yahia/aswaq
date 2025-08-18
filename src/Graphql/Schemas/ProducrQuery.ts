@@ -81,10 +81,12 @@ export const GET_ALL_PRODUCTS = gql`
         category{
             id
             name
+            image
         }
         brand{
             id
             name
+            logo
         }
         }
         }
@@ -93,7 +95,7 @@ export const GET_ALL_PRODUCTS = gql`
 
 // GraphQL query to fetch a product by ID
 export const GET_PRODUCT_BY_ID = gql`
-    query GetProductById($id: String!) {
+    query GetProductById($id: ID!) {
         product(id: $id) {  
             id
             title
@@ -113,23 +115,25 @@ export const GET_PRODUCT_BY_ID = gql`
             category {
                 id
                 name
+                image
             }
             brand {
                 id
                 name
+                logo
             }
 
-            reviews {
-                id
-                rating
-                comment
-                user {
-                    id
-                    name
-                }
-            }
-            createdAt
-            updatedAt
+            # reviews {
+            #     id
+            #     rating
+            #     comment
+            #     user {
+            #         id
+            #         name
+            #     }
+            # }
+            # createdAt
+            # updatedAt
         }
     }
 `;

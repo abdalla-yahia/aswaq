@@ -1,16 +1,21 @@
+'use client';
 import ProductCard from "@/components/Products/Card/Product-Card";
-import products from '@/db/products_dataset.json';
+import { GET_ALL_PRODUCTS } from "@/Graphql/Schemas/ProducrQuery";
+import { CreateProductType } from "@/types/types";
+import { useQuery } from "@apollo/client";
 
-export default async function Similar_Products({category,brand}:{category?:string,brand?:string}) {
-
-  const similarProducts = products?.data?.filter((product) => product?.category === category || product?.brand === brand);
+export default function Similar_Products({category,brand}:{category?:string,brand?:string}) {
+      const {data: Allproducts} = useQuery(GET_ALL_PRODUCTS, {
+        fetchPolicy: 'cache-and-network'})
+      const products = Allproducts?.GetAllProducts?.products
+  const similarProducts = products?.data?.filter((product:CreateProductType) => product?.category === category || product?.brand === brand);
   return (
     <div className="w-full py-6 px-2">
       <h1 className="mb-5 text-3xl">منتجات مشابهة </h1>
       <div className="w-full min-h-[400px]  flex justify-between items-start gap-0 flex-wrap p main">
     {
-          similarProducts?.slice(0,12)?.map((product) => (
-            <ProductCard id={product?.id as unknown as string} key={product?.id} img={product?.image} title={product?.title} describtion={product?.description} price={product?.price} rate={product?.rating} category={product?.category} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+          similarProducts?.slice(0,12)?.map((product:CreateProductType) => (
+                <ProductCard key={Number(product?.id)} id={product?.id as unknown as string} img={product?.image as string} title={product?.title} describtion={product?.description as string} price={product?.price} rate={product?.rating as number} category={product?.category?.name as string} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
           ))
       }
       </div>

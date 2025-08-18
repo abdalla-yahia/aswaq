@@ -102,10 +102,12 @@ export type CreateProductType = {
   category?: {
     id: string
     name: string
+    image: string
   }
   brand?: {
     id: string
     name: string
+    logo: string
   }
   categoryId?: string |null
   brandId?: string |null
@@ -113,4 +115,6 @@ export type CreateProductType = {
   status?: ProductStatus
   metaTitle?: string
   metaDesc?: string
+  rating?:number
+  // reviews?:number
 }

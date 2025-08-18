@@ -2,60 +2,60 @@
 import SubmitButton from "@/utils/Bottons/Submit-button";
 import Image from "next/image";
 import Link from "next/link";
-import products from '@/db/products_dataset.json';
 import * as icon from '@/utils/Icons/Icons';
+import { CreateProductType } from "@/types/types";
 
-export default function Product_Info({ id }: { id: string }) {
-    const item = products.data.find(ele => ele.id === parseInt(id))
+export default function Product_Info({ product }: { product: CreateProductType }) {
+    
     return (
         <>
-            <h1 className="mb-5 text-3xl">تفاصيل {item?.title}</h1>
+            <h1 className="mb-5 text-3xl">تفاصيل {product?.title}</h1>
             <div className="flex flex-col md:flex-row justify-center items-center md:justif-start md:items-start w-full gap-3">
                 {/*Product Images */}
-                <Image loading="lazy" className="shadow-accent" src={item?.image as string} alt={`منتج ${item?.title}`} width={350} height={250} />
+                <Image loading="lazy" className="shadow-accent" src={product?.image as string} alt={`منتج ${product?.title}`} width={350} height={250} />
                 <div className="flex flex-col jusify-start items-start gap-3">
                     {/**Product Name */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">الاسم : </h3>
-                        <p className="text-lg text-muted">{item?.title}</p>
+                        <p className="text-lg text-muted">{product?.title}</p>
                     </div>
                     {/**Product Description */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">تفاصيل : </h3>
-                        <p className="text-lg text-muted">{item?.description}</p>
+                        <p className="text-lg text-muted">{product?.description}</p>
                     </div>
                     {/**Product Price */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">السعر : </h3>
                         <span className="line-through text-gray-600">350</span>
-                        <p className="text-lg text-muted">{item?.price} ج.م</p>
+                        <p className="text-lg text-muted">{product?.price} ج.م</p>
                     </div>
                     {/**Product Colors */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">الألوان : </h3>
                         <p className="text-lg text-muted flex ">
-                            {
-                                item?.colors.map((color, index) =>
+                            {/* {
+                                product?.colors.map((color, index) =>
                                     <p key={index} style={{ background: color }} className={`w-5 h-5 rounded-full mx-2 cursor-pointer  `}></p>
                                 )
-                            }
+                            } */}
                         </p>
                     </div>
                     {/**Product Price */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">المتاح : </h3>
-                        <p className="text-lg text-muted">{item?.stock} قطعه</p>
+                        <p className="text-lg text-muted">{product?.quantity} قطعه</p>
                     </div>
                     {/**Product Rate */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">التقييم : </h3>
-                        <p className="text-xl text-muted text-center">{item?.rating}</p>
+                        <p className="text-xl text-muted text-center">{product?.rating}</p>
                         <p className="text-2xl text-yellow-400 text-center">*****</p>
                     </div>
                     {/**Product Reviews */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">عدد المقيمين : </h3>
-                        <p className="text-lg text-muted">{item?.reviews} شخص</p>
+                        <p className="text-lg text-muted">{0} شخص</p>
                     </div>
                     {/**Add To Cart */}
                     <div className="flex justify-between items-center gap-2">
