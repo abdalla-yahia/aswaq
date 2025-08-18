@@ -5,8 +5,9 @@ import { AddressResolvers } from './Resolvers/AddressResolvers';
 import { AddressSchemas } from './Schemas/AddressSchemas';
 import {categorySchema} from './Schemas/CategorySchemas';
 import {CategoryResolvers} from './Resolvers/CategoryResolvers';
-// import { adminTypeDefs } from './admins/typeDefs';
-// import { adminResolvers } from './admins/resolvers';
+import { brandSchema } from './Schemas/BrandSchemas';
+import { BrandResolvers } from './Resolvers/BrandResolvers';
+
 
 export const typeDefs = mergeTypeDefs([
   `
@@ -15,13 +16,13 @@ export const typeDefs = mergeTypeDefs([
   `,
   userSchemas,
   AddressSchemas,
-  categorySchema
-//   adminTypeDefs,
+  categorySchema,
+  brandSchema,
 ]);
 
 export const resolvers = mergeResolvers([
   userResolvers,
   AddressResolvers,
-  CategoryResolvers
-//   adminResolvers,
+  CategoryResolvers,
+  BrandResolvers,
 ]);

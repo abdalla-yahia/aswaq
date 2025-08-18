@@ -65,10 +65,26 @@ export type CreateCategory = {
     name:string
   } | null
 }
+
 export type UpdateCategory = {
   id:string
   name?:string
   description?:string
   image?:string
   parentId?:string|null
+}
+
+export type CreateBrand = {
+  id?:string
+  name:string
+  description?:string
+  logo?:string
+  products?:string[]
+}
+
+export type UpdateBrand = {
+  id:string
+  name?:string
+  description?:string
+  logo?:string
 }

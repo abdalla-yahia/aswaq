@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import usersSlice from '@/Features/Reducers/userSlice';
 import addressSlice from '@/Features/Reducers/addressSlices';
 import categorySlice from '@/Features/Reducers/categorySlice';
+import brandSlice from '@/Features/Reducers/brandSlice';
 
 export const store = configureStore({
   reducer: {
     user: usersSlice,
     address: addressSlice,
-    category:categorySlice
+    category:categorySlice,
+    brand:brandSlice,
   },
 });
 
