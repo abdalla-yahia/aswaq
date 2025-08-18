@@ -4,16 +4,24 @@ const nextConfig: NextConfig = {
   /* config options here */
   images :{
     remotePatterns:[
-      {
-        protocol:'https',
-        hostname:'static.vecteezy.com',
-        pathname: '/**',
+      // {
+      //   protocol:'https',
+      //   hostname:'static.vecteezy.com',
+      //   pathname: '/**',
+      // },
+      // {
+      //   protocol:'https',
+      //   hostname:'res.cloudinary.com',
+      //   pathname: '/**',
+      // }
+        {
+        protocol: "https",
+        hostname: "**", // معناه أي دومين
       },
       {
-        protocol:'https',
-        hostname:'res.cloudinary.com',
-        pathname: '/**',
-      }
+        protocol: "http",
+        hostname: "**",
+      },
     ]
     
   }
