@@ -38,7 +38,7 @@ export default function DropDown({category}:{category:CreateCategory}) {
     <div className="flex flex-col justify-between items-start w-3/4 gap-2">
         
         {/**Sub Category Lists */}
-        <div className="flex justify-between items-start gap-1 my-2 text-muted">
+        <div className="flex justify-between items-start gap-4 my-2 text-muted">
             {/**List One */}
             {SubCategory?.map((subCategory:CreateCategory) => (
 
