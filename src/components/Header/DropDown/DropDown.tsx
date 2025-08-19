@@ -31,7 +31,7 @@ export default function DropDown({category}:{category:CreateCategory}) {
        return (
     <>
     {/**Category Title*/}
-    <h2 className="text-2xl font-bold mx-2 text-accent">{category?.name}</h2>
+    <h2 className="text-2xl font-bold mx-2 text-amber-300">{category?.name}</h2>
     <div className="w-full px-5 flex justify-between items-start">
         
     {/**Category Content*/}
@@ -60,10 +60,10 @@ export default function DropDown({category}:{category:CreateCategory}) {
         </div>
         {/**Brand Of This Category*/}
             <div className="flex flex-col justify-start items-start w-full">
-                <h3 className="text-xl text-muted font-bold py-2">أفضل الماركات</h3>
+                <h3 className="text-xl text-gray-800 font-bold py-2">أفضل الماركات</h3>
                 <ul className="flex justify-start items-center w-full gap-1 mb-1 overflow-x-scroll scrollbar-none">
                         {brands?.slice(0,8)?.map(brand=>
-                    <li key={brand?.id} className="bg-[#ddd] rounded-xl text-muted">
+                    <li key={brand?.id} className="bg-[#ddd] rounded-xl text-muted w-1/8 h-[100px] flex justify-center items-center">
                         <BrandCard key={brand?.id} img={brand?.logo as string} title={brand?.name} brand= {brand?.name}   className="w-full text-center  cursor-pointer hover:-translate-y-2 transition-transform" />
                     </li>
                         )
