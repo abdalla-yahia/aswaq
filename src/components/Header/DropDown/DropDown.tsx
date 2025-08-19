@@ -42,12 +42,12 @@ export default function DropDown({category}:{category:CreateCategory}) {
             {/**List One */}
             {SubCategory?.map((subCategory:CreateCategory) => (
 
-                <div key={subCategory?.id} className="flex flex-col justify-start items-center">
-                <h3 className="text-xl text-black font-bold mx-2">{subCategory?.name}</h3>
+                <div key={subCategory?.id} className="flex flex-col justify-start items-start">
+                <h3 className="text-xl text-black font-bold">{subCategory?.name}</h3>
                 <ul className="flex flex-col justify-center items-start">
                     {
                         AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId === subCategory?.id)?.map((subCat:CreateCategory) => (
-                        <li key={subCat?.id} className="text-orange-500 hover:text-blue-500 transition-all">
+                        <li key={subCat?.id} className="hover:text-orange-900 text-blue-800 transition-all">
                             <Link href={`/categories/${subCat?.name}`}>{subCat?.name}</Link>
                         </li>
                         ))
