@@ -45,7 +45,6 @@ export default function New_Product_Details() {
           metaTitle: formData.get('ProductMetaTitle') as string,
           metaDesc: formData.get('ProductMetaDesc') as string,
         }
-      console.log('قبل التحقق من صحة البيانات:', newProduct);
         //Check Validation
         const Validation = CreateProductValidation.safeParse(newProduct);
         if (!Validation.success) {
@@ -53,7 +52,6 @@ export default function New_Product_Details() {
           console.error(Validation.error.issues.map(issue => issue.message))
           return prevState; // Return previous state if validation fails
       }
-      console.log('بعد التحقق من صحة البيانات:', newProduct);
       //Dispatch Action
       dispatch(createProduct(newProduct));
       return newProduct;
@@ -75,7 +73,7 @@ export default function New_Product_Details() {
   metaTitle  : '',
   metaDesc   : '',
       }
-      const [,actionState] = useActionState(CreateProduct,InitialState)
+      const [,actionState,loading] = useActionState(CreateProduct,InitialState)
   return (
     <form action={actionState} className="flex flex-col gap-4 w-full max-w-md mx-auto p-4 border rounded shadow-lg ">
       {/*Product Image*/}
@@ -137,7 +135,7 @@ export default function New_Product_Details() {
               }
               </select>
               {/*Submit*/}
-              <SubmitButton text="حفظ" bgcolor="bg-blue-500" textcolor="white"/>
+              <SubmitButton text={loading?"جارٍ الحفظ ....":"حفظ"} bgcolor="bg-blue-500" textcolor="white"/>
     </form>
   );
 }

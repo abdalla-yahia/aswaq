@@ -35,6 +35,23 @@ query {
     }
 }
 `
+//Fetch Category By Id
+export const GET_CATEGORY_BY_ID = gql`
+query getCategoryById($id:ID!){
+    CategoryById(id:$id){
+        id
+        name
+        description
+        image
+        parentId
+        products
+        parent{
+            id
+            name
+        }
+    }
+}
+`
 //Update Category
 export const UPDATE_CATEGORY = gql`
 mutation updateACategory($id:ID!,$name:String,$description:String,$image:String,$parentId:String){

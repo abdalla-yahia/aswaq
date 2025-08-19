@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client"
 
 const categoryQueries = {
     Query:{
+        //Fetch All Categories
         AllCategories:async (_:unknown,__:unknown,ctx:{prisma:PrismaClient})=>{
             try{
                 const AllCategories = await ctx.prisma.category.findMany({
@@ -18,7 +19,24 @@ const categoryQueries = {
             }catch(error){
                 return {success:false,message:error}
             }
-        }
+        },
+        //Fetch Category By Id
+        CategoryById:async(_:unknown,args:{id:string},ctx:{prisma:PrismaClient})=>{
+            try{
+                const Category = await ctx.prisma.category.findUnique({
+                    where:{id:args?.id},
+                    include:{
+                        parent:true
+                    }
+                })
+                if(!Category){
+                    return {success:false,message:'هذا التصنيف غير موجود'}
+                }
+                return {success:true,message:'Get Category By Id Successfully',category:Category}
+            }catch(error){
+                return {success:false,message:error}
+            }
+        },
     }
 }
 

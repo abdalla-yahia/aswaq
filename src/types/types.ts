@@ -91,6 +91,7 @@ export type UpdateBrand = {
 
 export type CreateProductType = {
   id?: string
+  slug?: string
   title: string
   description?: string
   price:number

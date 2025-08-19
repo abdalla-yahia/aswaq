@@ -16,7 +16,6 @@ export default function TopSalesHome() {
       const {data: Allproducts} = useQuery(GET_ALL_PRODUCTS, {
         fetchPolicy: 'cache-and-network'})
       const products = Allproducts?.GetAllProducts?.products
-
   return (
     <section className="w-full px-2">
       <SectionName text="الأكثر مبيعاً" btn={true} btnText="المزيد..." href="/products" />
@@ -26,7 +25,7 @@ export default function TopSalesHome() {
             
           {
             products?.map((product:CreateProductType) => (
-              <ProductCard id={product?.id as unknown as string} key={Number(product?.id)} img={product?.image as string} title={product?.title} describtion={product?.description as string} price={product?.price} rate={product?.rating as number} category={product?.category?.name as string} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+              <ProductCard  slug={product?.slug as string} id={product?.id as unknown as string} key={Number(product?.id)} img={product?.image as string} title={product?.title} describtion={product?.description as string} price={product?.price} rate={product?.rating as number} category={product?.category?.name as string} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
             ))
           }
           </div>

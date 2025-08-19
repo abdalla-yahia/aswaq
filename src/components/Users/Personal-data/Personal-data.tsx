@@ -17,7 +17,6 @@ export default function Personal_Data() {
   const { data, loading } = useQuery(GET_ME, {
     fetchPolicy: "network-only",
   });
-  // console.log(data?.me)
   const dispatch = useAppDispatch()
   //Handller Delete User
   const DeleteUserHandller = (id: string) => {

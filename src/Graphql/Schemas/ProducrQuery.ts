@@ -64,6 +64,7 @@ export const GET_ALL_PRODUCTS = gql`
     success
     products{
         id
+        slug
         title
         description
         price
@@ -138,6 +139,39 @@ export const GET_PRODUCT_BY_ID = gql`
     }
 `;
 
+// GraphQL query to fetch a product by slug
+export const GET_PRODUCT_BY_SLUG = gql`
+    query GetProductBySlug($slug: String!) {
+        productBySlug(slug: $slug) {
+                id
+                title
+                description
+                price
+                oldPrice
+                discountType
+                discountValue
+                quantity
+                image
+                categoryId
+                brandId
+                isFeatured
+                status
+                metaTitle
+                metaDesc
+                category {
+                    id
+                    name
+                    image
+                }
+                brand {
+                    id
+                    name
+                    logo
+                }
+            }
+        }
+    
+`;
 // GraphQL query to fetch products by category ID
 export const GET_PRODUCTS_BY_CATEGORY_ID = gql`
     query GetProductsByCategoryId($categoryId: String!) {
@@ -152,6 +186,16 @@ export const GET_PRODUCTS_BY_CATEGORY_ID = gql`
             quantity
             image
             categoryId
+            category{
+                id
+                name
+                image
+            }
+            brand{
+                id
+                name
+                logo
+            }
             brandId
             isFeatured
             status

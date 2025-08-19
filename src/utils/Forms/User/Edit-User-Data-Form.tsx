@@ -77,7 +77,6 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
       setImageUrl(data?.me?.image)
     }
   },[data?.me?.image]) 
-  console.log(imageUrl)
   //Form Action State
   const [state, formAction] = useActionState(EditUserDataHandller, initialState)
   //Reload Page After Submite Edit Data

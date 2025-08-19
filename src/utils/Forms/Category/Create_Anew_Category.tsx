@@ -32,7 +32,6 @@ export default function Create_Anew_Category() {
         if(!Validation.success){
             toast.error(Validation?.error?.issues?.map(e=>e?.message).join(', '))
         }
-        console.log(newState)
         dispatch(createAnewCategory(Validation?.data as CreateCategory))
         return newState as CreateCategory
     }    

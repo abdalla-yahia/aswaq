@@ -22,6 +22,7 @@ export const productSchemas = gql`
     }
     type Product {
         id: ID!
+        slug: String
         title: String!
         description: String
         price: Float!
@@ -43,8 +44,9 @@ export const productSchemas = gql`
     type Query {
         GetAllProducts: SuccessFetchProducts!
         product(id: ID!): Product!
-        productsByCategory(categoryId: String!): [Product!]!
-        productsByBrand(brandId: String!): [Product!]!
+        productBySlug(slug: String!): Product!
+        productsByCategoryId(categoryId: String!): [Product!]!
+        productsByBrandId(brandId: String!): [Product!]!
 
     }
     

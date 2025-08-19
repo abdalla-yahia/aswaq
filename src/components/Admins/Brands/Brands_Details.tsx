@@ -9,7 +9,6 @@ export default function Brands_Details() {
   fetchPolicy:'network-only'
 })
 
-console.log(data)
   return (
     <div className="py-6 w-full">
       <h1 className="text-2xl font-bold mb-6">إدارة البراندات ( {data?.AllBrands?.brand?.length} ) تصنيف</h1>

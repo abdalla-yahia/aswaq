@@ -6,7 +6,6 @@ import { UserToken } from "@/types/types";
 export default function middleware(req: NextRequest) {
   const publicPaths = ["/login", "/register", "/"]; // مسارات عامة مسموح الدخول لها بدون تسجيل
   const { pathname } = req.nextUrl;
- console.log("cookies in middleware:", req.cookies.getAll());
   // لو المسار عام، عدّي الطلب
   if (publicPaths.includes(pathname)) {
     return NextResponse.next();

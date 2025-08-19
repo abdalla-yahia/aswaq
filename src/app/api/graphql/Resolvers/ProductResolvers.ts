@@ -32,11 +32,27 @@ const productsQuery = {
                 return{success:false,message:error};
             }
         },
+        //Get Product By Slug
+        productBySlug: async (_: unknown, args: { slug: string }, ctx:{prisma:PrismaClient}) => {
+            try { 
+                const product = await ctx.prisma.product.findUnique({
+                    where: { slug: args.slug },
+                });
+                if (!product) return{success:false,message:('Product not found')};
+                return product;
+            } catch (error) {
+                return{success:false,message:error};
+            }
+        },
         //Get Product By Category ID
-        productsByCategory: async (_: unknown, args: { categoryId: string }, ctx: { prisma: PrismaClient }) => {
+        productsByCategoryId: async (_: unknown, args: { categoryId: string }, ctx: { prisma: PrismaClient }) => {
             try {
                 const products = await ctx.prisma.product.findMany({
                     where: { categoryId: args.categoryId },
+                    include: {
+                        category: true,
+                        brand: true,
+                    },
                 });
                 return products;
             } catch (error) {
@@ -44,7 +60,7 @@ const productsQuery = {
             }
         },
         //Get Product By Brand ID
-        productsByBrand: async (_: unknown, args: { brandId: string }, ctx: { prisma: PrismaClient }) => {
+        productsByBrandId: async (_: unknown, args: { brandId: string }, ctx: { prisma: PrismaClient }) => {
             try {
                 const products = await ctx.prisma.product.findMany({
                     where: { brandId: args.brandId },
@@ -66,19 +82,26 @@ const productsMutations = {
         const validationData = CreateProductValidation.safeParse(args);
         if (!validationData?.success) return { success: false, message: (validationData?.error?.issues.map(e => e.message).join(', ')) };
         //Create Slug
-        let slug = slugify(validationData?.data?.title, { lower: true, strict: true, trim: true, replacement: '-' , locale: 'ar' });
-        //Check if product with same slug exists
-        const existingProduct = await ctx.prisma.product.findMany({
-          where: { slug :{startsWith:'baseSlug'}},
+        const baseSlug = slugify(validationData.data.title, {
+          lower: true,
+          strict: true,
+          trim: true,
+          locale: 'ar'
         });
-        if (existingProduct) {
-            slug = `${slug}-${existingProduct.length + 1}`;
+
+        let slug = baseSlug;
+        let counter = 1;
+
+        //Loop until slug is unique
+        while (await ctx.prisma.product.findUnique({ where: { slug } })) {
+          slug = `${baseSlug}-${counter}`;
+          counter++;
         }
         //Create Anew Product
         const newProduct = await ctx.prisma.product.create({
           data: {
             ...validationData?.data,
-            slug: slug,
+            slug,
         },
         });
         

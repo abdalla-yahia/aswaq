@@ -41,7 +41,6 @@ export default function LoginForm() {
     password: ''
   }
   const [state, actionState] = useActionState(loginHandler, initialstate)
-  console.log(user?.user?.name)
 
   //Redirect Login User To Dashboard
   if (user?.user?.name) {

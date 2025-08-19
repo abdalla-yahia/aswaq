@@ -21,6 +21,8 @@ type AllCategories {
 type Query {
     # Fetch All Categories
     AllCategories:AllCategories!
+    # Fetch Category By Id
+    CategoryById(id:ID!):CreateStatus!
 }
 type Mutation {
     # Create A New Category

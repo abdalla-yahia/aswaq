@@ -44,7 +44,6 @@ export default function Anew_Addresses_Form() {
     if (!validation.success) {
       toast.error(validation?.error?.issues.map(e => e.message))
     }
-    console.log(newAddress)
     dispatch(createAddress(newAddress))
     return newAddress as FormAddress;
 

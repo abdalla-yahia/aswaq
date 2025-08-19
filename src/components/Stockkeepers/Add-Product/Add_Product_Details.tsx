@@ -19,7 +19,6 @@ export default function Add_Product_Details() {
     e.preventDefault();
 
     // هنا ممكن تبعت البيانات لـ API
-    console.log('🟢 Product Added:', form);
     alert('✅ تم إضافة المنتج بنجاح!');
   };
 

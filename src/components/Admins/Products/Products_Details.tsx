@@ -11,7 +11,6 @@ const {data:AllProducts} = useQuery(GET_ALL_PRODUCTS,{
   fetchPolicy: "network-only",
 })
 
-// console.log(AllProducts?.GetAllProducts?.products)
   return (
     <div className="py-6 space-y-6 text-foreground w-full">
       <div className="flex justify-between items-center ">

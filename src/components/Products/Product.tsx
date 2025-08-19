@@ -5,18 +5,18 @@ import Add_Comment from "./Comments/Add_Comment";
 import Suggested_Products from "./Suggested/Suggested_Products";
 import Similar_Products from "./Similar/Similar_Products";
 import { useQuery } from "@apollo/client";
-import { GET_PRODUCT_BY_ID } from "@/Graphql/Schemas/ProducrQuery";
+import { GET_PRODUCT_BY_SLUG } from "@/Graphql/Schemas/ProducrQuery";
 
-export default function ProductDetails({ id }: { id: string }) {
+export default function ProductDetails({ slug }: { slug: string }) {
     // Find the product by ID from the products dataset
-      const { data:products, loading, error } = useQuery(GET_PRODUCT_BY_ID, {
-    variables: { id },
+      const { data:products, loading, error } = useQuery(GET_PRODUCT_BY_SLUG, {
+    variables: { slug },
     fetchPolicy: "network-only",
   });
 
   if (loading) return <p>جاري تحميل المنتج...</p>;
   if (error) return <p>حدث خطأ: {error.message}</p>;
-    const productFound = products?.product;
+    const productFound = products?.productBySlug;
     const category = productFound?.category?.name as string;
     const brand = productFound?.brand?.name as string;
     const title = productFound?.title as string

@@ -28,7 +28,6 @@ export const createAddress  = createAsyncThunk('address/create',async (NewAddres
         mutation: CREATE_ADDRESS,
         variables: NewAddress
         })
-        console.log(data?.createAddress)
         return data?.createAddress
     } catch (error) {
         const message = error instanceof ApolloError

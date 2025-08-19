@@ -52,7 +52,6 @@ export default function RegisterForm() {
       toast.error('الرقم السري غير متطابق')
       return { ...prevState }
     }
-    console.log("قبل", newState)
     //Check Validation of Data
     const validationData = UserCreateSchemaValidaion.safeParse(newState)
     if (!validationData.success) {
@@ -62,7 +61,6 @@ export default function RegisterForm() {
       }));
       toast.error(errors.map(e => `${e.path}: ${e.message}`).join(', '));
     }
-    console.log("بعد", newState)
     dispatch(createUser(newState as FormState))
     
     

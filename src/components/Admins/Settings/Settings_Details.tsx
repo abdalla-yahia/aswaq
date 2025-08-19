@@ -28,7 +28,6 @@ export default function Settings_Details() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // 🔜 رفع الشعار إلى Cloudinary + إرسال القيم إلى API
-    console.log('الإعدادات العامة:', form);
   };
 
   return (

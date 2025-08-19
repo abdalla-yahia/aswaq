@@ -16,19 +16,19 @@ export default function Category({ category }: { category: string }) {
    * * @param {string} category - The category to filter products by
    */
 
-    const {data: Allproducts} = useQuery(GET_ALL_PRODUCTS, {
-      fetchPolicy: 'cache-and-network'})
-    const products = Allproducts?.GetAllProducts?.products
+      const {data: Allproducts} = useQuery(GET_ALL_PRODUCTS, {
+        fetchPolicy: 'cache-and-network'})
+      const Getproducts = Allproducts?.GetAllProducts
   
-  const ProductsOfCategory = products?.data?.filter((product:CreateProductType) => product?.category?.name === category)
+  const ProductsOfCategory = Getproducts?.products?.filter((product:CreateProductType) => product?.category?.name === category)
   const randomNumber = Math.floor(Math.random() * 13)
 
   return (
     <section className="category py-8 w-full flex flex-col justify-start items-start gap-5">
       {/**Page Title */}
       <h1 className="mb-5 text-3xl flex justify-center items-center">قائمة منتجات
-        <h2 className="mb-5 text-3xl text-red-500 mx-5"> {category.toString()} </h2>
-        <Image src={products?.[0]?.category?.image} alt={category} width={40} height={40} />
+        <span className="mb-5 text-3xl text-red-500 mx-5"> {category.toString()} </span>
+        <Image src={ProductsOfCategory?.[0]?.category?.image as string || '/images/logo.png'} alt={category} width={40} height={40} />
       </h1>
       {/**Page Container */}
       <div className="flex w-full justify-between items-start gap-5">
@@ -40,14 +40,14 @@ export default function Category({ category }: { category: string }) {
         <div className="flex flex-col justify-center items-start gap-2 w-4/6 md:w-5/6">
           {/**Banner Image*/}
             <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover h-[100px] md:h-[200px] flex justify-center items-center mb-4 bg-white/70 rounded-lg shadow-md">
-              <Image src={products?.[0]?.category?.image} alt={category} width={250} height={150} className="w-[120px] md:w-[250px]  h-fit md:h-[200px]"/>
+              <Image src={ProductsOfCategory?.[0]?.category?.image  as string || '/images/logo.png'} alt={category} width={250} height={150} className="w-[120px] md:w-[250px]  h-fit md:h-[200px]"/>
             </div>
           {/**Products */}
             <div className="flex w-full justify-between items-start flex-wrap ">
               {
                 ProductsOfCategory?.map((product:CreateProductType) =>
 
-                  <ProductCard key={Number(product?.id)} id={product?.id as unknown as string} img={product?.image as string} title={product?.title} describtion={product?.description as string} price={product?.price} rate={product?.rating as number} category={product?.category?.name as string} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+                  <ProductCard  slug={product?.slug as string} key={Number(product?.id)} id={product?.id as unknown as string} img={product?.image as string} title={product?.title} describtion={product?.description as string} price={product?.price} rate={product?.rating as number} category={product?.category?.name as string} className="w-full md:w-1/3 lg:w-1/5 xl:w-1/6 mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
                 )
               }
             </div>

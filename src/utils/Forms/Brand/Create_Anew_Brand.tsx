@@ -26,7 +26,6 @@ export default function Create_Anew_Brand() {
         if(!Validation.success){
             toast.error(Validation?.error?.issues?.map(e=>e?.message).join(', '))
         }
-        console.log(newState)
         dispatch(createAnewBrand(Validation?.data as CreateBrand))
         return newState as CreateBrand
     }    
