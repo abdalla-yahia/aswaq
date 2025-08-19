@@ -43,7 +43,9 @@ export default function DropDown({category}:{category:CreateCategory}) {
             {SubCategory?.map((subCategory:CreateCategory) => (
 
                 <div key={subCategory?.id} className="flex flex-col justify-start items-start">
+                    <Link href={`/categories/${subCategory?.name}`}>
                 <h3 className="text-xl text-black font-bold">{subCategory?.name}</h3>
+                    </Link>
                 <ul className="flex flex-col justify-center items-start">
                     {
                         AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId === subCategory?.id)?.map((subCat:CreateCategory) => (
