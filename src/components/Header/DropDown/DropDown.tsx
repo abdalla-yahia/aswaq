@@ -31,7 +31,7 @@ export default function DropDown({category}:{category:CreateCategory}) {
        return (
     <>
     {/**Category Title*/}
-    <h2 className="text-2xl font-bold mx-2 text-amber-300">{category?.name}</h2>
+    {/* <h2 className="text-2xl font-bold mx-2 text-black">{category?.name}</h2> */}
     <div className="w-full px-5 flex justify-between items-start">
         
     {/**Category Content*/}
