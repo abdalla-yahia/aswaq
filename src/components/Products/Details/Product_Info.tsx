@@ -27,7 +27,7 @@ export default function Product_Info({ product }: { product: CreateProductType }
                     {/**Product Price */}
                     <div className="flex justify-between items-center gap-2">
                         <h3 className="text-xl text-foreground">السعر : </h3>
-                        <span className="line-through text-gray-600">350</span>
+                        <span className="line-through text-gray-600">{product?.oldPrice}</span>
                         <p className="text-lg text-muted">{product?.price} ج.م</p>
                     </div>
                     {/**Product Colors */}
