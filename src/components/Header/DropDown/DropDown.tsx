@@ -19,16 +19,15 @@ export default function DropDown({category}:{category:CreateCategory}) {
         })
     const Products = AllProducts?.productsByCategoryId ;
     const SubCategory = AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId !== null && cat?.parentId === category?.id);
-    // console.log(SubCategory)
+    
     const brands:CreateBrand[] =[];
     //Get Unique Brands From Products
         Products?.forEach((product:CreateProductType) => {
             const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
-        if (!ExistInBrand) {
-            brands.push(product?.brand as CreateBrand);
+        if (!ExistInBrand && product?.brand) {
+            brands.push(product.brand);
         }
     })
-    console.log(brands)
        return (
     <>
     {/**Category Title*/}
