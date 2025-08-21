@@ -28,6 +28,7 @@ export default function DropDown({category}:{category:CreateCategory}) {
             brands.push(product?.brand as CreateBrand);
         }
     })
+    console.log(brands)
        return (
     <>
     {/**Category Title*/}
