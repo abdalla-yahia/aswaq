@@ -17,17 +17,21 @@ export default function DropDown({category}:{category:CreateCategory}) {
     const {data:AllCategories} = useQuery(GET_ALL_CATEGORIES,{
             fetchPolicy: 'cache-and-network',
         })
+        //Products On Main Category
     const Products = AllProducts?.productsByCategoryId ;
     const SubCategory = AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId !== null && cat?.parentId === category?.id);
     
     const brands:CreateBrand[] =[];
-    //Get Unique Brands From Products
+    //Get Unique Brands From Products On Main Category
         Products?.forEach((product:CreateProductType) => {
             const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
         if (!ExistInBrand && product?.brand) {
             brands.push(product.brand);
         }
     })
+    // SubCategory?.map((sub:CreateCategory)=>
+
+    // )
        return (
     <>
     {/**Category Title*/}
@@ -41,6 +45,18 @@ export default function DropDown({category}:{category:CreateCategory}) {
         <div className="flex justify-between items-start gap-4 my-2 text-muted">
             {/**List One */}
             {SubCategory?.map((subCategory:CreateCategory) => (
+                <>
+                     {/* Get Unique Brands From Products On SubCategories */}
+                    <>
+                    {
+                        subCategory?.products?.forEach((product:CreateProductType)=>{
+                             const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
+                                if (!ExistInBrand && product?.brand) {
+                                    brands.push(product.brand);
+                                }
+                        })
+                    }
+                    </>
 
                 <div key={subCategory?.id} className="flex flex-col justify-start items-start">
                     <Link href={`/categories/${subCategory?.name}`}>
@@ -49,14 +65,27 @@ export default function DropDown({category}:{category:CreateCategory}) {
                 <ul className="flex flex-col justify-center items-start">
                     {
                         AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId === subCategory?.id)?.map((subCat:CreateCategory) => (
+                            <>
+                                <>
+                                {
+                                    subCat?.products?.forEach((product:CreateProductType)=>{
+                                    const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
+                                        if (!ExistInBrand && product?.brand) {
+                                        brands.push(product.brand);
+                                        }
+                                    })
+                                }
+                                </>
                         <li key={subCat?.id} className="hover:text-orange-900 text-blue-800 transition-all">
                             <Link href={`/categories/${subCat?.name}`}>{subCat?.name}</Link>
                         </li>
+                            </>
                         ))
                     }
                 
                 </ul>
             </div>
+            </>
             ))
             }
         </div>

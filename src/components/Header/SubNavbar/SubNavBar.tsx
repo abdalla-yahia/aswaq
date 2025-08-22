@@ -14,7 +14,6 @@ export default function SubNavBar() {
     const [count,setCount]=useState(5)
     const [toggle,setToggle]=useState(false)
     const [show,setShow]=useState(false)
-
     const mainCategory = data?.AllCategories?.category?.filter((category:CreateCategory) => category?.parentId === null);
     useEffect(()=>{
         if(toggle){

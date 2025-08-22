@@ -7,7 +7,7 @@ type Category {
     description:String
     image:String
     parentId:String
-    products:[String]
+    products:[Product]
     parent:Category
 }
 type CreateStatus {

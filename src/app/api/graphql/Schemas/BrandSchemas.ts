@@ -6,7 +6,7 @@ type Brand {
     name:String
     description:String
     logo:String
-    products:[String]
+    products:[Product]
 }
 type CreateStatus {
     message:String

@@ -31,7 +31,7 @@ export default function TopSalesHome() {
           </div>
           {/**Aside Image*/}
           <div className="w-full md:w-1/4 order-1 md:order-2">
-            <Image loading="lazy" src={products?.[5]?.image} alt={products?.[5]?.title} width={450} height={450} className="w-full h-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
+            <Image loading="lazy" src={products?.[5]?.image} alt={products?.[5]?.title || 'image-topSales'} width={450} height={450} className="w-full h-full mb-4 cursor-pointer text-center hover:-translate-y-2 transition-transform" />
           </div>
       </div>
     </section>

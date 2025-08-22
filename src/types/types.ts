@@ -1,4 +1,6 @@
+import { UpdateProduct } from "@/interfaces/productInterfaces";
 import { DiscountType, Gender, ProductStatus } from "@prisma/client";
+
 export type User = {
   id: string;
   name: string;
@@ -59,7 +61,7 @@ export type CreateCategory = {
   description?:string
   image?:string
   parentId?:string|null
-  products?:string[]
+  products?:[CreateProductType]
   parent?:{
     id:string
     name:string

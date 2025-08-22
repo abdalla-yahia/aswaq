@@ -26,7 +26,15 @@ query {
             description
             image
             parentId
-            products
+            products{
+                id
+                title
+                brand{
+                    id
+                    name
+                    logo
+                }
+            }
             parent{
                 id
                 name
@@ -44,7 +52,15 @@ query getCategoryById($id:ID!){
         description
         image
         parentId
-        products
+        products{
+                id
+                title
+                brand{
+                    id
+                    name
+                    logo
+                }
+            }
         parent{
             id
             name

@@ -9,7 +9,8 @@ const categoryQueries = {
             try{
                 const AllCategories = await ctx.prisma.category.findMany({
                     include:{
-                        parent:true
+                        parent:true,
+                        products:true
                     },
                     orderBy:{
                         createdAt:'desc'
@@ -26,7 +27,8 @@ const categoryQueries = {
                 const Category = await ctx.prisma.category.findUnique({
                     where:{id:args?.id},
                     include:{
-                        parent:true
+                        parent:true,
+                        products:true
                     }
                 })
                 if(!Category){
