@@ -34,7 +34,7 @@ export default function Brand({ brand }: { brand: string }) {
         <div className="flex flex-col justify-center items-start gap-2 w-4/6 md:w-5/6">
             {/**Banner Image*/}
           <div style={{backgroundImage:`url(${images?.data[randomNumber]?.image})`}} className="w-full bg-cover  h-[100px] md:h-[200px] mb-4 bg-white/70 rounded-lg shadow-md flex justify-center items-center">
-            <Image src={ProductsOfBrand?.[0]?.brand?.logo  as string || '/images/logo.png'} alt={brand} width={100} height={100}/>
+            <Image src={ProductsOfBrand?.[0]?.brand?.logo  as string || '/images/logo.png'} alt={brand} width={100} height={100} className="w-full h-[100px] md:h-[200px]"/>
           </div>
           {/**Products */}
           <div className="flex w-full justify-between items-start flex-wrap gap-0">
