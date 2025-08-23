@@ -21,8 +21,25 @@ export default function Product_Info({ product }: { product: CreateProductType }
                     </div>
                     {/**Product Description */}
                     <div className="flex justify-between items-center gap-2">
-                        <h3 className="text-xl text-foreground">تفاصيل : </h3>
+                        <h3 className="text-xl text-foreground">الوصف : </h3>
                         <p className="text-lg text-muted">{product?.description}</p>
+                    </div>
+                    {/*Product Category*/}
+                    <div className="flex justify-between items-center gap-2">
+                        <h3 className="text-xl text-foreground">التصنيف : </h3>
+                        <p className="text-lg text-muted cursor-pointer">
+                            <Link href={`/categories/${product?.category?.name}`}>
+                            {product?.category?.name}
+                            </Link>
+                            </p>
+                    </div>
+                    {/*Products Brand*/}
+                    <div className="flex justify-between items-center gap-2">
+                        <h3 className="text-xl text-foreground">البراند : </h3>
+                        <p className="text-lg text-muted cursor-pointer"> 
+                            <Link href={`/brands/${product?.brand?.name}`}>
+                            {product?.brand?.name}
+                            </Link></p>
                     </div>
                     {/**Product Price */}
                     <div className="flex justify-between items-center gap-2">

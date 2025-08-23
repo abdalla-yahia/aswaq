@@ -6,7 +6,11 @@ const brandQueries = {
     Query:{
         AllBrands:async (_:unknown,__:unknown,ctx:{prisma:PrismaClient})=>{
             try{
-                const AllBrands = await ctx.prisma.brand.findMany()
+                const AllBrands = await ctx.prisma.brand.findMany({
+                    include:{
+                        products:true
+                    }
+                })
                 return {success:true,message:'Get All Brands Successfully',brand:AllBrands}
             }catch(error){
                 return {success:false,message:error}

@@ -24,7 +24,11 @@ query {
             name
             description
             logo
-            products
+            products{
+                id
+                title
+                
+            }
         }
     }
 }

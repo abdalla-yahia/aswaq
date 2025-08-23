@@ -29,9 +29,7 @@ export default function DropDown({category}:{category:CreateCategory}) {
             brands.push(product.brand);
         }
     })
-    // SubCategory?.map((sub:CreateCategory)=>
 
-    // )
        return (
     <>
     {/**Category Title*/}
