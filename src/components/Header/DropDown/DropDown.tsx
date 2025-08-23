@@ -3,37 +3,33 @@ import Image from "next/image";
 import BrandCard from "@/components/Brands/Brand-Card/Brand-Card";
 import { CreateBrand, CreateCategory, CreateProductType } from "@/types/types";
 import { useQuery } from "@apollo/client";
-import { GET_PRODUCTS_BY_CATEGORY_ID } from "@/Graphql/Schemas/ProducrQuery";
+import { GET_ALL_PRODUCTS_BY_CATEGORIES_IDS } from "@/Graphql/Schemas/ProducrQuery";
 import { GET_ALL_CATEGORIES } from "@/Graphql/Schemas/CategoryQuery";
 import Link from "next/link";
 
 export default function DropDown({category}:{category:CreateCategory}) {
-    const {data: AllProducts} = useQuery(GET_PRODUCTS_BY_CATEGORY_ID,{
-        variables: {
-            categoryId: category?.id
-        },
-        fetchPolicy: "cache-and-network"
-    })
     const {data:AllCategories} = useQuery(GET_ALL_CATEGORIES,{
             fetchPolicy: 'cache-and-network',
         })
-        //Products On Main Category
-    const Products = AllProducts?.productsByCategoryId ;
+    const {data:ProductsOnCategories} = useQuery(GET_ALL_PRODUCTS_BY_CATEGORIES_IDS,{
+        variables:{categoryId:category?.id},
+        fetchPolicy:'cache-and-network'
+    })
+    //Products On Main Category
+    const Products = ProductsOnCategories?.productsByCategoryRecursive ;
     const SubCategory = AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId !== null && cat?.parentId === category?.id);
-    
-    const brands:CreateBrand[] =[];
+    const brands:CreateBrand[] = []
     //Get Unique Brands From Products On Main Category
-        Products?.forEach((product:CreateProductType) => {
-            const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
+    Products?.forEach((product:CreateProductType) => {
+        const ExistInBrand = brands?.find(brand => brand?.id === product?.brand?.id);
         if (!ExistInBrand && product?.brand) {
-            brands.push(product.brand);
+            brands.push(product?.brand)
         }
     })
-
+    
        return (
     <>
     {/**Category Title*/}
-    {/* <h2 className="text-2xl font-bold mx-2 text-black">{category?.name}</h2> */}
     <div className="w-full px-5 flex justify-between items-start">
         
     {/**Category Content*/}
@@ -44,18 +40,6 @@ export default function DropDown({category}:{category:CreateCategory}) {
             {/**List One */}
             {SubCategory?.map((subCategory:CreateCategory) => (
                 <>
-                     {/* Get Unique Brands From Products On SubCategories */}
-                    <>
-                    {
-                        subCategory?.products?.forEach((product:CreateProductType)=>{
-                             const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
-                                if (!ExistInBrand && product?.brand) {
-                                    brands.push(product.brand);
-                                }
-                        })
-                    }
-                    </>
-
                 <div key={subCategory?.id} className="flex flex-col justify-start items-start">
                     <Link href={`/categories/${subCategory?.name}`}>
                 <h3 className="text-xl text-black font-bold">{subCategory?.name}</h3>
@@ -64,16 +48,6 @@ export default function DropDown({category}:{category:CreateCategory}) {
                     {
                         AllCategories?.AllCategories?.category?.filter((cat:CreateCategory) => cat?.parentId === subCategory?.id)?.map((subCat:CreateCategory) => (
                             <>
-                                <>
-                                {
-                                    subCat?.products?.forEach((product:CreateProductType)=>{
-                                    const ExistInBrand = brands.find(brand => brand?.id === product?.brand?.id);
-                                        if (!ExistInBrand && product?.brand) {
-                                        brands.push(product.brand);
-                                        }
-                                    })
-                                }
-                                </>
                         <li key={subCat?.id} className="hover:text-orange-900 text-blue-800 transition-all">
                             <Link href={`/categories/${subCat?.name}`}>{subCat?.name}</Link>
                         </li>

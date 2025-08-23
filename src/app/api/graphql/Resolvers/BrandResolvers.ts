@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client"
 
 const brandQueries = {
     Query:{
+        //Get All Brands
         AllBrands:async (_:unknown,__:unknown,ctx:{prisma:PrismaClient})=>{
             try{
                 const AllBrands = await ctx.prisma.brand.findMany({
@@ -15,7 +16,27 @@ const brandQueries = {
             }catch(error){
                 return {success:false,message:error}
             }
-        }
+        },
+        // //Get Brands Of Products By Category id
+        // GetBrandsByCategory: async (_:unknown,args:string , ctx:{prisma:PrismaClient})=>{
+        //     //Check if Category Is Existes
+        //     const IsExistes = await ctx.prisma.category.findUnique({where:{id:args}})
+        //     if(!IsExistes){
+        //         return {success:false,message:'Category Not Found'}
+        //     }
+        //     const Brands = await ctx.prisma.category.findMany({
+        //         select:{
+        //             products:{
+        //                 include:{
+        //                     brand:true
+        //                 },
+        //                 sub
+                        
+        //             },
+                    
+        //         }
+        //     })
+        // }
     }
 }
 

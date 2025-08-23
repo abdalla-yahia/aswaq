@@ -9,6 +9,7 @@ type Category {
     parentId:String
     products:[Product]
     parent:Category
+    subcategories:Category
 }
 type CreateStatus {
     message:String

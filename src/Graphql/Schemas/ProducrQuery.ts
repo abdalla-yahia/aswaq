@@ -234,3 +234,23 @@ export const DELETE_PRODUCT = gql`
         deleteProduct(id: $id)
     }
 `;
+
+//GraphQl Query To Fetch All Products Of Category And Its SubCategories
+export const GET_ALL_PRODUCTS_BY_CATEGORIES_IDS = gql`
+query GetProducts($categoryId: String!) {
+  productsByCategoryRecursive(categoryId: $categoryId) {
+    id
+    title
+    price
+    brand{
+        id
+        name
+        logo
+    }
+    category {
+      id
+      name
+    }
+  }
+}
+`

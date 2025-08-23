@@ -10,8 +10,22 @@ const categoryQueries = {
                 const AllCategories = await ctx.prisma.category.findMany({
                     include:{
                         parent:true,
-                        products:true
-                    },
+                        products:{
+                            include:{
+                                brand:true
+                            }
+                        },
+                        subcategories:{
+                            include:{
+                                products:{
+                            include:{
+                                brand:true
+                            }
+                        },
+                            }
+                        }
+                        },
+                    
                     orderBy:{
                         createdAt:'desc'
                     }
@@ -28,8 +42,21 @@ const categoryQueries = {
                     where:{id:args?.id},
                     include:{
                         parent:true,
-                        products:true
-                    }
+                        products:{
+                            include:{
+                                brand:true
+                            }
+                        },
+                        subcategories:{
+                            include:{
+                                products:{
+                            include:{
+                                brand:true
+                            }
+                        },
+                            }
+                        }
+                        },
                 })
                 if(!Category){
                     return {success:false,message:'هذا التصنيف غير موجود'}

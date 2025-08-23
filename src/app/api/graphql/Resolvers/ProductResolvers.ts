@@ -3,6 +3,7 @@ import { CreateProductValidation } from "@/validations/ProductValidation";
 import { PrismaClient } from "@prisma/client";
 import slugify from "slugify";
 
+
 const productsQuery = {
     Query: {
         //Get All Products
@@ -70,6 +71,34 @@ const productsQuery = {
                 return{success:false,message:error};
             }
         },
+        // Get Products By IDS Categories
+        productsByCategoryRecursive: async (_: unknown, args: { categoryId: string },ctx:{prisma:PrismaClient}) => {
+          let allCategoryIds:string[]=[];
+          const children = await ctx.prisma.category.findMany({
+            where: { parentId: args.categoryId },
+            select: { id: true },
+          });
+          const ChildrenIds = children.map((c) => c.id);
+
+          for (const child of children) {
+            const NestedChilde = await ctx.prisma.category.findMany({
+            where: { parentId: child.id },
+            select: { id: true },
+          });
+          const NestedChildeIds = NestedChilde.map((N) => N.id);
+            allCategoryIds = [...ChildrenIds, ...NestedChildeIds];
+          }
+
+      const products = await ctx.prisma.product.findMany({
+        where: { categoryId: { in: [args.categoryId, ...allCategoryIds] } },
+        include:{
+          brand:true,
+          category:true
+        }
+      });
+
+      return products;
+    },
     }
 }
 

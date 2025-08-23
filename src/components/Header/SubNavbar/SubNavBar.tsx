@@ -8,9 +8,11 @@ import { CreateCategory } from "@/types/types"
 
 
 export default function SubNavBar() {
-    const {data} = useQuery(GET_ALL_CATEGORIES,{
+    const {data,error} = useQuery(GET_ALL_CATEGORIES,{
         fetchPolicy: 'cache-and-network',
     })
+            if(error) console.log('Error Categories',error)
+
     const [count,setCount]=useState(5)
     const [toggle,setToggle]=useState(false)
     const [show,setShow]=useState(false)

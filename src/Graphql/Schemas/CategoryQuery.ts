@@ -26,6 +26,20 @@ query {
             description
             image
             parentId
+            subcategories{
+                id
+                name
+                image
+                products{
+                id
+                title
+                brand{
+                    id
+                    name
+                    logo
+                }
+            }
+            }
             products{
                 id
                 title

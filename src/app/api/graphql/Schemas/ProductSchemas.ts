@@ -47,7 +47,7 @@ export const productSchemas = gql`
         productBySlug(slug: String!): Product!
         productsByCategoryId(categoryId: String!): [Product!]!
         productsByBrandId(brandId: String!): [Product!]!
-
+        productsByCategoryRecursive(categoryId: String!): [Product!]!
     }
     
     type Mutation {
