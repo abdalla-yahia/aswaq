@@ -25,10 +25,10 @@ export default function Users_Details({users}:{users:User[]}) {
               <tr key={user?.id} className="border-t">
                 <td className="p-3">
                   <Link href={`/admins/users/${user?.id}`}>
-                  {user.name}
+                  {user?.name}
                   </Link>
                   </td>
-                <td className="p-3">{user.email}</td>
+                <td className="p-3">{user?.email}</td>
                 <td className="p-3">
                   {user?.role === "USER"
                     ? "مستخدم"
@@ -41,15 +41,19 @@ export default function Users_Details({users}:{users:User[]}) {
                 <td className="p-3">
                   <span
                     className={`px-2 py-1 rounded text-xs font-medium ${
-                      user.status === "active"
+                      user?.status === "ACTIVE"
                         ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-700"
+                        :user?.status === "INACTIVE"
+                        ? "bg-red-100 text-red-700"
+                        :"bg-red-100 text-yellow-700"
                     }`}
                   >
                     {user?.status === "ACTIVE" ? "نشط" : "محظور"}
                   </span>
                 </td>
                 <td className="p-3 space-x-2">
+                    {user?.role !== 'ADMIN'?
+                  (<>
                   <button
                     // onClick={() => handleToggleStatus(user.id)}
                     className="text-blue-600 hover:underline"
@@ -62,6 +66,9 @@ export default function Users_Details({users}:{users:User[]}) {
                   >
                     حذف
                   </button>
+                  </> )
+                  :''}
+                  
                 </td>
               </tr>
             ))}

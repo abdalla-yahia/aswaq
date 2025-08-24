@@ -1,0 +1,7 @@
+import Personal_Data from '@/components/Drivers/Personal-data/Personal-data';
+
+export default function PersonalDataPage() {
+  return (
+    <Personal_Data />
+  );
+}

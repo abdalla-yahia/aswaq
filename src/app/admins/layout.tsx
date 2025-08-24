@@ -14,11 +14,11 @@ export default function AdminsLayout({ children }: { children: React.ReactNode }
       <MainTitle title={`لوحة تحكم المسؤول  ${data?.me?.name}`} />
       <div className='w-full flex justify-start items-start gap-1'>
         {/**Aside Menu */}
-        <div className="w-1/8 md:w-1/6 lg:w-1/6 flex justify-start items-start gap-3 my-3">
+        <div className="w-[10%] md:w-1/7 lg:w-1/8 flex justify-start items-start gap-3 my-3">
           <Admins_Dashboard />
         </div>
         {/**Page Content */}
-        <main className="w-7/8 md:w-5/6 flex justify-start items-start my-3 p-3">
+        <main className="w-[90%] md:w-6/7 lg:w-7/8 flex justify-start items-start my-3 p-3">
           {children}
         </main>
       </div>
