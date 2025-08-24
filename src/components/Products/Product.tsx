@@ -6,8 +6,12 @@ import Suggested_Products from "./Suggested/Suggested_Products";
 import Similar_Products from "./Similar/Similar_Products";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_BY_SLUG } from "@/Graphql/Schemas/ProducrQuery";
+import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 
 export default function ProductDetails({ slug }: { slug: string }) {
+  const {data:User} = useQuery(GET_ME,{
+    fetchPolicy:'cache-and-network',
+  })
   // Find the product by ID from the products dataset
   const { data: products, loading, error } = useQuery(GET_PRODUCT_BY_SLUG, {
     variables: { slug },
@@ -25,7 +29,7 @@ export default function ProductDetails({ slug }: { slug: string }) {
       {/**Details Of Product */}
       <Product_Info product={productFound} />
       {/**Add A New Comment From User*/}
-      <Add_Comment />
+      {User?.me?.role === 'USER' && <Add_Comment />}
       {/**Comments Of Product */}
       <Comments_Product title={title} />
       {/**Suggested Products */}

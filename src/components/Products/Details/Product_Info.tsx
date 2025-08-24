@@ -4,9 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import * as icon from '@/utils/Icons/Icons';
 import { CreateProductType } from "@/types/types";
+import { GET_ME } from "@/Graphql/Schemas/UserQuery";
+import { useQuery } from "@apollo/client";
 
 export default function Product_Info({ product }: { product: CreateProductType }) {
-    
+    const {data} = useQuery(GET_ME,{
+        fetchPolicy:'cache-and-network'
+    })
     return (
         <>
             <h1 className="mb-5 text-3xl">تفاصيل {product?.title}</h1>
@@ -74,21 +78,26 @@ export default function Product_Info({ product }: { product: CreateProductType }
                         <h3 className="text-xl text-foreground">عدد المقيمين : </h3>
                         <p className="text-lg text-muted">{0} شخص</p>
                     </div>
-                    {/**Add To Cart */}
-                    <div className="flex justify-between items-center gap-2">
+                    {/*Actions Of Products When Role Only USER*/}
+                    {data?.me?.role === 'USER' &&
+                        <div className="flex justify-between items-center gap-2">
+                        {/**Add To Cart */}
                         <Link href="/cart" className="flex gap-1 justify-center items-center px-2 bg-muted/50 rounded-2xl cursor-pointer">
                             <SubmitButton onclick={() => ''} text="أضف للعربة" bgcolor="" textcolor="" />
                             <icon.FaCartPlus className="text-green-500" />
                         </Link>
+                        {/*Add to Favorite*/}   
                         <Link href="/products" className="flex gap-1 justify-center items-center px-2 bg-red-200 rounded-2xl cursor-pointer">
                             <SubmitButton onclick={() => ''} text="أضف للمفضله" bgcolor="" textcolor="text-gray-500" />
                             <icon.CiHeart className="text-white font-bold" />
                         </Link>
+                        {/*Continue Shoping*/}
                         <Link href="/products" className="flex gap-1 justify-center items-center px-2 bg-accent rounded-2xl cursor-pointer">
                             <SubmitButton onclick={() => ''} text="متابعة التسوق" bgcolor="" textcolor="text-gray-500" />
                             <icon.FaShoppingCart className="text-blue-500" />
                         </Link>
                     </div>
+                    }
                 </div>
             </div>
         </>
