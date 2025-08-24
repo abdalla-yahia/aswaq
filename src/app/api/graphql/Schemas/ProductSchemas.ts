@@ -10,6 +10,23 @@ export const productSchemas = gql`
         FIXED
         PERCENTAGE
     }
+    input UpdatedProduct {
+            id: ID!
+            title: String
+            description: String
+            price: Float
+            oldPrice: Float
+            discountType: String
+            discountValue: Float
+            quantity: Int
+            image: String
+            categoryId: String
+            brandId: String
+            isFeatured: Boolean
+            status: ProductStatus
+            metaTitle: String
+            metaDesc: String
+    }
     type SuccessCreateProduct {
         success: Boolean!
         message: String!
@@ -68,22 +85,8 @@ export const productSchemas = gql`
         metaDesc: String): SuccessCreateProduct!
 
         updateProduct(
-            id: ID!
-            title: String
-            description: String
-            price: Float
-            oldPrice: Float
-            discountType: String
-            discountValue: Float
-            quantity: Int
-            image: String
-            categoryId: String
-            brandId: String
-            isFeatured: Boolean
-            status: ProductStatus
-            metaTitle: String
-            metaDesc: String
-        ): Product!
+            data:UpdatedProduct!
+        ): SuccessCreateProduct!
 
         deleteProduct(id: ID!): Boolean!
     }

@@ -228,13 +228,6 @@ export const GET_PRODUCTS_BY_BRAND_ID = gql`
     }
 `;
 
-// GraphQL mutation to delete a product
-export const DELETE_PRODUCT = gql`
-    mutation deleteProduct($id: ID!) {
-        deleteProduct(id: $id)
-    }
-`;
-
 //GraphQl Query To Fetch All Products Of Category And Its SubCategories
 export const GET_ALL_PRODUCTS_BY_CATEGORIES_IDS = gql`
 query GetProducts($categoryId: String!) {
@@ -254,3 +247,39 @@ query GetProducts($categoryId: String!) {
   }
 }
 `
+
+//GraphQl Mutation To Update Product 
+export const UPDATE_PRODUCT = gql`
+mutation UpdateProduct($data:UpdatedProduct!){
+    updateProduct(data:$data){
+        success
+        message
+        product{
+                id
+                title
+                description
+                price
+                oldPrice
+                discountType
+                discountValue
+                quantity
+                image
+                categoryId
+                brandId
+                isFeatured
+                status
+                metaTitle
+                metaDesc
+        }
+        }
+    }
+
+`
+
+// GraphQL mutation to delete a product
+export const DELETE_PRODUCT = gql`
+    mutation deleteProduct($id: ID!) {
+        deleteProduct(id: $id)
+    }
+`;
+

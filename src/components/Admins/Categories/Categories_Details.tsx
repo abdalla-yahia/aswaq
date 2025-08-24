@@ -5,14 +5,14 @@ import { useQuery } from '@apollo/client';
 import Category from './Category';
 
 export default function Categories_Details() {
-  const {data} = useQuery(GET_ALL_CATEGORIES,{
-  fetchPolicy:'network-only'
-})
+  const { data } = useQuery(GET_ALL_CATEGORIES, {
+    fetchPolicy: 'cache-and-network'
+  })
 
 
   return (
     <div className="py-6 w-full">
-      <h1 className="text-2xl font-bold mb-6">إدارة التصنيفات ( {data?.AllCategories?.category?.filter((items:CreateCategory)=>!items.parentId)?.length} ) تصنيف رئيسى</h1>
+      <h1 className="text-2xl font-bold mb-6">إدارة التصنيفات ( {data?.AllCategories?.category?.filter((items: CreateCategory) => !items.parentId)?.length} ) تصنيف رئيسى</h1>
 
       <div className="overflow-auto rounded shadow">
         <table className="min-w-full bg-white dark:bg-gray-900 table justify-center items-center text-center">
@@ -26,8 +26,8 @@ export default function Categories_Details() {
             </tr>
           </thead>
           <tbody>
-            {data?.AllCategories?.category?.filter((items:CreateCategory)=>!items.parentId).map((cat:CreateCategory) => (
-              <Category key={cat?.id} cat={cat}/>
+            {data?.AllCategories?.category?.filter((items: CreateCategory) => !items.parentId).map((cat: CreateCategory) => (
+              <Category key={cat?.id} cat={cat} />
             ))}
           </tbody>
         </table>

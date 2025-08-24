@@ -8,12 +8,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from "@/libs/Store/Store";
 
 export default function AddressPage() {
-  const {status} = useSelector((state:RootState)=>state.address)
-  const {data} = useQuery(GET_ME,{
-    fetchPolicy: 'network-only',
+  const { status } = useSelector((state: RootState) => state.address)
+  const { data } = useQuery(GET_ME, {
+    fetchPolicy: 'cache-and-network',
   })
 
-  if(status?.success){
+  if (status?.success) {
     window.location.reload()
   }
   return (
@@ -22,8 +22,8 @@ export default function AddressPage() {
       <div className="flex flex-wrap card justify-start items-center w-full gap-2">
         {/**Card Address */}
         {
-          data?.me?.alladdresses?.map((address:CreateAddress) => (
-            <Addresses_Details key={address?.id} id={address?.id as string} name={address?.name} Address={address?.address} phone={address?.phone} userId={address?.userId}/>
+          data?.me?.alladdresses?.map((address: CreateAddress) => (
+            <Addresses_Details key={address?.id} id={address?.id as string} name={address?.name} Address={address?.address} phone={address?.phone} userId={address?.userId} />
           ))
         }
       </div>

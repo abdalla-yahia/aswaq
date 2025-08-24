@@ -40,8 +40,8 @@ function UserStatCard({ title, value, icon }: { title: string; value: string | n
 
 export default function UserHomePage() {
   const { data, loading } = useQuery(GET_ME, {
-      fetchPolicy: "network-only", 
-    });
+    fetchPolicy: "cache-and-network",
+  });
 
   return (
     <div className="py-6 space-y-6 w-full">

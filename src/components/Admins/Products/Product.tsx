@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import * as icon from '@/utils/Icons/Icons';
 import Edit_Product_Form from "@/utils/Forms/Product/Edit_Product_Form";
-import { UpdateProduct } from "@/interfaces/productInterfaces";
+import { UpdateProductInterface } from "@/interfaces/productInterfaces";
 import { useAppDispatch } from "@/libs/Store/Store";
 import swal from "sweetalert";
 import { deleteProduct } from "@/Features/Actions/productActions";
@@ -56,7 +56,7 @@ export default function Product({product}:{product:CreateProductType}) {
                   {/*Actions Of Product*/}
                       <div className="flex gap-2">
                         {
-                          isProductEdit && <Edit_Product_Form product={product as UpdateProduct}/>
+                          isProductEdit && <Edit_Product_Form product={product as CreateProductType}/>
                         }
                         <icon.HiPencilSquare onClick={()=>setIsProductEdit(!isProductEdit)} title='تعديل التصنيف' className='text-green-500 cursor-pointer' />
                         <icon.CiTrash onClick={()=>DeleteProductHandle()}  title='حذف التصنيف' className='text-red-500 cursor-pointer'/>

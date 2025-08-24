@@ -14,7 +14,7 @@ import { changeUserPassword } from "@/Features/Actions/usersActions";
 
 export default function ChangePassword({ setIsChangePassword }: { setIsChangePassword: Dispatch<SetStateAction<boolean>> }) {
     const { data } = useQuery(GET_ME, {
-        fetchPolicy: 'network-only',
+        fetchPolicy: 'cache-and-network',
     })
     const { password, error, loading } = useSelector((state: RootState) => state.user)
     const [newPassword, setNewPassword] = useState<string>('');

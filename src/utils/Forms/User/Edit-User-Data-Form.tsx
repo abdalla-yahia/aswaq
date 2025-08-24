@@ -15,13 +15,13 @@ import { useSelector } from 'react-redux';
 import { Gender } from '@prisma/client';
 
 export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<SetStateAction<boolean>> }) {
-  const { user, error,loading } = useSelector((state: RootState) => state.user)
+  const { user, error, loading } = useSelector((state: RootState) => state.user)
   const [birthDate, setBirthDate] = useState(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const dispatch = useAppDispatch()
   const { data } = useQuery(GET_ME, {
-    fetchPolicy: "network-only",
+    fetchPolicy: "cache-and-network",
   });
 
   const EditUserDataHandller = (prevState: FormEdit, formData: FormData): FormEdit => {
@@ -72,11 +72,11 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
     }
   }
   //Set User Old Image On Preview
-  useEffect(()=>{
-    if(data?.me?.image){
+  useEffect(() => {
+    if (data?.me?.image) {
       setImageUrl(data?.me?.image)
     }
-  },[data?.me?.image]) 
+  }, [data?.me?.image])
   //Form Action State
   const [state, formAction] = useActionState(EditUserDataHandller, initialState)
   //Reload Page After Submite Edit Data
@@ -130,7 +130,7 @@ export default function EditUserDataForm({ setIsEdit }: { setIsEdit: Dispatch<Se
           <p className="text-green-500 select-text">تم تعديل المستخدم {user?.user?.name} بنجاح</p>
         </div>
       }
-      <SubmitButton text={loading?'جارٍ حفظ التعديلات....':'حفظ'} bgcolor='bg-blue-500' textcolor='white' />
+      <SubmitButton text={loading ? 'جارٍ حفظ التعديلات....' : 'حفظ'} bgcolor='bg-blue-500' textcolor='white' />
     </form>
   )
 }

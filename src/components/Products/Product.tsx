@@ -8,30 +8,30 @@ import { useQuery } from "@apollo/client";
 import { GET_PRODUCT_BY_SLUG } from "@/Graphql/Schemas/ProducrQuery";
 
 export default function ProductDetails({ slug }: { slug: string }) {
-    // Find the product by ID from the products dataset
-      const { data:products, loading, error } = useQuery(GET_PRODUCT_BY_SLUG, {
+  // Find the product by ID from the products dataset
+  const { data: products, loading, error } = useQuery(GET_PRODUCT_BY_SLUG, {
     variables: { slug },
-    fetchPolicy: "network-only",
+    fetchPolicy: "cache-and-network",
   });
 
   if (loading) return <p>جاري تحميل المنتج...</p>;
   if (error) return <p>حدث خطأ: {error.message}</p>;
-    const productFound = products?.productBySlug;
-    const category = productFound?.category?.name as string;
-    const brand = productFound?.brand?.name as string;
-    const title = productFound?.title as string
-    return (
-        <div className="w-full flex my-5 py-8 px-3 flex-col justify-center items-start">
-            {/**Details Of Product */}
-            <Product_Info product={productFound}/>
-            {/**Add A New Comment From User*/}
-            <Add_Comment />
-            {/**Comments Of Product */}
-            <Comments_Product title={title}/>
-            {/**Suggested Products */}
-            <Suggested_Products />
-            {/**Similar Products */}
-            <Similar_Products category={category as unknown as string} brand={brand as unknown as string} />
-        </div>
-    )
+  const productFound = products?.productBySlug;
+  const category = productFound?.category?.name as string;
+  const brand = productFound?.brand?.name as string;
+  const title = productFound?.title as string
+  return (
+    <div className="w-full flex my-5 py-8 px-3 flex-col justify-center items-start">
+      {/**Details Of Product */}
+      <Product_Info product={productFound} />
+      {/**Add A New Comment From User*/}
+      <Add_Comment />
+      {/**Comments Of Product */}
+      <Comments_Product title={title} />
+      {/**Suggested Products */}
+      <Suggested_Products />
+      {/**Similar Products */}
+      <Similar_Products category={category as unknown as string} brand={brand as unknown as string} />
+    </div>
+  )
 }

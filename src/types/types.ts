@@ -1,4 +1,3 @@
-import { UpdateProduct } from "@/interfaces/productInterfaces";
 import { DiscountType, Gender, ProductStatus } from "@prisma/client";
 
 export type User = {

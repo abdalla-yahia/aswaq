@@ -28,7 +28,7 @@ export default function Anew_Addresses_Form() {
   ].filter(Boolean).join(' - ');
 
   const { data } = useQuery(GET_ME, {
-    fetchPolicy: 'network-only',
+    fetchPolicy: 'cache-and-network',
   })
   const dispatch = useAppDispatch()
   const AddAnewAddress = (prevState: CreateAddress, formData: FormData): FormAddress => {

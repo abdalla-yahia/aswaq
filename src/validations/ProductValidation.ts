@@ -17,3 +17,22 @@ export const CreateProductValidation = z.object({
   metaTitle: z.string().nullable().optional(),
   metaDesc: z.string().nullable().optional(),
 });
+
+//Updata Product Validation Schema
+export const UpdateProductValidation = z.object({
+  id:z.string(),
+  title: z.string().min(1, "اسم المنتج مطلوب").optional(),
+  description: z.string().nullable().optional(),
+  price: z.number().positive("Price must be a positive number").optional(),
+  oldPrice: z.number().nullable().optional(),
+  discountType: z.enum(['FIXED','PERCENTAGE']).nullable().optional(),
+  discountValue: z.number().nullable().optional(),
+  quantity: z.number().int().nonnegative("Quantity must be a non-negative integer").optional(),
+  image: z.string().nullable().optional(),
+  categoryId: z.string().nullable().optional(),
+  brandId: z.string().nullable().optional(),
+  isFeatured: z.boolean().optional(),
+  status: z.enum(['ACTIVE' , 'INACTIVE', 'ARCHIVED']).optional(),
+  metaTitle: z.string().nullable().optional(),
+  metaDesc: z.string().nullable().optional(),
+});

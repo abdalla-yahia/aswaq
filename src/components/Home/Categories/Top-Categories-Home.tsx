@@ -7,9 +7,9 @@ import { GET_ALL_CATEGORIES } from "@/Graphql/Schemas/CategoryQuery";
 import { CreateCategory } from "@/types/types";
 
 export default function TopCategoriesHome() {
- const {data} = useQuery(GET_ALL_CATEGORIES,{
-        fetchPolicy: 'network-only',
-    })
+  const { data } = useQuery(GET_ALL_CATEGORIES, {
+    fetchPolicy: 'cache-and-network',
+  })
 
   return (
     <section className="w-full h-fit">
@@ -17,7 +17,7 @@ export default function TopCategoriesHome() {
       <div dir="ltr" className="flex  justify-center w-full h-fit">
         <Marquee speed={30} autoFill={true} direction="right">
           {
-            data?.AllCategories?.category?.map((category:CreateCategory) =>
+            data?.AllCategories?.category?.map((category: CreateCategory) =>
               <CategoryCard key={category?.id} img={category?.image as string} title={category?.name} category={category?.name} className="w-full text-center rounded-full mb-4 cursor-pointer hover:-translate-y-2 transition-transform" />
             )
           }

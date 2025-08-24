@@ -7,9 +7,9 @@ import { useQuery } from "@apollo/client";
 import Product from "./Product";
 
 export default function Products_Details() {
-const {data:AllProducts} = useQuery(GET_ALL_PRODUCTS,{
-  fetchPolicy: "network-only",
-})
+  const { data: AllProducts } = useQuery(GET_ALL_PRODUCTS, {
+    fetchPolicy: "cache-and-network",
+  })
 
   return (
     <div className="py-6 space-y-6 text-foreground w-full">
@@ -31,8 +31,8 @@ const {data:AllProducts} = useQuery(GET_ALL_PRODUCTS,{
             </tr>
           </thead>
           <tbody>
-            {AllProducts?.GetAllProducts?.products?.map((product:CreateProductType) => (
-             <Product key={product?.id} product={product} />
+            {AllProducts?.GetAllProducts?.products?.map((product: CreateProductType) => (
+              <Product key={product?.id} product={product} />
             ))}
           </tbody>
         </table>

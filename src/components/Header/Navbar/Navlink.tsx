@@ -4,9 +4,9 @@ import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 import Image from "next/image";
 
-export default  function Navlink() {
-const { data, loading } = useQuery(GET_ME, {
-    fetchPolicy: "network-only", // عشان يجيب آخر بيانات من السيرفر
+export default function Navlink() {
+  const { data, loading } = useQuery(GET_ME, {
+    fetchPolicy: "cache-and-network", // عشان يجيب آخر بيانات من السيرفر
   });
 
   return (
@@ -23,27 +23,27 @@ const { data, loading } = useQuery(GET_ME, {
         </Link>
         {/* <span className="text-[10px] text-orange-600 font-bold">2500 ج.م</span> */}
         <Link href={'/login'} className="flex flex-col justify-center items-center text-center">
-          <li >{data?.me?.name ? (`مرحباً ${(data?.me?.name).split(' ')[0]}`):'دخول'}</li>
+          <li >{data?.me?.name ? (`مرحباً ${(data?.me?.name).split(' ')[0]}`) : 'دخول'}</li>
           {/*Personal Image*/}
           {
-            (data?.me?.image) ? 
-            (<Image src={data?.me?.image} alt={`Image - ${data?.me?.name}`} width={40} height={40} className="rounded-full"/>) :
-            (<icon.IoPersonCircleOutline />)
+            (data?.me?.image) ?
+              (<Image src={data?.me?.image} alt={`Image - ${data?.me?.name}`} width={40} height={40} className="rounded-full" />) :
+              (<icon.IoPersonCircleOutline />)
           }
           {/*Logout Icon*/}
           {
-            (data?.me?.name) ? 
-            (<Link href={'/logout'}><icon.BiLogOutCircle title="تسجيل الخروج"/></Link>):
-            ('')
+            (data?.me?.name) ?
+              (<Link href={'/logout'}><icon.BiLogOutCircle title="تسجيل الخروج" /></Link>) :
+              ('')
           }
         </Link>
         {/*Dashboard Icon*/}
         {
           data?.me?.role &&
           <Link href={`/${(data?.me?.role).toLowerCase()}s`} className="flex flex-col justify-center items-center text-center">
-          <p>لوحة التحكم</p>
-          <icon.IoSettingsOutline className=" animate-[spin_3s_ease-in-out_infinite]"/>
-        </Link>
+            <p>لوحة التحكم</p>
+            <icon.IoSettingsOutline className=" animate-[spin_3s_ease-in-out_infinite]" />
+          </Link>
         }
       </ul>
     </>

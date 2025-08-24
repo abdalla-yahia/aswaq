@@ -15,32 +15,32 @@ export default function Personal_Data() {
   const [isEdit, setIsEdit] = useState(false)
   const [isChangePassword, setIsChangePassword] = useState(false)
   const { data, loading } = useQuery(GET_ME, {
-    fetchPolicy: "network-only",
+    fetchPolicy: "cache-and-network",
   });
   const dispatch = useAppDispatch()
   //Handller Delete User
   const DeleteUserHandller = (id: string) => {
 
     swal({
-            title: "هل أنت متأكد من الحذف؟",
-            text: "بمجرد حذف التصنيف سيتم مسحة نهائياً ولن تستطع إستعادة بياناته مرة أخرى!",
-            icon: "warning",
-            dangerMode: true,
-            buttons:["إلغاء", "حذف"]
-          })
-        .then((willDelete) => {
-          if (willDelete) {
-            dispatch(deleteUser(id))
-            swal("تم حذف التصنيف", {
-              icon: "success",
-            });
-            window.location.href = '/';
-          } else {
-            swal("أنت الأن في أمان لم يتم الحذف!");
-          }
-        });
-    
-    
+      title: "هل أنت متأكد من الحذف؟",
+      text: "بمجرد حذف التصنيف سيتم مسحة نهائياً ولن تستطع إستعادة بياناته مرة أخرى!",
+      icon: "warning",
+      dangerMode: true,
+      buttons: ["إلغاء", "حذف"]
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          dispatch(deleteUser(id))
+          swal("تم حذف التصنيف", {
+            icon: "success",
+          });
+          window.location.href = '/';
+        } else {
+          swal("أنت الأن في أمان لم يتم الحذف!");
+        }
+      });
+
+
   }
   return (
     <div className="max-w-5xl mx-auto text-foreground w-full border relative p-6 rounded-lg shadow">
@@ -110,7 +110,7 @@ export default function Personal_Data() {
           </button>
           {data?.me?.role !== 'ADMIN' && <button onClick={() => DeleteUserHandller(data?.me?.id)} className='text-white hover:bg-red-600 rounded  mr-auto  bg-sky-500 p-2  cursor-pointer'>
             حذف الحساب
-            </button>}
+          </button>}
         </div>
       </div>
     </div>

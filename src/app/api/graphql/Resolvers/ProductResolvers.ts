@@ -1,5 +1,6 @@
+import { UpdateProductInterface } from "@/interfaces/productInterfaces";
 import { CreateProductType } from "@/types/types";
-import { CreateProductValidation } from "@/validations/ProductValidation";
+import { CreateProductValidation, UpdateProductValidation } from "@/validations/ProductValidation";
 import { PrismaClient } from "@prisma/client";
 import slugify from "slugify";
 
@@ -139,20 +140,26 @@ const productsMutations = {
         return { success: false, message: error };
       }
     },
-    //Update Product
-    updateProduct: async (_: unknown, args: { id: string } & CreateProductType, ctx: { prisma: PrismaClient }) => {
+    updateProduct:async (_:unknown,args:{data:UpdateProductInterface},ctx:{prisma:PrismaClient})=>{
       try {
-        //Validation Data
-        const validationData = CreateProductValidation.safeParse(args);
-        if (!validationData?.success) return { success: false, message: (validationData?.error?.issues.map(e => e.message).join(', ')) };
-        //Update Product
-        const updatedProduct = await ctx.prisma.product.update({
-          where: { id: args.id },
-          data: validationData.data,
-        });
-        return { success: true, message: 'Product updated successfully', product: updatedProduct };
+        //Check If Product Is Existes
+        const IsExistes = await ctx.prisma.product.findUnique({where:{id:args?.data?.id}})
+        if(!IsExistes){
+          return {success:false,message:'Product Not Found'}
+        }
+        //Check Validation Of Data
+        const Validation  = UpdateProductValidation.safeParse(args?.data)
+        if(!Validation?.success){
+          return {success:false,message:'Data Not Valide'}
+        }
+        // Update Product
+        const product = await ctx.prisma.product.update({
+          where:{id:Validation?.data?.id},
+          data:Validation?.data
+        })
+        return {success:true,message:'Update Product Successfully',product}
       } catch (error) {
-        return { success: false, message: error };
+        return {success:false,message:error}
       }
     },
     //Delete Product

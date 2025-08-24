@@ -10,66 +10,66 @@ import { UpdateCategoryValidation } from "@/validations/CategoryValidation";
 import { toast } from "react-toastify";
 import { updateCategory } from "@/Features/Actions/categoryActions";
 
-export default function Edit_Category_Form({cat}:{cat:UpdateCategory}) {
-    const {data} = useQuery(GET_ALL_CATEGORIES,{
-        fetchPolicy:'network-only',
+export default function Edit_Category_Form({ cat }: { cat: UpdateCategory }) {
+    const { data } = useQuery(GET_ALL_CATEGORIES, {
+        fetchPolicy: 'cache-and-network',
     })
-    const [ParentId,setParentId] = useState<null|string>(null)
+    const [ParentId, setParentId] = useState<null | string>(null)
     const [imageUrl, setImageUrl] = useState<string | null>(cat?.image as string);
     const dispatch = useAppDispatch()
-        //Edit Category
-        const EditCategory = (prevState:UpdateCategory,formData:FormData):UpdateCategory =>{
-            const editstate={
-                ...prevState,
-                id:cat?.id,
-                name:formData.get('CategoryName') as string || cat?.name,
-                description:formData.get('CategoryDescription') as string || cat?.description,
-                image:formData.get('CategoryImageUrl') as string || cat?.image,
-                parentId:ParentId ? ParentId : cat?.parentId
-            }
-            //Check Validation Data
-            const Validation = UpdateCategoryValidation.safeParse(editstate)
-            if(!Validation.success){
-                toast.error(Validation?.error?.issues?.map(e=>e?.message).join(', '))
-            }
-            dispatch(updateCategory(editstate as UpdateCategory))
-            return editstate as UpdateCategory;
+    //Edit Category
+    const EditCategory = (prevState: UpdateCategory, formData: FormData): UpdateCategory => {
+        const editstate = {
+            ...prevState,
+            id: cat?.id,
+            name: formData.get('CategoryName') as string || cat?.name,
+            description: formData.get('CategoryDescription') as string || cat?.description,
+            image: formData.get('CategoryImageUrl') as string || cat?.image,
+            parentId: ParentId ? ParentId : cat?.parentId
         }
-        //InitialState
-        const initialState:UpdateCategory = {
-        id:cat?.id,
-        name:cat?.name,
-        description:cat?.description,
-        image:cat?.image,
-        parentId:cat?.parentId
+        //Check Validation Data
+        const Validation = UpdateCategoryValidation.safeParse(editstate)
+        if (!Validation.success) {
+            toast.error(Validation?.error?.issues?.map(e => e?.message).join(', '))
+        }
+        dispatch(updateCategory(editstate as UpdateCategory))
+        return editstate as UpdateCategory;
     }
-    const [state,actionState] = useActionState(EditCategory,initialState)
+    //InitialState
+    const initialState: UpdateCategory = {
+        id: cat?.id,
+        name: cat?.name,
+        description: cat?.description,
+        image: cat?.image,
+        parentId: cat?.parentId
+    }
+    const [state, actionState] = useActionState(EditCategory, initialState)
 
     // @To-Do Reload Page After Update Element
     //     window.location.reload()
     // 
-    
-  return (
-    <form action={actionState} >
-         {/*Category Image*/}
-                <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
-                {/*Category Image URL*/}
-                <InputButton type="text" onchange={(e)=>setImageUrl(e.target.value)} placeholder="رابط الصورة" name="CategoryImageUrl" />
-                {/*Category Name*/}
-                <InputButton type="text" placeholder={cat?.name || "اسم التصنيف"} name="CategoryName" />
-                {/*Category Description*/}
-                <InputButton type="text" placeholder={cat?.description || 'وصف التصنيف'} name="CategoryDescription" />
-                {/*Category ParentId*/}
-                <select onChange={(e)=>setParentId(e.target.value)} className="w-full text-blue-500 border rounded p-2 mb-4">
+
+    return (
+        <form action={actionState} >
+            {/*Category Image*/}
+            <UploadImage imageUrl={imageUrl as unknown as string} setImageUrl={setImageUrl as (arg0: string) => SetStateAction<string>} />
+            {/*Category Image URL*/}
+            <InputButton type="text" onchange={(e) => setImageUrl(e.target.value)} placeholder="رابط الصورة" name="CategoryImageUrl" />
+            {/*Category Name*/}
+            <InputButton type="text" placeholder={cat?.name || "اسم التصنيف"} name="CategoryName" />
+            {/*Category Description*/}
+            <InputButton type="text" placeholder={cat?.description || 'وصف التصنيف'} name="CategoryDescription" />
+            {/*Category ParentId*/}
+            <select onChange={(e) => setParentId(e.target.value)} className="w-full text-blue-500 border rounded p-2 mb-4">
                 <option value={'null'}>اختر التصنيف</option>
                 {
-                    data?.AllCategories?.category?.map((category:UpdateCategory)=>
+                    data?.AllCategories?.category?.map((category: UpdateCategory) =>
                         <option key={category?.id} value={category?.id}>{category?.name}</option>
                     )
                 }
-                </select>
-                {/*Submit*/}
-                <SubmitButton text="حفظ" bgcolor="bg-blue-500" textcolor="white"/>
-    </form>
-  )
+            </select>
+            {/*Submit*/}
+            <SubmitButton text="حفظ" bgcolor="bg-blue-500" textcolor="white" />
+        </form>
+    )
 }

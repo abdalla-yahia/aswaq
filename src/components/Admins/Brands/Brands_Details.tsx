@@ -5,9 +5,9 @@ import Brand from './Brand';
 import { GET_ALL_BRANDS } from '@/Graphql/Schemas/BrandQuery';
 
 export default function Brands_Details() {
-  const {data} = useQuery(GET_ALL_BRANDS,{
-  fetchPolicy:'network-only'
-})
+  const { data } = useQuery(GET_ALL_BRANDS, {
+    fetchPolicy: 'cache-and-network'
+  })
 
   return (
     <div className="py-6 w-full">
@@ -25,8 +25,8 @@ export default function Brands_Details() {
             </tr>
           </thead>
           <tbody>
-            {data?.AllBrands?.brand?.map((brand:CreateBrand) => (
-              <Brand key={brand?.id} brand={brand}/>
+            {data?.AllBrands?.brand?.map((brand: CreateBrand) => (
+              <Brand key={brand?.id} brand={brand} />
             ))}
           </tbody>
         </table>
