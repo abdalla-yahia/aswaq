@@ -16,9 +16,33 @@ export const GET_All_USERS = gql`
 export const GET_USER_BY_ID = gql`
 query GetuserById($id:ID!){
   GetUserById(id:$id) {
+  id
+  email
+  name
+  password
+  phone
+  address
+  image
+  gender
+  birthDate
+  alladdresses{
     id
     name
-    email
+    phone
+  }
+  role
+  status
+  # orders{}
+  # deliveryOrders{}
+  # comments{}
+  # reviews{}
+  userEmployee
+  # treasury{}
+  # customerRating{}
+  # deliveryReview{}
+  createdAt
+  updatedAt
+    
   }
 }
 `

@@ -8,11 +8,24 @@ import { getUserFromRequest } from '@/libs/getUserFromRequest';
 
 const usersQueries = {
   Query: {
+    //Get All Users
     GetAllUsers: async (_: unknown, __: unknown, ctx: { prisma: PrismaClient }) => {
       return ctx.prisma.user.findMany();
     },
+    //Get User By ID
     GetUserById: async (_: unknown, args: { id: string }, ctx: { prisma: PrismaClient }) => {
-      return ctx.prisma.user.findUnique({ where: { id: args.id } });
+      try {
+        //Check if User Is Existes
+        const IsExist = await ctx.prisma.user.findUnique({where:{id:args.id}})
+        if(!IsExist){
+          return {success:false,message:'User Not Found'}
+        }
+        const user = await ctx.prisma.user.findUnique({ where: { id: args.id } });
+        return user;
+
+      } catch (error) {
+        return {success:false,message:error}
+      }
     },
     me: async (_: unknown, __: unknown, ctx: { req: Request; prisma: PrismaClient }) => {
       const user = getUserFromRequest(ctx.req) as UserToken;

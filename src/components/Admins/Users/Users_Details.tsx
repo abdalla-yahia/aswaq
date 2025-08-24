@@ -1,7 +1,7 @@
 "use client";
 
 import { User } from "@/types/types";
-
+import Link from "next/link";
 
 export default function Users_Details({users}:{users:User[]}) {
   
@@ -22,8 +22,12 @@ export default function Users_Details({users}:{users:User[]}) {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user.id} className="border-t">
-                <td className="p-3">{user.name}</td>
+              <tr key={user?.id} className="border-t">
+                <td className="p-3">
+                  <Link href={`/admins/users/${user?.id}`}>
+                  {user.name}
+                  </Link>
+                  </td>
                 <td className="p-3">{user.email}</td>
                 <td className="p-3">
                   {user?.role === "USER"
