@@ -41,7 +41,7 @@ export const fetchAllProducts = createAsyncThunk(
     try {
       const { data } = await client.query({
         query: GET_ALL_PRODUCTS,
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: 'network-only',
       });
       if (data?.GetAllProducts?.success === false) {
         toast.error(data.GetAllProducts.message);
@@ -66,7 +66,7 @@ export const getProductById = createAsyncThunk(
       const { data } = await client.query({
         query: GET_PRODUCT_BY_ID,
         variables: { id: productId },
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: 'network-only',
       });
       if (data?.product?.success === false) {
         toast.error(data.product.message);
@@ -89,7 +89,7 @@ export const getProductBySlug = createAsyncThunk(
       const { data } = await client.query({
         query: GET_PRODUCT_BY_SLUG,
         variables: { slug },
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: 'network-only',
       });
       if (data?.productBySlug?.success === false) {
         toast.error(data.productBySlug.message);
@@ -112,7 +112,7 @@ export const getProductsByCategory = createAsyncThunk(
       const { data } = await client.query({
         query: GET_PRODUCTS_BY_CATEGORY_ID,
         variables: { categoryId },
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: 'network-only',
       });
       if (data?.productsByCategory?.success === false) {
         toast.error(data.productsByCategory.message);
@@ -135,7 +135,7 @@ export const getProductsByBrand = createAsyncThunk(
       const { data } = await client.query({
         query: GET_PRODUCTS_BY_BRAND_ID,
         variables: { brandId },
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: 'network-only',
       });
       if (data?.productsByBrand?.success === false) {
         toast.error(data.productsByBrand.message);

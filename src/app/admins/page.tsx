@@ -43,7 +43,7 @@ function StatCard({ title, value, icon }: { title: string; value: string | numbe
 }
 
 export default function AdminDashboardPage() {
-  const { data, loading } = useQuery(GET_ME, {
+  const { data } = useQuery(GET_ME, {
     fetchPolicy: 'cache-and-network',
   })
   return (

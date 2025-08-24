@@ -6,7 +6,7 @@ import { useQuery } from "@apollo/client";
 import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 
 export default function UsersLayout({ children }: { children: React.ReactNode }) {
-  const { data, loading } = useQuery(GET_ME, {
+  const { data } = useQuery(GET_ME, {
     fetchPolicy: "cache-and-network",
   });
 

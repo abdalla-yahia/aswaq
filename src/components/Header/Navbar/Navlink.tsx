@@ -5,8 +5,8 @@ import { GET_ME } from "@/Graphql/Schemas/UserQuery";
 import Image from "next/image";
 
 export default function Navlink() {
-  const { data, loading } = useQuery(GET_ME, {
-    fetchPolicy: "cache-and-network", // عشان يجيب آخر بيانات من السيرفر
+  const { data } = useQuery(GET_ME, {
+    fetchPolicy: "cache-and-network", 
   });
 
   return (

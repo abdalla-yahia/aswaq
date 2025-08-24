@@ -39,7 +39,7 @@ function UserStatCard({ title, value, icon }: { title: string; value: string | n
 }
 
 export default function UserHomePage() {
-  const { data, loading } = useQuery(GET_ME, {
+  const { data } = useQuery(GET_ME, {
     fetchPolicy: "cache-and-network",
   });
 

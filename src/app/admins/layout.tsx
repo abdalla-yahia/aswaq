@@ -5,7 +5,7 @@ import MainTitle from '@/utils/Main-Title';
 import { useQuery } from '@apollo/client';
 
 export default function AdminsLayout({ children }: { children: React.ReactNode }) {
-  const { data, loading } = useQuery(GET_ME, {
+  const { data } = useQuery(GET_ME, {
     fetchPolicy: 'cache-and-network',
   })
   return (

@@ -3,10 +3,10 @@ import Image from "next/image";
 import { useState } from "react";
 import * as icon from '@/utils/Icons/Icons';
 import Edit_Product_Form from "@/utils/Forms/Product/Edit_Product_Form";
-import { UpdateProductInterface } from "@/interfaces/productInterfaces";
 import { useAppDispatch } from "@/libs/Store/Store";
 import swal from "sweetalert";
 import { deleteProduct } from "@/Features/Actions/productActions";
+import Link from "next/link";
 
 export default function Product({product}:{product:CreateProductType}) {
          const [isProductEdit,setIsProductEdit] =useState(false)
@@ -35,10 +35,26 @@ export default function Product({product}:{product:CreateProductType}) {
   return (
      <tr key={product.id} className="border-t">
                 <td className="p-3">
+                  <Link href={`/products/${product?.slug}`} >
                   <Image src={product?.image || "/placeholder.png"} alt={product?.title} width={50} height={50} className="rounded" />
+                  </Link>
                 </td>
-                <td className="p-3">{product?.title}</td>
-                <td className="p-3">{product?.category?.name}</td>
+                <td className="p-3">
+                  <Link href={`/products/${product?.slug}`} >
+                  {product?.title}
+                  </Link>
+                  </td>
+                <td className="p-3">
+                  <Link href={`/categories/${product?.category?.name}`}>
+                  {product?.category?.name}
+                  </Link>
+                  </td>
+                <td className="p-3">
+                  <Link href={`/brands/${product?.brand?.name}`}>
+                  {product?.brand?.name}
+                  </Link>
+                  </td>
+
                 <td className="p-3">{product?.price} ج.م</td>
                 <td className="p-3">{product?.quantity}</td>
                 <td className="p-3">

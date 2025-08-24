@@ -24,6 +24,7 @@ export default function Products_Details() {
               <th className="p-3">صورة المنتج</th>
               <th className="p-3">اسم المنتج</th>
               <th className="p-3">التصنيف</th>
+              <th className="p-3">البراند</th>
               <th className="p-3">السعر</th>
               <th className="p-3">الكمية</th>
               <th className="p-3">الحالة</th>
